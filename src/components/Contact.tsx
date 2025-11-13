@@ -58,7 +58,7 @@ const Contact = () => {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
           {/* Contact Form */}
           <Card className="lg:col-span-2 border-border shadow-elegant animate-scale-in">
             <CardHeader>
