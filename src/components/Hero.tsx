@@ -34,7 +34,7 @@ const Hero = () => {
           </div>
 
           {/* Main Heading */}
-          <h1 className="text-5xl md:text-7xl font-bold leading-tight">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
             <span className="bg-gradient-to-r from-primary via-primary-glow to-accent bg-clip-text text-transparent">
               Vibe Mind AI
             </span>
@@ -45,16 +45,16 @@ const Hero = () => {
           </h1>
 
           {/* Subheading */}
-          <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto px-4">
             Where AI meets human creativity. Building intelligent, scalable software through 
             <span className="text-primary font-semibold"> Vibe Coding</span>
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4 px-4">
             <Button 
               size="lg" 
-              className="bg-primary hover:bg-primary-glow shadow-glow text-lg px-8 py-6 transition-smooth group"
+              className="bg-primary hover:bg-primary-glow shadow-glow text-base sm:text-lg px-6 sm:px-8 py-5 sm:py-6 transition-smooth group w-full sm:w-auto"
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
             >
               Let's Build Together
@@ -63,7 +63,7 @@ const Hero = () => {
             <Button 
               size="lg" 
               variant="outline"
-              className="border-primary/30 hover:bg-primary/10 text-lg px-8 py-6 transition-smooth"
+              className="border-primary/30 hover:bg-primary/10 text-base sm:text-lg px-6 sm:px-8 py-5 sm:py-6 transition-smooth w-full sm:w-auto"
               onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
             >
               Explore Services
@@ -71,16 +71,16 @@ const Hero = () => {
           </div>
 
           {/* Stats */}
-          <div className="grid grid-cols-3 gap-8 pt-12 max-w-2xl mx-auto">
-            <div className="space-y-2">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 pt-12 max-w-2xl mx-auto">
+            <div className="space-y-2 text-center">
               <div className="text-3xl md:text-4xl font-bold text-primary">3+</div>
               <div className="text-sm text-muted-foreground">Countries</div>
             </div>
-            <div className="space-y-2">
+            <div className="space-y-2 text-center">
               <div className="text-3xl md:text-4xl font-bold text-primary">100+</div>
               <div className="text-sm text-muted-foreground">Projects</div>
             </div>
-            <div className="space-y-2">
+            <div className="space-y-2 text-center">
               <div className="text-3xl md:text-4xl font-bold text-primary">AI-First</div>
               <div className="text-sm text-muted-foreground">Approach</div>
             </div>

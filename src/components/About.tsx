@@ -23,7 +23,7 @@ const About = () => {
   return (
     <section id="about" className="py-24 bg-muted/30">
       <div className="container mx-auto px-4">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left Content */}
           <div className="space-y-6 animate-fade-in">
             <div className="inline-block px-4 py-2 rounded-full bg-primary/10 border border-primary/20">
@@ -50,7 +50,7 @@ const About = () => {
             </p>
 
             {/* Values Grid */}
-            <div className="grid sm:grid-cols-3 gap-4 pt-6">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6">
               {values.map((value, index) => (
                 <div 
                   key={index}
@@ -65,7 +65,7 @@ const About = () => {
           </div>
 
           {/* Right Image */}
-          <div className="relative animate-scale-in">
+          <div className="relative animate-scale-in mt-8 lg:mt-0">
             <div className="relative rounded-2xl overflow-hidden shadow-elegant">
               <img 
                 src={aiBrain} 
@@ -76,14 +76,14 @@ const About = () => {
             </div>
             
             {/* Floating Card */}
-            <div className="absolute -bottom-6 -right-6 bg-card border border-border rounded-xl p-6 shadow-elegant backdrop-blur-sm">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                  <Zap className="w-6 h-6 text-primary" />
+            <div className="absolute -bottom-4 -right-4 sm:-bottom-6 sm:-right-6 bg-card border border-border rounded-xl p-4 sm:p-6 shadow-elegant backdrop-blur-sm">
+              <div className="flex items-center gap-2 sm:gap-3">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                  <Zap className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
                 </div>
                 <div>
-                  <div className="text-2xl font-bold text-primary">500+</div>
-                  <div className="text-sm text-muted-foreground">AI Models Deployed</div>
+                  <div className="text-xl sm:text-2xl font-bold text-primary">500+</div>
+                  <div className="text-xs sm:text-sm text-muted-foreground whitespace-nowrap">AI Models Deployed</div>
                 </div>
               </div>
             </div>

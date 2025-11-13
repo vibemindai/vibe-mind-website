@@ -43,7 +43,7 @@ const Testimonials = () => {
         </div>
 
         {/* Testimonials Grid */}
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {testimonials.map((testimonial, index) => (
             <Card 
               key={index}
@@ -68,17 +68,17 @@ const Testimonials = () => {
 
         {/* Global Reach */}
         <div className="mt-16 text-center">
-          <div className="inline-flex items-center gap-8 px-8 py-4 rounded-full bg-card border border-border shadow-elegant">
+          <div className="inline-flex flex-wrap items-center justify-center gap-4 sm:gap-8 px-6 sm:px-8 py-4 rounded-full bg-card border border-border shadow-elegant">
             <div>
               <div className="text-2xl font-bold text-primary">🇮🇳</div>
               <div className="text-xs text-muted-foreground mt-1">India</div>
             </div>
-            <div className="w-px h-8 bg-border" />
+            <div className="w-px h-8 bg-border hidden sm:block" />
             <div>
               <div className="text-2xl font-bold text-primary">🇶🇦</div>
               <div className="text-xs text-muted-foreground mt-1">Qatar</div>
             </div>
-            <div className="w-px h-8 bg-border" />
+            <div className="w-px h-8 bg-border hidden sm:block" />
             <div>
               <div className="text-2xl font-bold text-primary">🇺🇸</div>
               <div className="text-xs text-muted-foreground mt-1">USA</div>
