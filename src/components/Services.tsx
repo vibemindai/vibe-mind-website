@@ -31,6 +31,7 @@ const Services = () => {
       description: "Tailor-made AI platforms and products designed for your business goals.",
       features: [
         "Chatbots & recommendation engines",
+        "Custom LLM integrations & fine-tuning",
         "Computer vision & NLP applications",
         "Predictive analytics dashboards",
         "AI-powered automation"
