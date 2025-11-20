@@ -21,7 +21,11 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="py-24 bg-muted/30">
+    <section 
+      id="about" 
+      className="py-24 bg-muted/30"
+      aria-label="About Vibe Mind AI - The Best AI Company in Kerala and India for Intelligent Solutions"
+    >
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left Content */}
@@ -69,7 +73,7 @@ const About = () => {
             <div className="relative rounded-2xl overflow-hidden shadow-elegant">
               <img 
                 src={aiBrain} 
-                alt="AI Technology" 
+                alt="AI Technology Visualization - Vibe Mind AI, Top AI Company in Kerala" 
                 className="w-full h-auto"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/60 to-transparent" />
