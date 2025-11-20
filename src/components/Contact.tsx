@@ -1,43 +1,7 @@
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Mail, MapPin, Phone } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
+import { Card, CardContent } from "@/components/ui/card";
+import { Mail, Phone } from "lucide-react";
 
 const Contact = () => {
-  const { toast } = useToast();
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    company: "",
-    message: ""
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    toast({
-      title: "Message Sent!",
-      description: "We'll get back to you within 24 hours.",
-    });
-    
-    setFormData({ name: "", email: "", company: "", message: "" });
-    setIsSubmitting(false);
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData(prev => ({
-      ...prev,
-      [e.target.name]: e.target.value
-    }));
-  };
 
   return (
     <section id="contact" className="py-24 bg-background">
@@ -58,121 +22,38 @@ const Contact = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
-          {/* Contact Form */}
-          <Card className="lg:col-span-2 border-border shadow-elegant animate-scale-in">
-            <CardHeader>
-              <CardTitle className="text-2xl">Send us a Message</CardTitle>
-              <CardDescription>
-                Tell us about your project and we'll get back to you within 24 hours
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid sm:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <label htmlFor="name" className="text-sm font-medium">
-                      Name *
-                    </label>
-                    <Input
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      required
-                      placeholder="Your name"
-                      className="border-border focus:border-primary transition-smooth"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <label htmlFor="email" className="text-sm font-medium">
-                      Email *
-                    </label>
-                    <Input
-                      id="email"
-                      name="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                      placeholder="you@company.com"
-                      className="border-border focus:border-primary transition-smooth"
-                    />
-                  </div>
-                </div>
-                
-                <div className="space-y-2">
-                  <label htmlFor="company" className="text-sm font-medium">
-                    Company
-                  </label>
-                  <Input
-                    id="company"
-                    name="company"
-                    value={formData.company}
-                    onChange={handleChange}
-                    placeholder="Your company name"
-                    className="border-border focus:border-primary transition-smooth"
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <label htmlFor="message" className="text-sm font-medium">
-                    Message *
-                  </label>
-                  <Textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                    rows={6}
-                    placeholder="Tell us about your project..."
-                    className="border-border focus:border-primary transition-smooth resize-none"
-                  />
-                </div>
-
-                <Button 
-                  type="submit" 
-                  className="w-full bg-primary hover:bg-primary-glow shadow-glow transition-smooth"
-                  disabled={isSubmitting}
-                >
-                  {isSubmitting ? "Sending..." : "Send Message"}
-                </Button>
-              </form>
-            </CardContent>
-          </Card>
-
+        <div className="max-w-md mx-auto">
           {/* Contact Info */}
-          <div className="space-y-6 animate-scale-in" style={{ animationDelay: "0.1s" }}>
+          <div className="space-y-6 animate-scale-in">
             <Card className="border-border shadow-elegant">
               <CardContent className="pt-6 space-y-6">
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                  <a href="mailto:info@vibemindsolutions.ai" className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 hover:bg-primary/20 transition-smooth cursor-pointer">
                     <Mail className="w-5 h-5 text-primary" />
-                  </div>
+                  </a>
                   <div>
                     <h3 className="font-semibold mb-1">Email</h3>
-                    <a href="mailto:contact@vibemindai.com" className="text-muted-foreground hover:text-primary transition-smooth">
-                      contact@vibemindai.com
+                    <a href="mailto:info@vibemindsolutions.ai" className="text-muted-foreground hover:text-primary transition-smooth">
+                      info@vibemindsolutions.ai
                     </a>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                  <a href="tel:+918281442486" className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 hover:bg-primary/20 transition-smooth cursor-pointer">
                     <Phone className="w-5 h-5 text-primary" />
-                  </div>
+                  </a>
                   <div>
                     <h3 className="font-semibold mb-1">Phone</h3>
                     <div className="space-y-1 text-muted-foreground">
-                      <div>India: +91 XXX XXX XXXX</div>
-                      <div>Qatar: +974 XXX XXXXX</div>
-                      <div>USA: +1 XXX XXX XXXX</div>
+                      <a href="tel:+918281442486" className="hover:text-primary transition-smooth">
+                        India: +91 82 81 442 486
+                      </a>
                     </div>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-4">
+                {/* <div className="flex items-start gap-4">
                   <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
                     <MapPin className="w-5 h-5 text-primary" />
                   </div>
@@ -184,7 +65,7 @@ const Contact = () => {
                       <div>San Francisco, USA</div>
                     </div>
                   </div>
-                </div>
+                </div> */}
               </CardContent>
             </Card>
 
