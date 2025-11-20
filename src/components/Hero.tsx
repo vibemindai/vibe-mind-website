@@ -77,7 +77,7 @@ const Hero = () => {
               <div className="text-sm text-muted-foreground">Countries</div>
             </div>
             <div className="space-y-2 text-center">
-              <div className="text-3xl md:text-4xl font-bold text-primary">100+</div>
+              <div className="text-3xl md:text-4xl font-bold text-primary">20+</div>
               <div className="text-sm text-muted-foreground">Projects</div>
             </div>
             <div className="space-y-2 text-center">

@@ -156,3 +156,11 @@ All colors MUST be HSL.
     transition: var(--transition-smooth);
   }
 }
+
+/* Tech Globe Icon Styling */
+.tech-icon-svg svg {
+  width: 100% !important;
+  height: 100% !important;
+  fill: currentColor;
+  display: block;
+}

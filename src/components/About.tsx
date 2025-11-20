@@ -82,8 +82,8 @@ const About = () => {
                   <Zap className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
                 </div>
                 <div>
-                  <div className="text-xl sm:text-2xl font-bold text-primary">500+</div>
-                  <div className="text-xs sm:text-sm text-muted-foreground whitespace-nowrap">AI Models Deployed</div>
+                  <div className="text-xl sm:text-2xl font-bold text-primary">4+</div>
+                  <div className="text-xs sm:text-sm text-muted-foreground whitespace-nowrap">AI Models</div>
                 </div>
               </div>
             </div>
