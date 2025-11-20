@@ -38,8 +38,6 @@ const Footer = () => {
             <ul className="space-y-2 text-sm text-gray-300">
               <li><a href="https://jyotai.in" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-smooth">JyotAI.in</a></li>
               <li><a href="#products" className="hover:text-primary transition-smooth">Community App</a></li>
-              <li><a href="#tech-stack" className="hover:text-primary transition-smooth">Vibe SDK</a></li>
-              <li><a href="#tech-stack" className="hover:text-primary transition-smooth">CodeMind Engine</a></li>
             </ul>
           </div>
 
@@ -49,8 +47,6 @@ const Footer = () => {
             <ul className="space-y-2 text-sm text-gray-300">
               <li><a href="#about" className="hover:text-primary transition-smooth">About Us</a></li>
               <li><a href="#contact" className="hover:text-primary transition-smooth">Contact</a></li>
-              <li><a href="#" className="hover:text-primary transition-smooth">Careers</a></li>
-              <li><a href="#" className="hover:text-primary transition-smooth">Blog</a></li>
             </ul>
           </div>
         </div>
@@ -60,10 +56,6 @@ const Footer = () => {
           <p className="text-sm text-gray-300">
             © {currentYear} Vibe Mind AI Solutions. All rights reserved.
           </p>
-          <div className="flex gap-6 text-sm text-gray-300">
-            <a href="#" className="hover:text-primary transition-smooth">Privacy Policy</a>
-            <a href="#" className="hover:text-primary transition-smooth">Terms of Service</a>
-          </div>
         </div>
       </div>
     </footer>

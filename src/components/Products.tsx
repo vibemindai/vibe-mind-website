@@ -10,7 +10,7 @@ const Products = () => {
       tagline: "AI-Powered Spiritual Insights",
       description: "Personalized spiritual guidance platform combining ancient wisdom with modern AI technology. Get insights, predictions, and personalized recommendations based on Vedic astrology and AI analysis.",
       features: ["Vedic AI Integration", "Personalized Readings", "Daily Insights"],
-      link: "https://jyotai.in",
+      // link: "https://jyotai.in",
       gradient: "from-primary to-primary-glow"
     },
     {
