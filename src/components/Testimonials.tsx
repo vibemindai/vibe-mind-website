@@ -37,7 +37,7 @@ const Testimonials = () => {
           <h2 className="text-4xl md:text-5xl font-bold">
             Trusted by Leaders
             <span className="block bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              Across 3 Countries
+              Clients Across Countries
             </span>
           </h2>
         </div>

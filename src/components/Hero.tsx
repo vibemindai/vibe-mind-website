@@ -4,12 +4,15 @@ import heroBg from "@/assets/hero-bg.jpg";
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section 
+      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      aria-label="Vibe Mind AI - Best AI Company in Kerala, India and World for Artificial Intelligence Solutions"
+    >
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <img 
           src={heroBg} 
-          alt="AI Neural Network" 
+          alt="Vibe Mind AI - Best AI Company in Kerala, India - Neural Network Technology Background" 
           className="w-full h-full object-cover opacity-40"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-primary-dark/90 via-primary-dark/70 to-background" />
@@ -45,7 +48,7 @@ const Hero = () => {
           </h1>
 
           {/* Subheading */}
-          <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto px-4">
+          <p className="text-lg sm:text-xl md:text-2xl text-white max-w-2xl mx-auto px-4">
             Where AI meets human creativity. Building intelligent, scalable software through 
             <span className="text-primary font-semibold"> Vibe Coding</span>
           </p>
@@ -55,7 +58,13 @@ const Hero = () => {
             <Button 
               size="lg" 
               className="bg-primary hover:bg-primary-glow shadow-glow text-base sm:text-lg px-6 sm:px-8 py-5 sm:py-6 transition-smooth group w-full sm:w-auto"
-              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              aria-label="Start your AI project with the best AI company in Kerala"
+              onClick={() => {
+                const element = document.querySelector('#contact')
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth' })
+                }
+              }}
             >
               Let's Build Together
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -64,25 +73,45 @@ const Hero = () => {
               size="lg" 
               variant="outline"
               className="border-primary/30 hover:bg-primary/10 text-base sm:text-lg px-6 sm:px-8 py-5 sm:py-6 transition-smooth w-full sm:w-auto"
-              onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
+              aria-label="Explore AI services by Vibe Mind India"
+              onClick={() => {
+                const element = document.querySelector('#services')
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth' })
+                }
+              }}
             >
               Explore Services
+            </Button>
+            <Button 
+              size="lg" 
+              variant="outline"
+              className="border-primary/30 hover:bg-primary/10 text-base sm:text-lg px-6 sm:px-8 py-5 sm:py-6 transition-smooth w-full sm:w-auto"
+              aria-label="View our AI technology stack"
+              onClick={() => {
+                const element = document.querySelector('#tech-stack')
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth' })
+                }
+              }}
+            >
+              View Tech Stack
             </Button>
           </div>
 
           {/* Stats */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 pt-12 max-w-2xl mx-auto">
             <div className="space-y-2 text-center">
-              <div className="text-3xl md:text-4xl font-bold text-primary">3+</div>
-              <div className="text-sm text-muted-foreground">Countries</div>
+              <div className="text-3xl md:text-4xl font-bold">3+</div>
+              <div className="text-sm text-white">Clients Across Countries</div>
             </div>
             <div className="space-y-2 text-center">
-              <div className="text-3xl md:text-4xl font-bold text-primary">20+</div>
-              <div className="text-sm text-muted-foreground">Projects</div>
+              <div className="text-3xl md:text-4xl font-bold">20+</div>
+              <div className="text-sm text-white">Projects</div>
             </div>
             <div className="space-y-2 text-center">
-              <div className="text-3xl md:text-4xl font-bold text-primary">AI-First</div>
-              <div className="text-sm text-muted-foreground">Approach</div>
+              <div className="text-3xl md:text-4xl font-bold">AI-First</div>
+              <div className="text-sm text-white">Approach</div>
             </div>
           </div>
         </div>

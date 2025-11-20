@@ -49,6 +49,13 @@ const Navigation = () => {
                 key={item.label}
                 href={item.href}
                 className="text-sm font-medium text-muted-foreground hover:text-primary transition-smooth relative group"
+                onClick={(e) => {
+                  e.preventDefault()
+                  const element = document.querySelector(item.href)
+                  if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' })
+                  }
+                }}
               >
                 {item.label}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300" />
@@ -81,7 +88,14 @@ const Navigation = () => {
                   key={item.label}
                   href={item.href}
                   className="text-sm font-medium text-muted-foreground hover:text-primary transition-smooth px-4 py-2"
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  onClick={(e) => {
+                    e.preventDefault()
+                    setIsMobileMenuOpen(false)
+                    const element = document.querySelector(item.href)
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth' })
+                    }
+                  }}
                 >
                   {item.label}
                 </a>
