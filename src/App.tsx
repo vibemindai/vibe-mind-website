@@ -16,9 +16,7 @@ const RedirectHandler = () => {
     const redirect = sessionStorage.getItem('redirect');
     if (redirect) {
       sessionStorage.removeItem('redirect');
-      // Remove the base path from the redirect URL
-      const path = redirect.replace('/vibe-mind-website', '');
-      navigate(path || '/');
+      navigate(redirect || '/');
     }
   }, [navigate]);
 
@@ -30,7 +28,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter basename="/vibe-mind-website">
+      <BrowserRouter>
         <RedirectHandler />
         <Routes>
           <Route path="/" element={<Index />} />
