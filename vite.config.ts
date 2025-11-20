@@ -4,7 +4,7 @@ import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: '/vibe-mind-website/',
+  base: '/',
   server: {
     host: "::",
     port: 8080,
