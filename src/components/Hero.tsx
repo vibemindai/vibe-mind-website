@@ -103,7 +103,7 @@ const Hero = () => {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 pt-12 max-w-2xl mx-auto">
             <div className="space-y-2 text-center">
               <div className="text-3xl md:text-4xl font-bold">3+</div>
-              <div className="text-sm text-white">Clients Across Countries</div>
+              <div className="text-sm text-white">Country Client Base & Growing</div>
             </div>
             <div className="space-y-2 text-center">
               <div className="text-3xl md:text-4xl font-bold">20+</div>
