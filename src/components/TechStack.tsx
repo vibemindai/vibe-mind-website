@@ -2,12 +2,12 @@ import { Badge } from "@/components/ui/badge";
 
 const TechStack = () => {
   const technologies = [
-    { category: "AI & ML", items: ["OpenAI", "Google Gemini", "LangChain", "TensorFlow", "PyTorch", "Hugging Face"] },
-    { category: "Backend", items: ["Python", "Node.js", "FastAPI", "Django", "Express.js", "GraphQL"] },
-    { category: "Frontend", items: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Vue.js", "Svelte"] },
+    { category: "AI & ML", items: ["OpenAI", "Google Gemini", "LangChain", "Hugging Face"] },
+    { category: "Backend", items: ["Python", "Node.js", "FastAPI", "Django", "Express.js", "GraphQL", "Java", "Spring Boot", "Struct"] },
+    { category: "Frontend", items: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Vue.js", "Angular"] },
     { category: "Cloud & DevOps", items: ["AWS", "Azure", "Google Cloud", "Docker", "Kubernetes", "CI/CD"] },
     { category: "Databases", items: ["PostgreSQL", "MongoDB", "Redis", "Supabase", "Pinecone", "ChromaDB"] },
-    { category: "AI Tools", items: ["LangChain", "LlamaIndex", "Anthropic", "Replicate", "Stability AI", "Midjourney"] }
+    { category: "AI Tools", items: ["LangChain", "LlamaIndex", "Anthropic", "Replicate", "Stability AI", "Cursor", 'Claude AI'] }
   ];
 
   return (

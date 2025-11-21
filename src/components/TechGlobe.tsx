@@ -25,6 +25,8 @@ const techStack = [
   { name: 'Svelte', color: '#ff3e00' },
   { name: 'AWS', color: '#ff9900' },
   { name: 'Azure', color: '#0078d4' },
+  { name: 'Google Cloud', color: '#4285f4' },
+  { name: 'Angular', color: '#4285f4' },
   { name: 'GCP', color: '#4285f4' },
   { name: 'Docker', color: '#2496ed' },
   { name: 'Kubernetes', color: '#326ce5' },
@@ -34,14 +36,27 @@ const techStack = [
   { name: 'Supabase', color: '#3ecf8e' },
   { name: 'Pinecone', color: '#00d4ff' },
   { name: 'Chroma', color: '#ff6b6b' },
+  { name: 'Spring Boot', color: '#6db33f' },
+  { name: 'Struct', color: '#6db33f' },
+  { name: 'Java', color: '#6db33f' },
+  { name: 'Vibe', color: '#6db33f' },
+  { name: 'Rollup', color: '#6db33f' },
+  { name: 'Webpack', color: '#6db33f' },
+  { name: 'Parcel', color: '#6db33f' },
+  { name: 'Snowpack', color: '#6db33f' },
+  { name: 'Netlify', color: '#6db33f' },
+  { name: 'Firebase', color: '#6db33f' },
 ];
 
 const aiSatellites = [
   { name: 'Anthropic', color: '#d4a574' },
   { name: 'LlamaIndex', color: '#8b5cf6' },
+  { name: 'Vibe Coding', color: '#8b5cf6' },
   { name: 'Replicate', color: '#00ff88' },
-  { name: 'Vercel', color: '#ffffff' },
+  { name: 'Cursor', color: '#00ff88' },
   { name: 'Claude AI', color: '#10a37f' },
+  { name: 'Windsurf AI', color: '#10a37f' },
+  { name: 'Vercel', color: '#ffffff' },
 ];
 
 // Wireframe Globe Component
