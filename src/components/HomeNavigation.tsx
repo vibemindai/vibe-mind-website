@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X, Search, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import ThemeToggle from "./ThemeToggle";
 
 const HomeNavigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -17,19 +18,19 @@ const HomeNavigation = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="flex items-center justify-between h-16 lg:h-20">
+        <div className="flex items-center justify-between h-14 sm:h-16 lg:h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 group">
-            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary via-accent to-primary flex items-center justify-center">
-              <div className="w-4 h-4 rounded-full bg-background" />
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gradient-to-br from-primary via-accent to-primary flex items-center justify-center">
+              <div className="w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-background" />
             </div>
-            <span className="text-lg font-semibold text-foreground">
-              VibeMind <span className="text-muted-foreground font-normal">Solutions</span>
+            <span className="text-base sm:text-lg font-semibold text-foreground">
+              VibeMind <span className="text-muted-foreground font-normal hidden sm:inline">Solutions</span>
             </span>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-6 xl:gap-8">
             {navItems.map((item) => (
               <div key={item.label} className="relative">
                 <Link
@@ -67,25 +68,29 @@ const HomeNavigation = () => {
           </div>
 
           {/* Right Side */}
-          <div className="hidden lg:flex items-center gap-4">
+          <div className="hidden lg:flex items-center gap-2 xl:gap-4">
             <button className="p-2 text-muted-foreground hover:text-foreground transition-colors">
               <Search className="w-5 h-5" />
             </button>
+            <ThemeToggle />
             <Link to="/contact">
-              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-6">
+              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-4 xl:px-6 text-sm">
                 Get in Touch
               </Button>
             </Link>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            className="lg:hidden p-2 text-foreground"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+          {/* Mobile Right Side */}
+          <div className="flex lg:hidden items-center gap-2">
+            <ThemeToggle />
+            <button
+              className="p-2 text-foreground"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Menu */}
