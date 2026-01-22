@@ -109,9 +109,6 @@ const AIChatWindow = () => {
         <Button size="icon" className="rounded-full bg-primary hover:bg-primary/90 w-8 h-8 sm:w-10 sm:h-10">
           <Send className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
         </Button>
-        <Button size="icon" variant="ghost" className="rounded-full w-8 h-8 sm:w-10 sm:h-10 text-primary">
-          <Send className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-        </Button>
       </div>
     </div>
   );
