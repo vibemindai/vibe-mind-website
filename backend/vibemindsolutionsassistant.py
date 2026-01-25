@@ -28,7 +28,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-OPENAI_KEY = os.getenv("OPENAI_API_KEY", "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")
+OPENAI_KEY = os.getenv("OPENAI_API_KEY")
 client = AsyncOpenAI(api_key=OPENAI_KEY)
 
 
