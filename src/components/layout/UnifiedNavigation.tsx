@@ -1,7 +1,7 @@
-import { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
-import { Menu, ChevronDown, Phone, Mail, Send, CheckCircle, Loader2, Plus, MessageCircle } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import { Menu, ChevronDown, Phone, Mail, Send, CheckCircle, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -10,58 +10,14 @@ import {
   SheetTrigger,
   SheetTitle,
 } from "@/components/ui/sheet";
-import ThemeToggle from "./ThemeToggle";
+import ThemeToggle from "@/components/ThemeToggle";
 import { useToast } from "@/hooks/use-toast";
 
-interface HomeNavigationProps {
-  onLogoClick?: () => void;
-  isMobileChatExpanded?: boolean;
-}
-
-const contactActions = [
-  {
-    icon: MessageCircle,
-    label: "WhatsApp",
-    href: "https://wa.me/918281442486?text=Hi!%20I'd%20like%20to%20know%20more%20about%20VibeMind%20AI%20Solutions.",
-    color: "bg-green-500 hover:bg-green-600",
-  },
-  {
-    icon: Phone,
-    label: "Call",
-    href: "tel:+918281442486",
-    color: "bg-blue-500 hover:bg-blue-600",
-  },
-  {
-    icon: Mail,
-    label: "Email",
-    href: "mailto:info@vibemindsolutions.ai",
-    color: "bg-purple-500 hover:bg-purple-600",
-  },
-];
-
-const HomeNavigation = ({ onLogoClick, isMobileChatExpanded }: HomeNavigationProps) => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+const UnifiedNavigation = () => {
+  const location = useLocation();
   const [isServicesOpen, setIsServicesOpen] = useState(false);
-  const [isContactOpen, setIsContactOpen] = useState(false);
-  const contactRef = useRef<HTMLDivElement>(null);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { toast } = useToast();
-
-  // Close contact menu when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (contactRef.current && !contactRef.current.contains(event.target as Node)) {
-        setIsContactOpen(false);
-      }
-    };
-
-    if (isContactOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [isContactOpen]);
 
   // Callback form state
   const [contact, setContact] = useState("");
@@ -139,34 +95,31 @@ const HomeNavigation = ({ onLogoClick, isMobileChatExpanded }: HomeNavigationPro
   };
 
   const navItems = [
-    { label: "Home", href: "/", active: true },
+    { label: "Home", href: "/" },
     { label: "About Us", href: "/about" },
     { label: "Services", href: "/services", hasDropdown: true },
     { label: "Contact", href: "/contact" },
   ];
 
+  const serviceItems = [
+    { label: "AI Solutions", href: "/services" },
+    { label: "Chatbot Development", href: "/services" },
+    { label: "Custom Integration", href: "/services" },
+  ];
+
+  const isActive = (href: string) => {
+    if (href === "/") {
+      return location.pathname === "/";
+    }
+    return location.pathname.startsWith(href);
+  };
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="flex items-center justify-between h-14 sm:h-16 lg:h-20">
-          {/* Logo - on mobile when chat expanded, clicking goes back to services */}
-          {isMobileChatExpanded && (
-            <button
-              onClick={onLogoClick}
-              className="flex items-center gap-2 group lg:hidden"
-            >
-              <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gradient-to-br from-primary via-accent to-primary flex items-center justify-center">
-                <div className="w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-background" />
-              </div>
-              <span className="text-base sm:text-lg font-semibold text-foreground">
-                VibeMind <span className="text-muted-foreground font-normal hidden sm:inline">Solutions</span>
-              </span>
-            </button>
-          )}
-          <Link
-            to="/"
-            className={`flex items-center gap-2 group ${isMobileChatExpanded ? 'hidden lg:flex' : ''}`}
-          >
+          {/* Logo */}
+          <Link to="/" className="flex items-center gap-2 group">
             <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gradient-to-br from-primary via-accent to-primary flex items-center justify-center">
               <div className="w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-background" />
             </div>
@@ -179,45 +132,73 @@ const HomeNavigation = ({ onLogoClick, isMobileChatExpanded }: HomeNavigationPro
           <div className="hidden lg:flex items-center gap-6 xl:gap-8">
             {navItems.map((item) => (
               <div key={item.label} className="relative">
-                <Link
-                  to={item.href}
-                  className={`text-sm font-medium transition-colors flex items-center gap-1 ${
-                    item.active
-                      ? "text-primary border-b-2 border-primary pb-1"
-                      : "text-muted-foreground hover:text-foreground"
-                  }`}
-                  onMouseEnter={() => item.hasDropdown && setIsServicesOpen(true)}
-                  onMouseLeave={() => item.hasDropdown && setIsServicesOpen(false)}
-                >
-                  {item.label}
-                  {item.hasDropdown && <ChevronDown className="w-4 h-4" />}
-                </Link>
-                {item.hasDropdown && isServicesOpen && (
+                {item.hasDropdown ? (
                   <div
-                    className="absolute top-full left-0 mt-2 w-48 bg-background border border-border rounded-lg shadow-lg py-2"
                     onMouseEnter={() => setIsServicesOpen(true)}
                     onMouseLeave={() => setIsServicesOpen(false)}
                   >
-                    <Link to="/services" className="block px-4 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-muted">
-                      AI Solutions
+                    <Link
+                      to={item.href}
+                      className={`text-sm font-medium transition-colors flex items-center gap-1 py-2 ${
+                        isActive(item.href)
+                          ? "text-primary"
+                          : "text-muted-foreground hover:text-foreground"
+                      }`}
+                    >
+                      {item.label}
+                      <ChevronDown className={`w-4 h-4 transition-transform ${isServicesOpen ? "rotate-180" : ""}`} />
                     </Link>
-                    <Link to="/services" className="block px-4 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-muted">
-                      Chatbot Development
-                    </Link>
-                    <Link to="/services" className="block px-4 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-muted">
-                      Custom Integration
-                    </Link>
+
+                    <AnimatePresence>
+                      {isServicesOpen && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: 10 }}
+                          transition={{ duration: 0.15 }}
+                          className="absolute top-full left-0 mt-2 w-48 glass-strong rounded-lg shadow-lg py-2"
+                        >
+                          {serviceItems.map((service) => (
+                            <Link
+                              key={service.label}
+                              to={service.href}
+                              className="block px-4 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors"
+                            >
+                              {service.label}
+                            </Link>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
+                ) : (
+                  <Link
+                    to={item.href}
+                    className={`text-sm font-medium transition-colors py-2 ${
+                      isActive(item.href)
+                        ? "text-primary"
+                        : "text-muted-foreground hover:text-foreground"
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                )}
+                {isActive(item.href) && (
+                  <motion.div
+                    layoutId="activeIndicator"
+                    className="absolute -bottom-[1px] left-0 right-0 h-0.5 bg-primary"
+                    transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                  />
                 )}
               </div>
             ))}
           </div>
 
-          {/* Right Side */}
+          {/* Desktop Right Side */}
           <div className="hidden lg:flex items-center gap-2 xl:gap-4">
             <ThemeToggle />
             <Link to="/contact">
-              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-4 xl:px-6 text-sm">
+              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-4 xl:px-6 text-sm tactile-button">
                 Get in Touch
               </Button>
             </Link>
@@ -225,52 +206,6 @@ const HomeNavigation = ({ onLogoClick, isMobileChatExpanded }: HomeNavigationPro
 
           {/* Mobile Right Side */}
           <div className="flex lg:hidden items-center gap-2">
-            {/* Contact Menu */}
-            <div ref={contactRef} className="relative">
-              <motion.button
-                onClick={() => setIsContactOpen(!isContactOpen)}
-                className="w-8 h-8 rounded-full bg-primary text-primary-foreground shadow-md flex items-center justify-center"
-                whileTap={{ scale: 0.95 }}
-                aria-label={isContactOpen ? "Close contact menu" : "Open contact menu"}
-              >
-                <motion.div
-                  animate={{ rotate: isContactOpen ? 45 : 0 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                >
-                  <Plus className="w-4 h-4" />
-                </motion.div>
-              </motion.button>
-
-              {/* Contact Dropdown */}
-              <AnimatePresence>
-                {isContactOpen && (
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.9, y: -10 }}
-                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.9, y: -10 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                    className="absolute right-0 top-10 bg-card rounded-xl shadow-lg border border-border overflow-hidden z-50"
-                  >
-                    {contactActions.map((action) => (
-                      <a
-                        key={action.label}
-                        href={action.href}
-                        target={action.label === "WhatsApp" ? "_blank" : undefined}
-                        rel={action.label === "WhatsApp" ? "noopener noreferrer" : undefined}
-                        className="flex items-center gap-3 px-4 py-3 hover:bg-muted/50 transition-colors"
-                        onClick={() => setIsContactOpen(false)}
-                      >
-                        <div className={`w-8 h-8 rounded-full ${action.color} flex items-center justify-center`}>
-                          <action.icon className="w-4 h-4 text-white" />
-                        </div>
-                        <span className="text-sm font-medium text-foreground">{action.label}</span>
-                      </a>
-                    ))}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-
             <ThemeToggle />
             <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
               <SheetTrigger asChild>
@@ -306,13 +241,13 @@ const HomeNavigation = ({ onLogoClick, isMobileChatExpanded }: HomeNavigationPro
                           to={item.href}
                           onClick={() => setIsMobileMenuOpen(false)}
                           className={`flex items-center gap-3 px-4 py-3 rounded-lg text-base font-medium transition-colors ${
-                            item.active
+                            isActive(item.href)
                               ? "bg-primary/10 text-primary"
                               : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
                           }`}
                         >
                           {item.label}
-                          {item.active && (
+                          {isActive(item.href) && (
                             <span className="ml-auto w-1.5 h-1.5 rounded-full bg-primary" />
                           )}
                         </Link>
@@ -320,7 +255,6 @@ const HomeNavigation = ({ onLogoClick, isMobileChatExpanded }: HomeNavigationPro
                     ))}
                   </div>
 
-                  {/* Quick Contact Actions */}
                   <motion.div
                     initial={{ opacity: 0, x: 20 }}
                     animate={{
@@ -333,26 +267,13 @@ const HomeNavigation = ({ onLogoClick, isMobileChatExpanded }: HomeNavigationPro
                         delay: navItems.length * 0.05,
                       }
                     }}
-                    className="mt-6 pt-6 border-t border-border"
+                    className="mt-6"
                   >
-                    <p className="text-xs text-muted-foreground mb-3">
-                      Quick contact
-                    </p>
-                    <div className="flex gap-3">
-                      {contactActions.map((action) => (
-                        <a
-                          key={action.label}
-                          href={action.href}
-                          target={action.label === "WhatsApp" ? "_blank" : undefined}
-                          rel={action.label === "WhatsApp" ? "noopener noreferrer" : undefined}
-                          className={`flex-1 flex flex-col items-center gap-1.5 p-3 rounded-xl ${action.color} text-white transition-transform active:scale-95`}
-                          onClick={() => setIsMobileMenuOpen(false)}
-                        >
-                          <action.icon className="w-5 h-5" />
-                          <span className="text-xs font-medium">{action.label}</span>
-                        </a>
-                      ))}
-                    </div>
+                    <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>
+                      <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground rounded-full tactile-button">
+                        Get in Touch
+                      </Button>
+                    </Link>
                   </motion.div>
                 </nav>
 
@@ -468,4 +389,4 @@ const HomeNavigation = ({ onLogoClick, isMobileChatExpanded }: HomeNavigationPro
   );
 };
 
-export default HomeNavigation;
+export default UnifiedNavigation;

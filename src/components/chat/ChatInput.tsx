@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { Send } from "lucide-react";
+import { Send, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTypingPlaceholder } from "@/hooks/useTypingPlaceholder";
 
@@ -7,9 +7,10 @@ interface ChatInputProps {
   onSend: (message: string) => void;
   disabled?: boolean;
   isStreaming?: boolean;
+  hasStartedChat?: boolean;
 }
 
-const ChatInput = ({ onSend, disabled = false, isStreaming = false }: ChatInputProps) => {
+const ChatInput = ({ onSend, disabled = false, isStreaming = false, hasStartedChat = false }: ChatInputProps) => {
   const [message, setMessage] = useState("");
   const [isSending, setIsSending] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -47,23 +48,44 @@ const ChatInput = ({ onSend, disabled = false, isStreaming = false }: ChatInputP
           onChange={(e) => setMessage(e.target.value)}
           onKeyDown={handleKeyDown}
           disabled={disabled || isStreaming}
-          className="w-full bg-transparent border-0 outline-none focus:ring-0 text-xs sm:text-sm text-foreground px-3 sm:px-4 py-2 disabled:opacity-50"
+          className={`w-full bg-transparent border-0 outline-none focus:ring-0 text-xs sm:text-sm text-foreground px-3 sm:px-4 py-2 disabled:opacity-50 ${hasStartedChat ? 'caret-transparent' : ''}`}
           placeholder=""
         />
-        {/* Animated placeholder */}
+        {/* Placeholder - static after chat started, animated before */}
         {!message && (
-          <div className="absolute inset-0 flex items-center px-3 sm:px-4 pointer-events-none">
-            <span className="text-xs sm:text-sm text-muted-foreground">
-              {placeholder}
-            </span>
-            <span
-              className={`w-0.5 h-4 bg-muted-foreground ml-0.5 ${
-                isTyping ? "animate-typewriter-cursor" : "opacity-0"
-              }`}
-            />
-          </div>
+          hasStartedChat ? (
+            <div className="absolute inset-0 flex items-center px-3 sm:px-4 pointer-events-none">
+              <span className="text-xs sm:text-sm text-muted-foreground">
+                Type a message...
+              </span>
+            </div>
+          ) : (
+            <div className="absolute inset-0 flex items-center px-3 sm:px-4 pointer-events-none">
+              <span className="text-xs sm:text-sm text-muted-foreground">
+                {placeholder}
+              </span>
+              <span
+                className={`w-0.5 h-4 bg-muted-foreground ml-0.5 ${
+                  isTyping ? "animate-typewriter-cursor" : "opacity-0"
+                }`}
+              />
+            </div>
+          )
         )}
       </div>
+
+      {/* Clear text button */}
+      {message.length > 0 && (
+        <button
+          type="button"
+          onClick={() => setMessage("")}
+          className="p-1.5 sm:p-2 rounded-full text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-all duration-200"
+          aria-label="Clear input"
+        >
+          <X className="w-4 h-4 sm:w-5 sm:h-5" />
+        </button>
+      )}
+
       <Button
         size="icon"
         onClick={handleSend}

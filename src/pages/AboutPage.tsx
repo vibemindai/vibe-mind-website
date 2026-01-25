@@ -1,7 +1,8 @@
-import { Link } from "react-router-dom";
-import { Brain, Zap, Target, ArrowLeft } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Brain, Zap, Target } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
+import UnifiedNavigation from "@/components/layout/UnifiedNavigation";
+import MissionVisionSection from "@/components/about/MissionVisionSection";
+import StatisticsSection from "@/components/about/StatisticsSection";
 import aiBrain from "@/assets/ai-brain.jpg";
 
 const AboutPage = () => {
@@ -25,27 +26,7 @@ const AboutPage = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="flex items-center justify-between h-16 lg:h-20">
-            <Link to="/" className="flex items-center gap-2 group">
-              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary via-accent to-primary flex items-center justify-center">
-                <div className="w-4 h-4 rounded-full bg-background" />
-              </div>
-              <span className="text-lg font-semibold text-foreground">
-                VibeMind <span className="text-muted-foreground font-normal">Solutions</span>
-              </span>
-            </Link>
-            <Link to="/">
-              <Button variant="ghost" className="gap-2">
-                <ArrowLeft className="w-4 h-4" />
-                Back to Home
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </header>
+      <UnifiedNavigation />
 
       {/* Content */}
       <main className="pt-24 pb-16">
@@ -128,6 +109,12 @@ const AboutPage = () => {
             </AnimatedSection>
           </div>
         </div>
+
+        {/* Mission & Vision Section */}
+        <MissionVisionSection />
+
+        {/* Statistics Section */}
+        <StatisticsSection />
       </main>
     </div>
   );

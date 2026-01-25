@@ -125,9 +125,37 @@ All colors MUST be HSL.
     @apply bg-background text-foreground;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
   }
-  
+
   html {
     scroll-behavior: smooth;
+    overflow-y: scroll;
+    scrollbar-gutter: stable;
+  }
+
+  /* Custom Scrollbar Styles */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 4px;
+    transition: background 0.2s ease;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground) / 0.5);
+  }
+
+  /* Firefox scrollbar */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--border)) transparent;
   }
 }
 
@@ -135,26 +163,70 @@ All colors MUST be HSL.
   .gradient-primary {
     background: var(--gradient-primary);
   }
-  
+
   .gradient-hero {
     background: var(--gradient-hero);
   }
-  
+
   .gradient-accent {
     background: var(--gradient-accent);
   }
-  
+
   .shadow-glow {
     box-shadow: var(--shadow-glow);
   }
-  
+
   .shadow-elegant {
     box-shadow: var(--shadow-elegant);
   }
-  
+
   .transition-smooth {
     transition: var(--transition-smooth);
   }
+
+  /* Glass effect */
+  .glass-effect {
+    background: hsl(var(--card) / 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  /* Glow effects */
+  .glow-primary {
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.4),
+                0 0 40px hsl(var(--primary) / 0.2);
+  }
+
+  .glow-accent {
+    box-shadow: 0 0 20px hsl(var(--accent) / 0.4),
+                0 0 40px hsl(var(--accent) / 0.2);
+  }
+
+  /* Animated gradient background */
+  .animate-gradient-bg {
+    background-size: 200% 200%;
+    animation: gradient-shift 8s ease infinite;
+  }
+}
+
+/* Glassmorphism utilities */
+.glass-subtle {
+  background: hsl(var(--background) / 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid hsl(var(--border) / 0.3);
+}
+
+.glass-strong {
+  background: hsl(var(--background) / 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid hsl(var(--border) / 0.5);
+}
+
+/* Tactile button feedback */
+.tactile-button:active {
+  transform: scale(0.97);
 }
 
 /* Tech Globe Icon Styling */
@@ -163,4 +235,157 @@ All colors MUST be HSL.
   height: 100% !important;
   fill: currentColor;
   display: block;
+}
+
+/* Perfect orbit animation using CSS offset-path */
+.orbit-path-container {
+  position: relative;
+}
+
+.orbit-icon {
+  position: absolute;
+  /* Ellipse path: 47% horizontal radius, 25% vertical radius (matches 120:65 ratio) */
+  offset-path: ellipse(47% 25% at 50% 50%);
+  offset-rotate: 0deg; /* Keep icons upright */
+  offset-anchor: center;
+  animation: orbit-path-motion 20s linear infinite;
+}
+
+@keyframes orbit-path-motion {
+  from { offset-distance: 0%; }
+  to { offset-distance: 100%; }
+}
+
+/* Stagger icons evenly around the orbit */
+.orbit-icon:nth-child(1) { animation-delay: 0s; }
+.orbit-icon:nth-child(2) { animation-delay: -5s; }
+.orbit-icon:nth-child(3) { animation-delay: -10s; }
+.orbit-icon:nth-child(4) { animation-delay: -15s; }
+
+/* AI Robot Enhancements */
+
+/* Scanning line effect */
+.scan-line {
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, hsl(var(--primary)), transparent);
+  animation: scan 2.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes scan {
+  0%, 100% {
+    top: 20%;
+    opacity: 0;
+  }
+  50% {
+    top: 80%;
+    opacity: 0.6;
+  }
+}
+
+/* Neural glow effect */
+.neural-glow {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  background: radial-gradient(circle, hsl(var(--primary) / 0.3) 0%, transparent 70%);
+  animation: neural-pulse 3s ease-in-out infinite;
+}
+
+@keyframes neural-pulse {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.1);
+  }
+}
+
+/* Data particles */
+.data-particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: hsl(var(--primary));
+  animation: particle-float 4s ease-in-out infinite;
+}
+
+@keyframes particle-float {
+  0%, 100% {
+    opacity: 0.3;
+    transform: translateY(0) scale(0.8);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translateY(-10px) scale(1.2);
+  }
+}
+
+/* Eye thinking animation */
+.eye-thinking {
+  animation: eye-glow 2s ease-in-out infinite;
+}
+
+@keyframes eye-glow {
+  0%, 100% {
+    box-shadow: 0 0 4px hsl(var(--primary)), 0 0 8px hsl(var(--primary) / 0.5);
+  }
+  50% {
+    box-shadow: 0 0 8px hsl(var(--primary)), 0 0 16px hsl(var(--primary) / 0.8);
+  }
+}
+
+/* Antenna signal waves */
+.antenna-wave {
+  position: absolute;
+  border: 2px solid hsl(var(--primary) / 0.4);
+  border-radius: 50%;
+  animation: wave-expand 2s ease-out infinite;
+}
+
+@keyframes wave-expand {
+  0% {
+    width: 8px;
+    height: 8px;
+    opacity: 0.8;
+  }
+  100% {
+    width: 24px;
+    height: 24px;
+    opacity: 0;
+  }
+}
+
+/* Holographic shimmer effect */
+.holographic {
+  background: linear-gradient(
+    135deg,
+    hsl(var(--primary) / 0.1) 0%,
+    hsl(var(--accent) / 0.1) 50%,
+    hsl(var(--primary) / 0.1) 100%
+  );
+  background-size: 200% 200%;
+  animation: holographic-shift 4s ease-in-out infinite;
+}
+
+@keyframes holographic-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Circuit lines connecting to orbit */
+.circuit-line {
+  stroke-dasharray: 4 2;
+  animation: circuit-flow 2s linear infinite;
+}
+
+@keyframes circuit-flow {
+  from { stroke-dashoffset: 0; }
+  to { stroke-dashoffset: -12; }
 }

@@ -7,6 +7,8 @@ import { useEffect } from "react";
 import { AnimatePresence } from "framer-motion";
 import { ThemeProvider } from "@/hooks/useTheme";
 import PageTransition from "@/components/PageTransition";
+import FloatingActionButtons from "@/components/FloatingActionButtons";
+import GlobalChatButton from "@/components/GlobalChatButton";
 import Index from "./pages/Index";
 import AboutPage from "./pages/AboutPage";
 import ServicesPage from "./pages/ServicesPage";
@@ -55,6 +57,8 @@ const App = () => (
         <BrowserRouter>
           <RedirectHandler />
           <AnimatedRoutes />
+          <FloatingActionButtons />
+          <GlobalChatButton />
         </BrowserRouter>
       </TooltipProvider>
     </ThemeProvider>

@@ -18,6 +18,7 @@ interface UseSSEChatReturn {
   sendMessage: (message: string) => Promise<void>;
   abort: () => void;
   clearMessages: () => void;
+  clearSession: () => void;
   retry: () => void;
 }
 
@@ -33,6 +34,38 @@ function getSessionId(): string {
     sessionStorage.setItem(SESSION_ID_KEY, sessionId);
   }
   return sessionId;
+}
+
+function getErrorMessage(error: unknown): string {
+  if (error instanceof TypeError && error.message === "Failed to fetch") {
+    return "Unable to connect. Please check your internet connection.";
+  }
+
+  if (error instanceof Error) {
+    // Handle HTTP status errors
+    const statusMatch = error.message.match(/status:\s*(\d+)/);
+    if (statusMatch) {
+      const status = parseInt(statusMatch[1], 10);
+      if (status >= 400 && status < 500) {
+        return "Request failed. Please try again or rephrase your question.";
+      }
+      if (status >= 500) {
+        return "Server temporarily unavailable. Please try again later.";
+      }
+    }
+
+    // Handle specific error messages
+    if (error.message === "No response body") {
+      return "No response received. Please try again.";
+    }
+
+    // Return the error message if it's already user-friendly
+    if (error.message.length < 100 && !error.message.includes("Error")) {
+      return error.message;
+    }
+  }
+
+  return "Something went wrong. Please try again.";
 }
 
 export function useSSEChat(): UseSSEChatReturn {
@@ -78,6 +111,15 @@ export function useSSEChat(): UseSSEChatReturn {
     setError(null);
     setChatStatus("idle");
     sessionStorage.removeItem(STORAGE_KEY);
+  }, []);
+
+  const clearSession = useCallback(() => {
+    setMessages([]);
+    setCurrentStreamingText("");
+    setError(null);
+    setChatStatus("idle");
+    sessionStorage.removeItem(STORAGE_KEY);
+    sessionStorage.removeItem(SESSION_ID_KEY);
   }, []);
 
   const sendMessage = useCallback(async (message: string) => {
@@ -195,7 +237,7 @@ export function useSSEChat(): UseSSEChatReturn {
         return;
       }
 
-      setError(err instanceof Error ? err.message : "An error occurred");
+      setError(getErrorMessage(err));
       setChatStatus("error");
     }
   }, [chatStatus, abort]);
@@ -216,6 +258,7 @@ export function useSSEChat(): UseSSEChatReturn {
     sendMessage,
     abort,
     clearMessages,
+    clearSession,
     retry,
   };
 }
