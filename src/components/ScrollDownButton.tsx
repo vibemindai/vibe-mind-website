@@ -2,15 +2,23 @@ import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 
 interface ScrollDownButtonProps {
-  targetId: string;
+  targetId?: string;
+  onReveal?: () => void;
   className?: string;
 }
 
-const ScrollDownButton = ({ targetId, className = "" }: ScrollDownButtonProps) => {
+const ScrollDownButton = ({ targetId = "hero-section", onReveal, className = "" }: ScrollDownButtonProps) => {
   const handleClick = () => {
-    const target = document.getElementById(targetId);
-    if (target) {
-      target.scrollIntoView({ behavior: "smooth" });
+    if (onReveal) {
+      onReveal();
+      // Wait for DOM update, then scroll
+      setTimeout(() => {
+        const target = document.getElementById(targetId);
+        target?.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+    } else {
+      const target = document.getElementById(targetId);
+      target?.scrollIntoView({ behavior: "smooth" });
     }
   };
 

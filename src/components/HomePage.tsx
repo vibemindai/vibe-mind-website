@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import HomeNavigation from "./HomeNavigation";
 import ServiceCarousel from "./ServiceCarousel";
@@ -5,6 +6,8 @@ import AIChatWindow from "./AIChatWindow";
 import ScrollDownButton from "./ScrollDownButton";
 
 const HomePage = () => {
+  const [showHeroSection, setShowHeroSection] = useState(false);
+
   return (
     <div className="min-h-screen bg-background">
       <HomeNavigation />
@@ -12,17 +15,27 @@ const HomePage = () => {
       {/* Main Content */}
       <div className="pt-14 sm:pt-16 lg:pt-20">
         {/* Mobile Layout: Chat first, full screen */}
-        <div className="lg:hidden">
-          {/* Chat Section - Full screen on mobile */}
-          <div className="min-h-[calc(100vh-3.5rem)] container mx-auto px-4 sm:px-6 py-4 sm:py-6">
-            <AIChatWindow />
+        <div className={`lg:hidden ${!showHeroSection ? 'h-screen overflow-hidden fixed inset-0 pt-14' : ''}`}>
+          {/* Chat Section - Full viewport on mobile */}
+          <div className={`${!showHeroSection ? 'h-full flex flex-col' : 'min-h-[calc(100vh-3.5rem)]'} container mx-auto px-4 sm:px-6 py-4 sm:py-6`}>
+            <div className={`${!showHeroSection ? 'flex-1 overflow-y-auto' : ''}`}>
+              <AIChatWindow />
+            </div>
           </div>
 
-          {/* Floating scroll button - mobile only */}
-          <ScrollDownButton targetId="hero-section" className="lg:hidden" />
+          {/* Floating scroll button - only show if hero not visible */}
+          {!showHeroSection && (
+            <ScrollDownButton
+              targetId="hero-section"
+              className="lg:hidden"
+              onReveal={() => setShowHeroSection(true)}
+            />
+          )}
+        </div>
 
-          {/* Hero + Services Section - Below fold on mobile */}
-          <div id="hero-section" className="min-h-screen container mx-auto px-4 sm:px-6 py-8 sm:py-12">
+        {/* Hero + Services Section - Separate, shown only when revealed on mobile */}
+        {showHeroSection && (
+          <div id="hero-section" className="lg:hidden min-h-screen container mx-auto px-4 sm:px-6 py-8 sm:py-12">
             <div className="flex flex-col justify-center space-y-6 sm:space-y-8">
               {/* Hero Content */}
               <div className="space-y-4 sm:space-y-5">
@@ -51,7 +64,7 @@ const HomePage = () => {
               <ServiceCarousel />
             </div>
           </div>
-        </div>
+        )}
 
         {/* Desktop Layout: Two-column grid (unchanged) */}
         <div className="hidden lg:block h-[calc(100vh-5rem)] overflow-hidden">

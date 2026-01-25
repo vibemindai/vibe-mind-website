@@ -55,7 +55,7 @@ const AIChatWindow = () => {
   const isDisabled = isProcessing || isStreaming;
 
   return (
-    <div className="flex flex-col h-full min-h-[calc(100vh-3rem)] lg:min-h-0 lg:h-[calc(100vh-7rem)] lg:max-h-[calc(100vh-7rem)]">
+    <div className="flex flex-col h-full lg:min-h-0 lg:h-[calc(100vh-2rem)] lg:max-h-[calc(100vh-10rem)]">
       {/* Initial state - greeting and robot illustration */}
       {!hasStartedChat && (
         <>
