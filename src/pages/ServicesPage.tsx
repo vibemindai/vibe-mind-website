@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ArrowLeft, Code2, RefreshCw, Sparkles, Wrench } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import AnimatedSection from "@/components/AnimatedSection";
 
 const ServicesPage = () => {
   const services = [
@@ -81,47 +82,58 @@ const ServicesPage = () => {
         <div className="container mx-auto px-4 lg:px-8">
           {/* Section Header */}
           <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <div className="inline-block px-4 py-2 rounded-full bg-primary/10 border border-primary/20">
-              <span className="text-sm font-semibold text-primary">Our Services</span>
-            </div>
-            <h1 className="text-4xl md:text-5xl font-bold">
-              Transforming Ideas into
-              <span className="block bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                Intelligent Solutions
-              </span>
-            </h1>
-            <p className="text-lg text-muted-foreground">
-              Comprehensive AI-driven services to modernize, automate, and accelerate your digital transformation
-            </p>
+            <AnimatedSection delay={0}>
+              <div className="inline-block px-4 py-2 rounded-full bg-primary/10 border border-primary/20">
+                <span className="text-sm font-semibold text-primary">Our Services</span>
+              </div>
+            </AnimatedSection>
+            <AnimatedSection delay={0.1}>
+              <h1 className="text-4xl md:text-5xl font-bold">
+                Transforming Ideas into
+                <span className="block bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                  Intelligent Solutions
+                </span>
+              </h1>
+            </AnimatedSection>
+            <AnimatedSection delay={0.2}>
+              <p className="text-lg text-muted-foreground">
+                Comprehensive AI-driven services to modernize, automate, and accelerate your digital transformation
+              </p>
+            </AnimatedSection>
           </div>
 
           {/* Services Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             {services.map((service, index) => (
-              <Card 
-                key={index}
-                className="border-border hover:border-primary/50 transition-all hover:shadow-xl group bg-background/80 backdrop-blur-sm"
+              <AnimatedSection 
+                key={index} 
+                delay={0.1 * index} 
+                direction={index % 2 === 0 ? "left" : "right"}
               >
-                <CardHeader>
-                  <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors group-hover:scale-110">
-                    <service.icon className="w-7 h-7 text-primary" />
-                  </div>
-                  <CardTitle className="text-2xl">{service.title}</CardTitle>
-                  <CardDescription className="text-base">
-                    {service.description}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-3">
-                    {service.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-start gap-2">
-                        <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 group-hover:scale-150 transition-transform" />
-                        <span className="text-muted-foreground">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
+                <Card 
+                  className="border-border hover:border-primary/50 transition-all hover:shadow-xl group bg-background/80 backdrop-blur-sm h-full"
+                >
+                  <CardHeader>
+                    <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors group-hover:scale-110">
+                      <service.icon className="w-7 h-7 text-primary" />
+                    </div>
+                    <CardTitle className="text-2xl">{service.title}</CardTitle>
+                    <CardDescription className="text-base">
+                      {service.description}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="space-y-3">
+                      {service.features.map((feature, idx) => (
+                        <li key={idx} className="flex items-start gap-2">
+                          <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 group-hover:scale-150 transition-transform" />
+                          <span className="text-muted-foreground">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
+              </AnimatedSection>
             ))}
           </div>
         </div>
