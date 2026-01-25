@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Send, MessageCircle, Briefcase, MapPin, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,17 +10,64 @@ const suggestedQuestions = [
   { icon: Sparkles, text: "Why choose VibeMind Solutions?", color: "text-yellow-500" },
 ];
 
+const TypingIndicator = () => (
+  <div className="flex items-center gap-1 p-3">
+    <div className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
+    <div className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
+    <div className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
+  </div>
+);
+
 const AIChatWindow = () => {
   const [message, setMessage] = useState("");
+  const [showGreeting, setShowGreeting] = useState(false);
+  const [showQuestions, setShowQuestions] = useState(false);
+  const [isTyping, setIsTyping] = useState(true);
+  const [isSending, setIsSending] = useState(false);
+
+  useEffect(() => {
+    // Simulate typing then show greeting
+    const typingTimer = setTimeout(() => {
+      setIsTyping(false);
+      setShowGreeting(true);
+    }, 1500);
+
+    // Stagger the questions appearance
+    const questionsTimer = setTimeout(() => {
+      setShowQuestions(true);
+    }, 2000);
+
+    return () => {
+      clearTimeout(typingTimer);
+      clearTimeout(questionsTimer);
+    };
+  }, []);
+
+  const handleSend = () => {
+    if (message.trim()) {
+      setIsSending(true);
+      setTimeout(() => setIsSending(false), 300);
+      setMessage("");
+    }
+  };
 
   return (
     <div className="flex flex-col h-full max-h-[600px] lg:max-h-none">
-      {/* AI Greeting Bubble */}
-      <div className="bg-card rounded-xl sm:rounded-2xl p-3 sm:p-4 shadow-lg border border-border mb-3 sm:mb-4 max-w-xs sm:max-w-sm ml-auto">
-        <p className="text-xs sm:text-sm text-foreground">
-          Hi there! I'm the VibeMind AI Assistant. I can answer any questions you have about our company.
-        </p>
-      </div>
+      {/* Typing Indicator */}
+      {isTyping && (
+        <div className="bg-card rounded-xl sm:rounded-2xl shadow-lg border border-border mb-3 sm:mb-4 max-w-xs sm:max-w-sm ml-auto animate-fade-in">
+          <TypingIndicator />
+        </div>
+      )}
+
+      {/* AI Greeting Bubble with fade-in animation */}
+      {showGreeting && (
+        <div className="bg-card rounded-xl sm:rounded-2xl p-3 sm:p-4 shadow-lg border border-border mb-3 sm:mb-4 max-w-xs sm:max-w-sm ml-auto animate-fade-in">
+          <p className="text-xs sm:text-sm text-foreground">
+            Hi there! I'm the VibeMind AI Assistant. I can answer any questions you have about our company.
+          </p>
+        </div>
+      )}
 
       {/* Robot Illustration Area - Hidden on mobile, visible on tablet+ */}
       <div className="hidden sm:flex flex-1 items-center justify-center relative min-h-[200px] lg:min-h-[250px]">
@@ -84,14 +131,20 @@ const AIChatWindow = () => {
         </div>
       </div>
 
-      {/* Suggested Questions */}
+      {/* Suggested Questions with staggered animation */}
       <div className="space-y-1.5 sm:space-y-2 mb-3 sm:mb-4">
         {suggestedQuestions.map((question, index) => (
           <button
             key={index}
-            className="flex items-center gap-2 sm:gap-3 w-full p-2.5 sm:p-3 rounded-lg sm:rounded-xl bg-card hover:bg-muted/50 transition-colors text-left border border-border/50"
+            className={`flex items-center gap-2 sm:gap-3 w-full p-2.5 sm:p-3 rounded-lg sm:rounded-xl bg-card hover:bg-muted/50 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 text-left border border-border/50 ${
+              showQuestions ? 'animate-fade-in opacity-100' : 'opacity-0'
+            }`}
+            style={{ 
+              animationDelay: showQuestions ? `${index * 100}ms` : '0ms',
+              animationFillMode: 'backwards'
+            }}
           >
-            <question.icon className={`w-4 h-4 sm:w-5 sm:h-5 ${question.color} flex-shrink-0`} />
+            <question.icon className={`w-4 h-4 sm:w-5 sm:h-5 ${question.color} flex-shrink-0 transition-transform group-hover:scale-110`} />
             <span className="text-xs sm:text-sm text-foreground truncate">{question.text}</span>
           </button>
         ))}
@@ -104,10 +157,19 @@ const AIChatWindow = () => {
           placeholder="Type your message..."
           value={message}
           onChange={(e) => setMessage(e.target.value)}
+          onKeyDown={(e) => e.key === 'Enter' && handleSend()}
           className="flex-1 border-0 bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 text-xs sm:text-sm"
         />
-        <Button size="icon" className="rounded-full bg-primary hover:bg-primary/90 w-8 h-8 sm:w-10 sm:h-10">
-          <Send className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+        <Button 
+          size="icon" 
+          onClick={handleSend}
+          className={`rounded-full bg-primary hover:bg-primary/90 w-8 h-8 sm:w-10 sm:h-10 transition-all duration-200 ${
+            isSending ? 'scale-90' : 'hover:scale-105 active:scale-95'
+          }`}
+        >
+          <Send className={`w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-200 ${
+            isSending ? 'translate-x-1 -translate-y-1' : ''
+          }`} />
         </Button>
       </div>
     </div>
