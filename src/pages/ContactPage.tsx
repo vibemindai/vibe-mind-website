@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ArrowLeft, Mail, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import AnimatedSection from "@/components/AnimatedSection";
 
 const ContactPage = () => {
   return (
@@ -33,76 +34,86 @@ const ContactPage = () => {
         <div className="container mx-auto px-4 lg:px-8">
           {/* Section Header */}
           <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <div className="inline-block px-4 py-2 rounded-full bg-primary/10 border border-primary/20">
-              <span className="text-sm font-semibold text-primary">Get in Touch</span>
-            </div>
-            <h1 className="text-4xl md:text-5xl font-bold">
-              Let's Build Intelligent
-              <span className="block bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                Software Together
-              </span>
-            </h1>
-            <p className="text-lg text-muted-foreground">
-              Ready to transform your ideas with AI? We're here to help.
-            </p>
+            <AnimatedSection delay={0}>
+              <div className="inline-block px-4 py-2 rounded-full bg-primary/10 border border-primary/20">
+                <span className="text-sm font-semibold text-primary">Get in Touch</span>
+              </div>
+            </AnimatedSection>
+            <AnimatedSection delay={0.1}>
+              <h1 className="text-4xl md:text-5xl font-bold">
+                Let's Build Intelligent
+                <span className="block bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                  Software Together
+                </span>
+              </h1>
+            </AnimatedSection>
+            <AnimatedSection delay={0.2}>
+              <p className="text-lg text-muted-foreground">
+                Ready to transform your ideas with AI? We're here to help.
+              </p>
+            </AnimatedSection>
           </div>
 
           <div className="max-w-md mx-auto">
             {/* Contact Info */}
             <div className="space-y-6">
-              <Card className="border-border shadow-xl">
-                <CardContent className="pt-6 space-y-6">
-                  <div className="flex items-start gap-4">
-                    <a 
-                      href="mailto:info@vibemindsolutions.ai" 
-                      className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 hover:bg-primary/20 transition-colors cursor-pointer"
-                    >
-                      <Mail className="w-5 h-5 text-primary" />
-                    </a>
-                    <div>
-                      <h3 className="font-semibold mb-1">Email</h3>
+              <AnimatedSection delay={0.3} direction="up">
+                <Card className="border-border shadow-xl">
+                  <CardContent className="pt-6 space-y-6">
+                    <div className="flex items-start gap-4">
                       <a 
                         href="mailto:info@vibemindsolutions.ai" 
-                        className="text-muted-foreground hover:text-primary transition-colors"
+                        className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 hover:bg-primary/20 transition-colors cursor-pointer"
                       >
-                        info@vibemindsolutions.ai
+                        <Mail className="w-5 h-5 text-primary" />
                       </a>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-4">
-                    <a 
-                      href="tel:+918281442486" 
-                      className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 hover:bg-primary/20 transition-colors cursor-pointer"
-                    >
-                      <Phone className="w-5 h-5 text-primary" />
-                    </a>
-                    <div>
-                      <h3 className="font-semibold mb-1">Phone</h3>
-                      <div className="space-y-1 text-muted-foreground">
+                      <div>
+                        <h3 className="font-semibold mb-1">Email</h3>
                         <a 
-                          href="tel:+918281442486" 
-                          className="hover:text-primary transition-colors block"
+                          href="mailto:info@vibemindsolutions.ai" 
+                          className="text-muted-foreground hover:text-primary transition-colors"
                         >
-                          India: +91 82 81 442 486
+                          info@vibemindsolutions.ai
                         </a>
                       </div>
                     </div>
-                  </div>
-                </CardContent>
-              </Card>
 
-              <Card className="border-border shadow-xl bg-primary/5">
-                <CardContent className="pt-6">
-                  <h3 className="font-semibold mb-2 flex items-center gap-2">
-                    <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                    Quick Response
-                  </h3>
-                  <p className="text-sm text-muted-foreground">
-                    We typically respond to all inquiries within 24 hours during business days.
-                  </p>
-                </CardContent>
-              </Card>
+                    <div className="flex items-start gap-4">
+                      <a 
+                        href="tel:+918281442486" 
+                        className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 hover:bg-primary/20 transition-colors cursor-pointer"
+                      >
+                        <Phone className="w-5 h-5 text-primary" />
+                      </a>
+                      <div>
+                        <h3 className="font-semibold mb-1">Phone</h3>
+                        <div className="space-y-1 text-muted-foreground">
+                          <a 
+                            href="tel:+918281442486" 
+                            className="hover:text-primary transition-colors block"
+                          >
+                            India: +91 82 81 442 486
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </AnimatedSection>
+
+              <AnimatedSection delay={0.4} direction="up">
+                <Card className="border-border shadow-xl bg-primary/5">
+                  <CardContent className="pt-6">
+                    <h3 className="font-semibold mb-2 flex items-center gap-2">
+                      <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                      Quick Response
+                    </h3>
+                    <p className="text-sm text-muted-foreground">
+                      We typically respond to all inquiries within 24 hours during business days.
+                    </p>
+                  </CardContent>
+                </Card>
+              </AnimatedSection>
             </div>
           </div>
         </div>
