@@ -1,0 +1,34 @@
+{
+  "types": [
+    { "type": "feat", "section": "Features" },
+    { "type": "fix", "section": "Bug Fixes" },
+    { "type": "docs", "section": "Documentation" },
+    { "type": "style", "section": "Styling" },
+    { "type": "refactor", "section": "Code Refactoring" },
+    { "type": "perf", "section": "Performance Improvements" },
+    { "type": "test", "section": "Tests" },
+    { "type": "build", "section": "Build System" },
+    { "type": "ci", "section": "Continuous Integration" },
+    { "type": "chore", "section": "Chores", "hidden": true },
+    { "type": "revert", "section": "Reverts" }
+  ],
+  "skip": {
+    "bump": false,
+    "changelog": false,
+    "commit": false,
+    "tag": false
+  },
+  "bumpFiles": [
+    {
+      "filename": "package.json",
+      "type": "json"
+    },
+    {
+      "filename": "doc/VERSION.md",
+      "updater": {
+        "readVersion": "function (contents) { return contents.match(/\\*\\*v([0-9.]+)\\*\\*/)[1]; }",
+        "writeVersion": "function (contents, version) { return contents.replace(/\\*\\*v[0-9.]+\\*\\*/, '**v' + version + '**'); }"
+      }
+    }
+  ]
+}

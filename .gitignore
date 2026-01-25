@@ -22,3 +22,5 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+.playwright-mcp/desktop-view.png
+.playwright-mcp/mobile-view.png
