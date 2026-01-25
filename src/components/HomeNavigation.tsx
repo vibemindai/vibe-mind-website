@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { Menu, ChevronDown, Phone, Mail, Send, CheckCircle, Loader2, Plus, MessageCircle } from "lucide-react";
+import { Menu, Phone, Mail, Send, CheckCircle, Loader2, Plus, MessageCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -23,25 +23,24 @@ const contactActions = [
     icon: MessageCircle,
     label: "WhatsApp",
     href: "https://wa.me/918281442486?text=Hi!%20I'd%20like%20to%20know%20more%20about%20VibeMind%20AI%20Solutions.",
-    color: "bg-green-500 hover:bg-green-600",
+    color: "bg-primary hover:bg-primary/90",
   },
   {
     icon: Phone,
     label: "Call",
     href: "tel:+918281442486",
-    color: "bg-blue-500 hover:bg-blue-600",
+    color: "bg-primary hover:bg-primary/90",
   },
   {
     icon: Mail,
     label: "Email",
     href: "mailto:info@vibemindsolutions.ai",
-    color: "bg-purple-500 hover:bg-purple-600",
+    color: "bg-primary hover:bg-primary/90",
   },
 ];
 
 const HomeNavigation = ({ onLogoClick, isMobileChatExpanded }: HomeNavigationProps) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isContactOpen, setIsContactOpen] = useState(false);
   const contactRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
@@ -141,7 +140,7 @@ const HomeNavigation = ({ onLogoClick, isMobileChatExpanded }: HomeNavigationPro
   const navItems = [
     { label: "Home", href: "/", active: true },
     { label: "About Us", href: "/about" },
-    { label: "Services", href: "/services", hasDropdown: true },
+    { label: "Services", href: "/services" },
     { label: "Contact", href: "/contact" },
   ];
 
@@ -181,34 +180,14 @@ const HomeNavigation = ({ onLogoClick, isMobileChatExpanded }: HomeNavigationPro
               <div key={item.label} className="relative">
                 <Link
                   to={item.href}
-                  className={`text-sm font-medium transition-colors flex items-center gap-1 ${
+                  className={`text-sm font-medium transition-colors ${
                     item.active
                       ? "text-primary border-b-2 border-primary pb-1"
                       : "text-muted-foreground hover:text-foreground"
                   }`}
-                  onMouseEnter={() => item.hasDropdown && setIsServicesOpen(true)}
-                  onMouseLeave={() => item.hasDropdown && setIsServicesOpen(false)}
                 >
                   {item.label}
-                  {item.hasDropdown && <ChevronDown className="w-4 h-4" />}
                 </Link>
-                {item.hasDropdown && isServicesOpen && (
-                  <div
-                    className="absolute top-full left-0 mt-2 w-48 bg-background border border-border rounded-lg shadow-lg py-2"
-                    onMouseEnter={() => setIsServicesOpen(true)}
-                    onMouseLeave={() => setIsServicesOpen(false)}
-                  >
-                    <Link to="/services" className="block px-4 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-muted">
-                      AI Solutions
-                    </Link>
-                    <Link to="/services" className="block px-4 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-muted">
-                      Chatbot Development
-                    </Link>
-                    <Link to="/services" className="block px-4 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-muted">
-                      Custom Integration
-                    </Link>
-                  </div>
-                )}
               </div>
             ))}
           </div>
@@ -345,7 +324,7 @@ const HomeNavigation = ({ onLogoClick, isMobileChatExpanded }: HomeNavigationPro
                           href={action.href}
                           target={action.label === "WhatsApp" ? "_blank" : undefined}
                           rel={action.label === "WhatsApp" ? "noopener noreferrer" : undefined}
-                          className={`flex-1 flex flex-col items-center gap-1.5 p-3 rounded-xl ${action.color} text-white transition-transform active:scale-95`}
+                          className={`flex-1 flex flex-col items-center gap-1.5 p-3 rounded-xl ${action.color} text-primary-foreground transition-transform active:scale-95`}
                           onClick={() => setIsMobileMenuOpen(false)}
                         >
                           <action.icon className="w-5 h-5" />

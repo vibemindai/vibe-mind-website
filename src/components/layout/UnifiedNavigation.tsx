@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, ChevronDown, Phone, Mail, Send, CheckCircle, Loader2 } from "lucide-react";
+import { Menu, Phone, Mail, Send, CheckCircle, Loader2, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -13,9 +13,29 @@ import {
 import ThemeToggle from "@/components/ThemeToggle";
 import { useToast } from "@/hooks/use-toast";
 
+const contactActions = [
+  {
+    icon: MessageCircle,
+    label: "WhatsApp",
+    href: "https://wa.me/918281442486?text=Hi!%20I'd%20like%20to%20know%20more%20about%20VibeMind%20AI%20Solutions.",
+    color: "bg-primary hover:bg-primary/90",
+  },
+  {
+    icon: Phone,
+    label: "Call",
+    href: "tel:+918281442486",
+    color: "bg-primary hover:bg-primary/90",
+  },
+  {
+    icon: Mail,
+    label: "Email",
+    href: "mailto:info@vibemindsolutions.ai",
+    color: "bg-primary hover:bg-primary/90",
+  },
+];
+
 const UnifiedNavigation = () => {
   const location = useLocation();
-  const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { toast } = useToast();
 
@@ -97,14 +117,8 @@ const UnifiedNavigation = () => {
   const navItems = [
     { label: "Home", href: "/" },
     { label: "About Us", href: "/about" },
-    { label: "Services", href: "/services", hasDropdown: true },
+    { label: "Services", href: "/services" },
     { label: "Contact", href: "/contact" },
-  ];
-
-  const serviceItems = [
-    { label: "AI Solutions", href: "/services" },
-    { label: "Chatbot Development", href: "/services" },
-    { label: "Custom Integration", href: "/services" },
   ];
 
   const isActive = (href: string) => {
@@ -132,57 +146,16 @@ const UnifiedNavigation = () => {
           <div className="hidden lg:flex items-center gap-6 xl:gap-8">
             {navItems.map((item) => (
               <div key={item.label} className="relative">
-                {item.hasDropdown ? (
-                  <div
-                    onMouseEnter={() => setIsServicesOpen(true)}
-                    onMouseLeave={() => setIsServicesOpen(false)}
-                  >
-                    <Link
-                      to={item.href}
-                      className={`text-sm font-medium transition-colors flex items-center gap-1 py-2 ${
-                        isActive(item.href)
-                          ? "text-primary"
-                          : "text-muted-foreground hover:text-foreground"
-                      }`}
-                    >
-                      {item.label}
-                      <ChevronDown className={`w-4 h-4 transition-transform ${isServicesOpen ? "rotate-180" : ""}`} />
-                    </Link>
-
-                    <AnimatePresence>
-                      {isServicesOpen && (
-                        <motion.div
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: 10 }}
-                          transition={{ duration: 0.15 }}
-                          className="absolute top-full left-0 mt-2 w-48 glass-strong rounded-lg shadow-lg py-2"
-                        >
-                          {serviceItems.map((service) => (
-                            <Link
-                              key={service.label}
-                              to={service.href}
-                              className="block px-4 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors"
-                            >
-                              {service.label}
-                            </Link>
-                          ))}
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                ) : (
-                  <Link
-                    to={item.href}
-                    className={`text-sm font-medium transition-colors py-2 ${
-                      isActive(item.href)
-                        ? "text-primary"
-                        : "text-muted-foreground hover:text-foreground"
-                    }`}
-                  >
-                    {item.label}
-                  </Link>
-                )}
+                <Link
+                  to={item.href}
+                  className={`text-sm font-medium transition-colors py-2 ${
+                    isActive(item.href)
+                      ? "text-primary"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  {item.label}
+                </Link>
                 {isActive(item.href) && (
                   <motion.div
                     layoutId="activeIndicator"
@@ -255,6 +228,7 @@ const UnifiedNavigation = () => {
                     ))}
                   </div>
 
+                  {/* Quick Contact Actions */}
                   <motion.div
                     initial={{ opacity: 0, x: 20 }}
                     animate={{
@@ -267,13 +241,26 @@ const UnifiedNavigation = () => {
                         delay: navItems.length * 0.05,
                       }
                     }}
-                    className="mt-6"
+                    className="mt-6 pt-6 border-t border-border"
                   >
-                    <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>
-                      <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground rounded-full tactile-button">
-                        Get in Touch
-                      </Button>
-                    </Link>
+                    <p className="text-xs text-muted-foreground mb-3">
+                      Quick contact
+                    </p>
+                    <div className="flex gap-3">
+                      {contactActions.map((action) => (
+                        <a
+                          key={action.label}
+                          href={action.href}
+                          target={action.label === "WhatsApp" ? "_blank" : undefined}
+                          rel={action.label === "WhatsApp" ? "noopener noreferrer" : undefined}
+                          className={`flex-1 flex flex-col items-center gap-1.5 p-3 rounded-xl ${action.color} text-primary-foreground transition-transform active:scale-95`}
+                          onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                          <action.icon className="w-6 h-6" />
+                          <span className="text-xs font-medium">{action.label}</span>
+                        </a>
+                      ))}
+                    </div>
                   </motion.div>
                 </nav>
 
