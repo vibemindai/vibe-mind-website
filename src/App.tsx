@@ -9,6 +9,8 @@ import { ThemeProvider } from "@/hooks/useTheme";
 import PageTransition from "@/components/PageTransition";
 import FloatingActionButtons from "@/components/FloatingActionButtons";
 import GlobalChatButton from "@/components/GlobalChatButton";
+import BubblesBackground from "@/components/backgrounds/BubblesBackground";
+import CustomCursor from "@/components/CustomCursor";
 import Index from "./pages/Index";
 import AboutPage from "./pages/AboutPage";
 import ServicesPage from "./pages/ServicesPage";
@@ -52,9 +54,11 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <ThemeProvider>
       <TooltipProvider>
+        <CustomCursor />
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <BubblesBackground className="fixed inset-0 z-0" />
           <RedirectHandler />
           <AnimatedRoutes />
           <FloatingActionButtons />

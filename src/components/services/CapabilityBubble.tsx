@@ -23,38 +23,52 @@ const CapabilityBubble = ({ capability, index, onClick }: CapabilityBubbleProps)
   const colorClass = colorVariants[index % colorVariants.length];
 
   // Generate random but consistent animation parameters based on index
+  // Slow, immersive animations with gentle movement
   const randomX = ((index * 7) % 15) - 7;
   const randomY = ((index * 11) % 12) - 6;
-  const duration = 3 + (index % 5) * 0.5;
+  const duration = 8 + (index % 5) * 0.8; // 8-12 seconds (much slower floating)
   const delay = (index % 10) * 0.3;
+
+  // Gentle rotation values (±2-4 degrees for dreamy feel)
+  const rotateMax = 2 + (index % 3);
+  const fadePulseDuration = 10 + (index % 5); // 10-14 seconds (subtle breathing)
 
   return (
     <motion.button
+      layout
+      layoutId={capability.title}
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{
-        opacity: 1,
+        opacity: [1, 0.85, 1], // Subtle breathing effect
         scale: 1,
-        x: [0, randomX, -randomX * 0.7, randomX * 0.5, 0],
-        y: [0, randomY, -randomY * 0.5, randomY * 0.7, 0],
-        rotate: [0, 2, -2, 1, 0],
+        x: [0, randomX * 0.6, -randomX * 0.4, randomX * 0.3, 0], // Reduced drift
+        y: [0, randomY * 0.6, -randomY * 0.3, randomY * 0.4, 0], // Reduced drift
+        rotate: [0, rotateMax, -rotateMax, rotateMax * 0.5, 0], // Gentle sway
       }}
+      exit={{ opacity: 0, scale: 0.95, transition: { duration: 0.5 } }} // Slower exit
       transition={{
-        opacity: { duration: 0.4, delay: delay * 0.1 },
-        scale: { duration: 0.4, delay: delay * 0.1 },
+        layout: { type: "spring", stiffness: 150, damping: 25 }, // Smoother layout transitions
+        opacity: {
+          duration: fadePulseDuration,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: delay * 0.5,
+        },
+        scale: { duration: 0.6, delay: delay * 0.1 },
         x: {
-          duration: duration,
+          duration: duration, // 8-12 seconds
           repeat: Infinity,
           ease: "easeInOut",
           delay: delay,
         },
         y: {
-          duration: duration * 1.1,
+          duration: duration * 1.15, // 9-14 seconds
           repeat: Infinity,
           ease: "easeInOut",
           delay: delay,
         },
         rotate: {
-          duration: duration * 1.2,
+          duration: duration * 1.3, // 10-16 seconds
           repeat: Infinity,
           ease: "easeInOut",
           delay: delay,

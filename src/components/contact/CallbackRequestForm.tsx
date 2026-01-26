@@ -16,7 +16,7 @@ const CallbackRequestForm = () => {
   // Email regex pattern
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   // Phone pattern (10+ digits, allowing spaces, dashes, parentheses, and + prefix)
-  const phonePattern = /^[\+]?[(]?[0-9]{1,4}[)]?[-\s\.]?[(]?[0-9]{1,3}[)]?[-\s\.]?[0-9]{4,}$/;
+  const phonePattern = /^[+]?[(]?[0-9]{1,4}[)]?[-\s.]?[(]?[0-9]{1,3}[)]?[-\s.]?[0-9]{4,}$/;
   const digitsOnly = (str: string) => str.replace(/\D/g, "");
 
   useEffect(() => {
@@ -49,7 +49,7 @@ const CallbackRequestForm = () => {
     }
 
     // If mostly digits, likely a phone in progress
-    if (digits.length > 0 && digits.length >= contact.replace(/[\s\-\(\)\+\.]/g, "").length * 0.7) {
+    if (digits.length > 0 && digits.length >= contact.replace(/[\s\-()+ .]/g, "").length * 0.7) {
       setContactType("phone");
       setIsValid(digits.length >= 10);
       return;
@@ -57,6 +57,7 @@ const CallbackRequestForm = () => {
 
     setContactType(null);
     setIsValid(false);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [contact]);
 
   const handleSubmit = async (e: React.FormEvent) => {

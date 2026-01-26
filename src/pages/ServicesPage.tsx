@@ -4,11 +4,11 @@ import JugglingCapabilities from "@/components/services/JugglingCapabilities";
 
 const ServicesPage = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background relative">
       <UnifiedNavigation />
 
       {/* Content */}
-      <main className="pt-24 pb-16">
+      <main className="relative z-10 pt-24 pb-16">
         <div className="container mx-auto px-4 lg:px-8">
           {/* Section Header */}
           <div className="text-center max-w-3xl mx-auto mb-12 space-y-4">
@@ -19,7 +19,7 @@ const ServicesPage = () => {
             </AnimatedSection>
             <AnimatedSection delay={0.1}>
               <h1 className="text-4xl md:text-5xl font-bold">
-                56 AI-Powered
+                AI-Powered
                 <span className="block bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
                   Solutions & Services
                 </span>

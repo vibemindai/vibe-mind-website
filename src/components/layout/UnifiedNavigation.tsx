@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/sheet";
 import ThemeToggle from "@/components/ThemeToggle";
 import { useToast } from "@/hooks/use-toast";
+import { MagneticElement } from "@/components/MagneticElement";
 
 const contactActions = [
   {
@@ -48,7 +49,7 @@ const UnifiedNavigation = () => {
 
   // Email and phone patterns
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const phonePattern = /^[\+]?[(]?[0-9]{1,4}[)]?[-\s\.]?[(]?[0-9]{1,3}[)]?[-\s\.]?[0-9]{4,}$/;
+  const phonePattern = /^[+]?[(]?[0-9]{1,4}[)]?[-\s.]?[(]?[0-9]{1,3}[)]?[-\s.]?[0-9]{4,}$/;
   const digitsOnly = (str: string) => str.replace(/\D/g, "");
 
   useEffect(() => {
@@ -77,7 +78,7 @@ const UnifiedNavigation = () => {
       return;
     }
 
-    if (digits.length > 0 && digits.length >= contact.replace(/[\s\-\(\)\+\.]/g, "").length * 0.7) {
+    if (digits.length > 0 && digits.length >= contact.replace(/[\s\-()+ .]/g, "").length * 0.7) {
       setContactType("phone");
       setIsValid(digits.length >= 10);
       return;
@@ -85,6 +86,7 @@ const UnifiedNavigation = () => {
 
     setContactType(null);
     setIsValid(false);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [contact]);
 
   const handleCallbackSubmit = async (e: React.FormEvent) => {
@@ -145,36 +147,40 @@ const UnifiedNavigation = () => {
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-6 xl:gap-8">
             {navItems.map((item) => (
-              <div key={item.label} className="relative">
-                <Link
-                  to={item.href}
-                  className={`text-sm font-medium transition-colors py-2 ${
-                    isActive(item.href)
-                      ? "text-primary"
-                      : "text-muted-foreground hover:text-foreground"
-                  }`}
-                >
-                  {item.label}
-                </Link>
-                {isActive(item.href) && (
-                  <motion.div
-                    layoutId="activeIndicator"
-                    className="absolute -bottom-[1px] left-0 right-0 h-0.5 bg-primary"
-                    transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                  />
-                )}
-              </div>
+              <MagneticElement key={item.label} strength={0.25} radius={40}>
+                <div className="relative">
+                  <Link
+                    to={item.href}
+                    className={`text-sm font-medium transition-colors py-2 ${
+                      isActive(item.href)
+                        ? "text-primary"
+                        : "text-muted-foreground hover:text-foreground"
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                  {isActive(item.href) && (
+                    <motion.div
+                      layoutId="activeIndicator"
+                      className="absolute -bottom-[1px] left-0 right-0 h-0.5 bg-primary"
+                      transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                    />
+                  )}
+                </div>
+              </MagneticElement>
             ))}
           </div>
 
           {/* Desktop Right Side */}
           <div className="hidden lg:flex items-center gap-2 xl:gap-4">
             <ThemeToggle />
-            <Link to="/contact">
-              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-4 xl:px-6 text-sm tactile-button">
-                Get in Touch
-              </Button>
-            </Link>
+            <MagneticElement strength={0.35} radius={60}>
+              <Link to="/contact">
+                <Button className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-4 xl:px-6 text-sm tactile-button">
+                  Get in Touch
+                </Button>
+              </Link>
+            </MagneticElement>
           </div>
 
           {/* Mobile Right Side */}

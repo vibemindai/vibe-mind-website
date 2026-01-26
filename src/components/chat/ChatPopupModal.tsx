@@ -59,6 +59,9 @@ const ChatPopupModal = ({
                   <DialogPrimitive.Title className="text-lg font-semibold">
                     VibeMind AI Assistant
                   </DialogPrimitive.Title>
+                  <DialogPrimitive.Description className="sr-only">
+                    Chat with VibeMind AI Assistant to learn about our services
+                  </DialogPrimitive.Description>
                   <DialogPrimitive.Close
                     onClick={onClose}
                     className="rounded-full p-2 hover:bg-muted transition-colors"
