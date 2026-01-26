@@ -1,8 +1,16 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
-import { X } from "lucide-react";
+import { X, History, Trash2, RotateCcw } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import AIChatWindow from "@/components/AIChatWindow";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+  DropdownMenuSeparator,
+} from "@/components/ui/dropdown-menu";
+import AIChatWindow, { AIChatWindowHandle } from "@/components/AIChatWindow";
 
 interface ChatPopupModalProps {
   isOpen: boolean;
@@ -17,6 +25,8 @@ const ChatPopupModal = ({
   initialPrompt,
   onPromptConsumed,
 }: ChatPopupModalProps) => {
+  const chatRef = useRef<AIChatWindowHandle>(null);
+
   // Lock body scroll when modal is open
   useEffect(() => {
     if (isOpen) {
@@ -54,14 +64,48 @@ const ChatPopupModal = ({
                 transition={{ duration: 0.2, ease: "easeOut" }}
                 className="fixed inset-0 z-50 flex flex-col bg-background"
               >
-                {/* Header */}
-                <div className="flex items-center justify-between p-4 border-b border-border">
-                  <DialogPrimitive.Title className="text-lg font-semibold">
-                    VibeMind AI Assistant
+                {/* Header - minimal with icons only */}
+                <div className="flex items-center justify-end gap-2 p-4 border-b border-border">
+                  <DialogPrimitive.Title className="sr-only">
+                    Vibii Chat
                   </DialogPrimitive.Title>
                   <DialogPrimitive.Description className="sr-only">
-                    Chat with VibeMind AI Assistant to learn about our services
+                    Chat with Vibii, VibeMind's AI assistant
                   </DialogPrimitive.Description>
+
+                  {/* History dropdown */}
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="rounded-full p-2 h-auto hover:bg-muted transition-colors"
+                        title="Chat history options"
+                      >
+                        <History className="w-5 h-5" />
+                        <span className="sr-only">Chat history options</span>
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end" className="w-48">
+                      <DropdownMenuItem
+                        onClick={() => chatRef.current?.clearMessages()}
+                        className="cursor-pointer"
+                      >
+                        <Trash2 className="w-4 h-4 mr-2" />
+                        Clear conversation
+                      </DropdownMenuItem>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem
+                        onClick={() => chatRef.current?.clearSession()}
+                        className="cursor-pointer text-destructive focus:text-destructive"
+                      >
+                        <RotateCcw className="w-4 h-4 mr-2" />
+                        Start new session
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+
+                  {/* Close button */}
                   <DialogPrimitive.Close
                     onClick={onClose}
                     className="rounded-full p-2 hover:bg-muted transition-colors"
@@ -74,6 +118,7 @@ const ChatPopupModal = ({
                 {/* Chat Content */}
                 <div className="flex-1 overflow-hidden p-4">
                   <AIChatWindow
+                    ref={chatRef}
                     initialPrompt={initialPrompt}
                     onPromptConsumed={onPromptConsumed}
                   />

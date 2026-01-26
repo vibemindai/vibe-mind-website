@@ -1,9 +1,16 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, History, Trash2, RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+  DropdownMenuSeparator,
+} from "@/components/ui/dropdown-menu";
 import ServicesList from "./ServicesList";
-import AIChatWindow from "./AIChatWindow";
+import AIChatWindow, { AIChatWindowHandle } from "./AIChatWindow";
 import { useTypingPlaceholder } from "@/hooks/useTypingPlaceholder";
 
 interface MobileLandingProps {
@@ -14,6 +21,7 @@ interface MobileLandingProps {
 const MobileLanding = ({ isExpanded, setIsExpanded }: MobileLandingProps) => {
   const [pendingPrompt, setPendingPrompt] = useState<string | undefined>();
   const { placeholder, isTyping } = useTypingPlaceholder();
+  const chatRef = useRef<AIChatWindowHandle>(null);
 
   const handleChatTrigger = (prompt: string) => {
     setPendingPrompt(prompt);
@@ -121,27 +129,55 @@ const MobileLanding = ({ isExpanded, setIsExpanded }: MobileLandingProps) => {
             exit={{ opacity: 0, x: 20 }}
             className="flex flex-col h-full"
           >
-            {/* Back Button Header */}
-            <div className="px-4 py-3 flex items-center border-b border-border/50">
-              <div className="flex items-center gap-2">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => setIsExpanded(false)}
-                  className="h-8 px-2"
-                >
-                  <ArrowLeft className="w-4 h-4 mr-1" />
-                  Back
-                </Button>
-                <span className="text-sm font-medium text-muted-foreground">
-                  VibeMind Assistant
-                </span>
-              </div>
+            {/* Minimal Header with icons */}
+            <div className="px-4 py-3 flex items-center justify-between border-b border-border/50">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setIsExpanded(false)}
+                className="h-8 px-2"
+              >
+                <ArrowLeft className="w-4 h-4 mr-1" />
+                Back
+              </Button>
+
+              {/* History dropdown */}
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="rounded-full p-2 h-auto hover:bg-muted transition-colors"
+                    title="Chat history options"
+                  >
+                    <History className="w-5 h-5" />
+                    <span className="sr-only">Chat history options</span>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-48">
+                  <DropdownMenuItem
+                    onClick={() => chatRef.current?.clearMessages()}
+                    className="cursor-pointer"
+                  >
+                    <Trash2 className="w-4 h-4 mr-2" />
+                    Clear conversation
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem
+                    onClick={() => chatRef.current?.clearSession()}
+                    className="cursor-pointer text-destructive focus:text-destructive"
+                  >
+                    <RotateCcw className="w-4 h-4 mr-2" />
+                    Start new session
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
 
             {/* Full Chat Window */}
             <div className="flex-1 px-4 sm:px-6 py-4 overflow-hidden min-h-0">
               <AIChatWindow
+                ref={chatRef}
                 initialPrompt={pendingPrompt}
                 onPromptConsumed={handlePromptConsumed}
               />

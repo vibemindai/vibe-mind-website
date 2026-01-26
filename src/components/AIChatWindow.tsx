@@ -1,14 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, forwardRef, useImperativeHandle } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { AlertCircle, RefreshCw, RotateCcw, Trash2, History } from "lucide-react";
+import { AlertCircle, RefreshCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-  DropdownMenuSeparator,
-} from "@/components/ui/dropdown-menu";
 import { useSSEChat } from "@/hooks/useSSEChat";
 import ChatInput from "./chat/ChatInput";
 import ChatMessageList from "./chat/ChatMessageList";
@@ -20,7 +13,12 @@ interface AIChatWindowProps {
   onPromptConsumed?: () => void;
 }
 
-const AIChatWindow = ({ initialPrompt, onPromptConsumed }: AIChatWindowProps) => {
+export interface AIChatWindowHandle {
+  clearMessages: () => void;
+  clearSession: () => void;
+}
+
+const AIChatWindow = forwardRef<AIChatWindowHandle, AIChatWindowProps>(({ initialPrompt, onPromptConsumed }, ref) => {
   const {
     messages,
     chatStatus,
@@ -35,6 +33,12 @@ const AIChatWindow = ({ initialPrompt, onPromptConsumed }: AIChatWindowProps) =>
   const [showGreeting, setShowGreeting] = useState(false);
   const [showQuestions, setShowQuestions] = useState(false);
   const [isInitialTyping, setIsInitialTyping] = useState(true);
+
+  // Expose clear functions to parent via ref
+  useImperativeHandle(ref, () => ({
+    clearMessages,
+    clearSession,
+  }));
 
   // Track if user has started chatting
   const hasStartedChat = messages.length > 0;
@@ -107,7 +111,7 @@ const AIChatWindow = ({ initialPrompt, onPromptConsumed }: AIChatWindowProps) =>
                 className="bg-card rounded-xl sm:rounded-2xl p-3 sm:p-4 shadow-lg border border-border mb-3 sm:mb-4 max-w-xs sm:max-w-sm ml-auto"
               >
                 <p className="text-xs sm:text-sm text-foreground">
-                  Hi there! I'm the VibeMind AI Assistant. I can answer any questions you have about our company.
+                  Hi there! I'm Vibii, your AI assistant. I can answer any questions you have about VibeMind and our services.
                 </p>
               </motion.div>
             )}
@@ -139,39 +143,6 @@ const AIChatWindow = ({ initialPrompt, onPromptConsumed }: AIChatWindowProps) =>
       {/* Chat state - messages and streaming */}
       {hasStartedChat && (
         <div className="flex-1 flex flex-col min-h-0">
-          {/* Chat header with clear button */}
-          <div className="flex items-center justify-end mb-2">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="h-8 px-2 text-muted-foreground hover:text-foreground"
-                  title="Clear chat history"
-                >
-                  <History className="w-4 h-4" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-48">
-                <DropdownMenuItem
-                  onClick={clearMessages}
-                  className="cursor-pointer"
-                >
-                  <Trash2 className="w-4 h-4 mr-2" />
-                  Clear conversation
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem
-                  onClick={clearSession}
-                  className="cursor-pointer text-destructive focus:text-destructive"
-                >
-                  <RotateCcw className="w-4 h-4 mr-2" />
-                  Start new session
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </div>
-
           {/* Error state */}
           {error && (
             <motion.div
@@ -225,6 +196,8 @@ const AIChatWindow = ({ initialPrompt, onPromptConsumed }: AIChatWindowProps) =>
       </div>
     </div>
   );
-};
+});
+
+AIChatWindow.displayName = "AIChatWindow";
 
 export default AIChatWindow;
