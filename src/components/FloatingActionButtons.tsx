@@ -10,13 +10,13 @@ const FloatingActionButtons = () => {
     {
       icon: MessageCircle,
       label: "WhatsApp",
-      href: "https://wa.me/918281442486?text=Hi!%20I'd%20like%20to%20know%20more%20about%20VibeMind%20AI%20Solutions.",
+      href: "https://wa.me/918921442486?text=Hi!%20I'd%20like%20to%20know%20more%20about%20VibeMind%20AI%20Solutions.",
       color: "bg-green-500 hover:bg-green-600",
     },
     {
       icon: Phone,
       label: "Call",
-      href: "tel:+918281442486",
+      href: "tel:+918921442486",
       color: "bg-blue-500 hover:bg-blue-600",
     },
     {

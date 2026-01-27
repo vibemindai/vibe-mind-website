@@ -25,7 +25,7 @@ const Footer = () => {
     },
     {
       name: "WhatsApp",
-      href: "https://wa.me/918281442486?text=Hi%20VibeMind%2C%20I%27d%20like%20to%20discuss%20a%20project",
+      href: "https://wa.me/918921442486?text=Hi%20VibeMind%2C%20I%27d%20like%20to%20discuss%20a%20project",
       icon: <MessageCircle className="w-5 h-5" />,
     },
   ];
@@ -72,12 +72,12 @@ const Footer = () => {
             <h3 className="font-semibold mb-4 text-white">Contact</h3>
             <address className="not-italic space-y-3 text-sm text-gray-300">
               <a
-                href="tel:+918281442486"
+                href="tel:+918921442486"
                 className="flex items-center gap-2 hover:text-primary transition-smooth focus:outline-none focus:text-primary"
                 itemProp="telephone"
               >
                 <Phone className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
-                <span>+91 82 81 442 486</span>
+                <span>+91 89 21 442 486</span>
               </a>
               <a
                 href="mailto:info@vibemindsolutions.ai"
@@ -88,7 +88,7 @@ const Footer = () => {
                 <span>info@vibemindsolutions.ai</span>
               </a>
               <a
-                href="https://wa.me/918281442486?text=Hi%20VibeMind%2C%20I%27d%20like%20to%20discuss%20a%20project"
+                href="https://wa.me/918921442486?text=Hi%20VibeMind%2C%20I%27d%20like%20to%20discuss%20a%20project"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 hover:text-primary transition-smooth focus:outline-none focus:text-primary"

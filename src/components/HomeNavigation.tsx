@@ -13,6 +13,7 @@ import {
 import ThemeToggle from "./ThemeToggle";
 import { useToast } from "@/hooks/use-toast";
 import { MagneticElement } from "./MagneticElement";
+import { getClientId } from "@/lib/api";
 
 interface HomeNavigationProps {
   onLogoClick?: () => void;
@@ -23,13 +24,13 @@ const contactActions = [
   {
     icon: MessageCircle,
     label: "WhatsApp",
-    href: "https://wa.me/918281442486?text=Hi!%20I'd%20like%20to%20know%20more%20about%20VibeMind%20AI%20Solutions.",
+    href: "https://wa.me/918921442486?text=Hi!%20I'd%20like%20to%20know%20more%20about%20VibeMind%20AI%20Solutions.",
     color: "bg-primary hover:bg-primary/90",
   },
   {
     icon: Phone,
     label: "Call",
-    href: "tel:+918281442486",
+    href: "tel:+918921442486",
     color: "bg-primary hover:bg-primary/90",
   },
   {
@@ -100,9 +101,12 @@ const HomeNavigation = ({ onLogoClick, isMobileChatExpanded }: HomeNavigationPro
     setIsSubmitting(true);
 
     try {
-      const response = await fetch("/api/callback-request", {
+      const response = await fetch("/api/contact", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "x-client-id": getClientId(),
+        },
         body: JSON.stringify({ contact: contact.trim(), type: contactType }),
       });
 
@@ -364,11 +368,11 @@ const HomeNavigation = ({ onLogoClick, isMobileChatExpanded }: HomeNavigationPro
                   className="border-t border-border pt-4 mt-4 space-y-3"
                 >
                   <a
-                    href="tel:+918281442486"
+                    href="tel:+918921442486"
                     className="flex items-center gap-3 text-sm text-muted-foreground hover:text-foreground transition-colors"
                   >
                     <Phone className="w-4 h-4" />
-                    +91 82 81 442 486
+                    +91 89 21 442 486
                   </a>
                   <a
                     href="mailto:info@vibemindsolutions.ai"

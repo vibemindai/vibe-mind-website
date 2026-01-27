@@ -1,11 +1,12 @@
 /**
  * Sitemap Generator Script
- * Generates sitemap.xml with all static, category, and service pages
+ * Generates sitemap.xml with all static, category, service, and blog pages
  * Run: npx tsx scripts/generate-sitemap.ts
  */
 
 import * as fs from "fs";
 import * as path from "path";
+import { blogPosts } from "../src/data/blogPosts";
 
 const BASE_URL = "https://vibemindsolutions.ai";
 const TODAY = new Date().toISOString().split("T")[0];
@@ -140,6 +141,17 @@ function generateSitemap(): string {
     <priority>0.7</priority>
   </url>`);
     }
+  }
+
+  // Add blog post pages
+  for (const post of blogPosts) {
+    const lastmod = post.updatedAt || post.publishedAt;
+    urls.push(`  <url>
+    <loc>${BASE_URL}/blog/${post.slug}</loc>
+    <lastmod>${lastmod}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>`);
   }
 
   return `<?xml version="1.0" encoding="UTF-8"?>

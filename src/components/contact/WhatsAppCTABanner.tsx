@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 
 const WhatsAppCTABanner = () => {
   const whatsappUrl =
-    "https://wa.me/918281442486?text=Hi!%20I'd%20like%20to%20know%20more%20about%20VibeMind%20AI%20Solutions.";
+    "https://wa.me/918921442486?text=Hi!%20I'd%20like%20to%20know%20more%20about%20VibeMind%20AI%20Solutions.";
 
   return (
     <motion.div

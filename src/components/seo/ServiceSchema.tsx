@@ -20,7 +20,7 @@ const ServiceSchema = ({ name, description, category, url }: ServiceSchemaProps)
       logo: "https://vibemindsolutions.ai/logo.png",
       contactPoint: {
         "@type": "ContactPoint",
-        telephone: "+91-8281442486",
+        telephone: "+91-8921442486",
         contactType: "customer service",
         areaServed: ["IN", "QA", "US", "World"],
         availableLanguage: ["English", "Malayalam", "Hindi"],

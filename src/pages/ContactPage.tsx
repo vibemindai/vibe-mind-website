@@ -11,7 +11,7 @@ const ContactPage = () => {
     <FooterWrapper>
       <SEOHead
         title="Contact Us | Vibe Mind AI Solutions - Get in Touch"
-        description="Contact Vibe Mind AI Solutions for AI development, software modernization, and intelligent automation. Call +91-8281442486 or email us for a consultation."
+        description="Contact Vibe Mind AI Solutions for AI development, software modernization, and intelligent automation. Call +91-8921442486 or email us for a consultation."
         keywords={[
           "contact vibe mind ai",
           "ai company contact",

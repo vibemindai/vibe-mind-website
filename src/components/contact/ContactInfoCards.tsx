@@ -46,9 +46,9 @@ const ContactInfoCards = () => {
     {
       icon: Phone,
       title: "Call Us",
-      value: "+91 82 81 442 486",
-      href: "tel:+918281442486",
-      copyValue: "+918281442486",
+      value: "+91 89 21 442 486",
+      href: "tel:+918921442486",
+      copyValue: "+918921442486",
       type: "phone" as const,
       copied: copiedPhone,
       subtitle: "India",

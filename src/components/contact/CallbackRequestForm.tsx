@@ -4,6 +4,7 @@ import { Send, CheckCircle, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
+import { submitContact } from "@/lib/api";
 
 const CallbackRequestForm = () => {
   const [contact, setContact] = useState("");
@@ -67,16 +68,7 @@ const CallbackRequestForm = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch("/api/callback-request", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          contact: contact.trim(),
-          type: contactType,
-        }),
-      });
+      const response = await submitContact(contact.trim());
 
       if (!response.ok) {
         throw new Error("Failed to submit request");

@@ -53,7 +53,7 @@ const Contact = () => {
 
                 <div className="flex items-start gap-4">
                   <a 
-                    href="tel:+918281442486" 
+                    href="tel:+918921442486" 
                     className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 hover:bg-primary/20 transition-smooth cursor-pointer"
                     aria-label="Call Vibe Mind AI Solutions"
                   >
@@ -63,11 +63,11 @@ const Contact = () => {
                     <h3 className="font-semibold mb-1">Phone</h3>
                     <div className="space-y-1 text-muted-foreground">
                       <a 
-                        href="tel:+918281442486" 
+                        href="tel:+918921442486" 
                         className="hover:text-primary transition-smooth"
                         aria-label="Call our India office at +91 82 81 442 486"
                       >
-                        India: +91 82 81 442 486
+                        India: +91 89 21 442 486
                       </a>
                     </div>
                   </div>

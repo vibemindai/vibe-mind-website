@@ -431,3 +431,53 @@ export const formatDate = (dateString: string): string => {
     day: 'numeric',
   });
 };
+
+// Get post by slug
+export const getPostBySlug = (slug: string): BlogPost | undefined => {
+  return blogPosts.find((post) => post.slug === slug);
+};
+
+// Get adjacent (previous and next) posts for navigation
+export const getAdjacentPosts = (
+  slug: string
+): { prevPost: BlogPost | null; nextPost: BlogPost | null } => {
+  const currentIndex = blogPosts.findIndex((post) => post.slug === slug);
+
+  if (currentIndex === -1) {
+    return { prevPost: null, nextPost: null };
+  }
+
+  // Posts are ordered by date (newest first), so prev is newer, next is older
+  const prevPost = currentIndex > 0 ? blogPosts[currentIndex - 1] : null;
+  const nextPost =
+    currentIndex < blogPosts.length - 1 ? blogPosts[currentIndex + 1] : null;
+
+  return { prevPost, nextPost };
+};
+
+// Get related posts based on category and tags
+export const getRelatedPosts = (post: BlogPost, limit: number = 3): BlogPost[] => {
+  const otherPosts = blogPosts.filter((p) => p.id !== post.id);
+
+  // Score posts by relevance
+  const scoredPosts = otherPosts.map((p) => {
+    let score = 0;
+
+    // Same category gets high priority
+    if (p.category === post.category) {
+      score += 10;
+    }
+
+    // Count shared tags
+    const sharedTags = p.tags.filter((tag) => post.tags.includes(tag));
+    score += sharedTags.length * 2;
+
+    return { post: p, score };
+  });
+
+  // Sort by score (descending) and return top results
+  return scoredPosts
+    .sort((a, b) => b.score - a.score)
+    .slice(0, limit)
+    .map((item) => item.post);
+};

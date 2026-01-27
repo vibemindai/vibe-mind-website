@@ -1,5 +1,5 @@
 import { useState, useCallback, useRef, useEffect } from "react";
-import { CHAT_API_ENDPOINT } from "@/lib/chatApi";
+import { CHAT_API_ENDPOINT, getSessionId, getClientId } from "@/lib/api";
 
 export type ChatStatus = "idle" | "sending" | "processing" | "streaming" | "complete" | "error";
 
@@ -24,17 +24,6 @@ interface UseSSEChatReturn {
 
 const STORAGE_KEY = "chat-messages";
 const SESSION_ID_KEY = "chat-session-id";
-
-function getSessionId(): string {
-  if (typeof window === "undefined") return "";
-
-  let sessionId = sessionStorage.getItem(SESSION_ID_KEY);
-  if (!sessionId) {
-    sessionId = `session_${Date.now()}_${Math.random().toString(36).substring(2, 11)}`;
-    sessionStorage.setItem(SESSION_ID_KEY, sessionId);
-  }
-  return sessionId;
-}
 
 function getErrorMessage(error: unknown): string {
   if (error instanceof TypeError && error.message === "Failed to fetch") {
@@ -154,6 +143,7 @@ export function useSSEChat(): UseSSEChatReturn {
         headers: {
           "Content-Type": "application/json",
           "x-session-id": getSessionId(),
+          "x-client-id": getClientId(),
         },
         body: JSON.stringify({ message }),
         signal: abortControllerRef.current.signal,

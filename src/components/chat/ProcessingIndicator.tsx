@@ -2,10 +2,10 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const PROCESSING_PHASES = [
-  "Surfing the web",
-  "Collecting info",
-  "Analyzing data",
-  "Generating response",
+  "Vibing with your question",
+  "Tapping into the cosmos",
+  "Brewing some brilliance",
+  "Crafting your answer",
 ];
 
 const ProcessingIndicator = () => {

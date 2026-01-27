@@ -82,7 +82,7 @@ const AIChatWindow = forwardRef<AIChatWindowHandle, AIChatWindowProps>(({ initia
   const isDisabled = isProcessing || isStreaming;
 
   return (
-    <div className="flex flex-col h-[calc(100dvh-8rem)] lg:min-h-0 lg:h-[calc(100vh-2rem)] lg:max-h-[calc(100vh-10rem)]">
+    <div className="flex flex-col h-[calc(100dvh-9rem)] lg:min-h-0 lg:h-[calc(100vh-2rem)] lg:max-h-[calc(100vh-10rem)]">
       {/* Initial state - greeting and robot illustration */}
       {!hasStartedChat && (
         <>
