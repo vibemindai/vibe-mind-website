@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, History, Trash2, RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -20,8 +20,22 @@ interface MobileLandingProps {
 
 const MobileLanding = ({ isExpanded, setIsExpanded }: MobileLandingProps) => {
   const [pendingPrompt, setPendingPrompt] = useState<string | undefined>();
+  const [maxItems, setMaxItems] = useState(6);
   const { placeholder, isTyping } = useTypingPlaceholder();
   const chatRef = useRef<AIChatWindowHandle>(null);
+
+  // Dynamically calculate max items based on viewport height
+  useEffect(() => {
+    const calculate = () => {
+      const available = window.innerHeight - 340;
+      const items = Math.floor(available / 38);
+      setMaxItems(Math.max(4, Math.min(items, 10)));
+    };
+
+    calculate();
+    window.addEventListener('resize', calculate);
+    return () => window.removeEventListener('resize', calculate);
+  }, []);
 
   const handleChatTrigger = (prompt: string) => {
     setPendingPrompt(prompt);
@@ -33,19 +47,19 @@ const MobileLanding = ({ isExpanded, setIsExpanded }: MobileLandingProps) => {
   };
 
   return (
-    <div className="h-[calc(100dvh-3.5rem)] overflow-hidden flex flex-col">
+    <div className={isExpanded ? "h-[calc(100dvh-3.5rem)] overflow-hidden flex flex-col" : "flex flex-col min-h-[calc(100dvh-3.5rem)]"}>
       <AnimatePresence mode="wait">
         {!isExpanded ? (
-          // Landing State: Header + Hero + Chat Input
+          // Landing State: Header + Hero + Chat Input (scrollable for footer reveal)
           <motion.div
             key="landing"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0, x: -20 }}
-            className="flex flex-col h-full"
+            className="flex flex-col flex-1"
           >
             {/* Hero Section */}
-            <div className="flex-1 flex flex-col px-4 sm:px-6 pt-4 pb-2 overflow-hidden">
+            <div className="flex-1 flex flex-col px-4 sm:px-6 pt-4 pb-2">
               {/* Hero Content */}
               <div className="space-y-4 mb-6">
                 <motion.h1
@@ -77,7 +91,7 @@ const MobileLanding = ({ isExpanded, setIsExpanded }: MobileLandingProps) => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
               >
-                <ServicesList onChatTrigger={handleChatTrigger} />
+                <ServicesList onChatTrigger={handleChatTrigger} maxItems={maxItems} />
               </motion.div>
             </div>
 

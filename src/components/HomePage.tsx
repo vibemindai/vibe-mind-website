@@ -3,6 +3,7 @@ import HomeNavigation from "./HomeNavigation";
 import ServicesList from "./ServicesList";
 import AIChatWindow from "./AIChatWindow";
 import MobileLanding from "./MobileLanding";
+import FooterWrapper from "./FooterWrapper";
 
 const HomePage = () => {
   const [isMobileChatExpanded, setIsMobileChatExpanded] = useState(false);
@@ -28,12 +29,23 @@ const HomePage = () => {
 
       {/* Main Content */}
       <div className="pt-14 sm:pt-16 lg:pt-20">
-        {/* Mobile/Tablet Layout: Two-screen experience */}
+        {/* Mobile/Tablet Layout: Two-screen experience with footer */}
         <div className="lg:hidden">
-          <MobileLanding
-            isExpanded={isMobileChatExpanded}
-            setIsExpanded={setIsMobileChatExpanded}
-          />
+          {isMobileChatExpanded ? (
+            // Expanded chat - no footer, full screen experience
+            <MobileLanding
+              isExpanded={isMobileChatExpanded}
+              setIsExpanded={setIsMobileChatExpanded}
+            />
+          ) : (
+            // Landing state - wrap with footer
+            <FooterWrapper>
+              <MobileLanding
+                isExpanded={isMobileChatExpanded}
+                setIsExpanded={setIsMobileChatExpanded}
+              />
+            </FooterWrapper>
+          )}
         </div>
 
         {/* Desktop Layout: Two-column grid */}

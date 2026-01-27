@@ -389,11 +389,3 @@ All colors MUST be HSL.
   from { stroke-dashoffset: 0; }
   to { stroke-dashoffset: -12; }
 }
-
-/* Custom cursor - hide default cursor on desktop */
-@media (min-width: 1024px) {
-  .custom-cursor-active,
-  .custom-cursor-active * {
-    cursor: none !important;
-  }
-}

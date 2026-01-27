@@ -156,24 +156,22 @@ const HomeNavigation = ({ onLogoClick, isMobileChatExpanded }: HomeNavigationPro
               onClick={onLogoClick}
               className="flex items-center gap-2 group lg:hidden"
             >
-              <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gradient-to-br from-primary via-accent to-primary flex items-center justify-center">
-                <div className="w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-background" />
-              </div>
-              <span className="text-base sm:text-lg font-semibold text-foreground">
-                VibeMind <span className="text-muted-foreground font-normal hidden sm:inline">Solutions</span>
-              </span>
+              <img
+                src="/logo.png"
+                alt="VibeMind AI Solutions"
+                className="h-8 sm:h-10 w-auto"
+              />
             </button>
           )}
           <Link
             to="/"
             className={`flex items-center gap-2 group ${isMobileChatExpanded ? 'hidden lg:flex' : ''}`}
           >
-            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gradient-to-br from-primary via-accent to-primary flex items-center justify-center">
-              <div className="w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-background" />
-            </div>
-            <span className="text-base sm:text-lg font-semibold text-foreground">
-              VibeMind <span className="text-muted-foreground font-normal hidden sm:inline">Solutions</span>
-            </span>
+            <img
+              src="/logo.png"
+              alt="VibeMind AI Solutions"
+              className="h-8 sm:h-10 w-auto"
+            />
           </Link>
 
           {/* Desktop Navigation */}

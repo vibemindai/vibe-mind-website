@@ -3,11 +3,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import { MessageSquare } from "lucide-react";
 import { capabilities, getIcon, type Capability } from "@/data/aiCapabilities";
 
-const ITEMS_PER_VIEW = 10;
 const TICKER_INTERVAL = 2500; // 2.5 seconds per tick
 
 interface ServicesListProps {
   onChatTrigger?: (prompt: string) => void;
+  maxItems?: number;
 }
 
 // Vertical ticker animation variants
@@ -59,7 +59,7 @@ interface VisibleItem extends Capability {
   instanceId: number;
 }
 
-const ServicesList = ({ onChatTrigger }: ServicesListProps) => {
+const ServicesList = ({ onChatTrigger, maxItems = 10 }: ServicesListProps) => {
   const [visibleItems, setVisibleItems] = useState<VisibleItem[]>([]);
   const [isPaused, setIsPaused] = useState(false);
   const instanceCounter = useRef(0);
@@ -79,15 +79,34 @@ const ServicesList = ({ onChatTrigger }: ServicesListProps) => {
     return { ...item, instanceId: instanceCounter.current };
   };
 
-  // Initialize with first 6 items (shuffled)
+  // Initialize and adjust items based on maxItems
   useEffect(() => {
-    shuffledQueue.current = [...capabilities].sort(() => Math.random() - 0.5);
-    const initialItems: VisibleItem[] = [];
-    for (let i = 0; i < ITEMS_PER_VIEW; i++) {
-      initialItems.push(getNextItem());
+    if (shuffledQueue.current.length === 0) {
+      shuffledQueue.current = [...capabilities].sort(() => Math.random() - 0.5);
     }
-    setVisibleItems(initialItems);
-  }, []);
+
+    setVisibleItems((prev) => {
+      if (prev.length === 0) {
+        // Initial load
+        const initialItems: VisibleItem[] = [];
+        for (let i = 0; i < maxItems; i++) {
+          initialItems.push(getNextItem());
+        }
+        return initialItems;
+      } else if (prev.length > maxItems) {
+        // Shrink list
+        return prev.slice(0, maxItems);
+      } else if (prev.length < maxItems) {
+        // Grow list
+        const newItems = [...prev];
+        while (newItems.length < maxItems) {
+          newItems.push(getNextItem());
+        }
+        return newItems;
+      }
+      return prev;
+    });
+  }, [maxItems]);
 
   // Ticker effect: add one at top, remove one from bottom
   useEffect(() => {
@@ -97,7 +116,7 @@ const ServicesList = ({ onChatTrigger }: ServicesListProps) => {
       setVisibleItems((prev) => {
         const newItem = getNextItem();
         // Add to front, remove from end
-        return [newItem, ...prev.slice(0, ITEMS_PER_VIEW - 1)];
+        return [newItem, ...prev.slice(0, maxItems - 1)];
       });
     }, TICKER_INTERVAL);
 
