@@ -4,7 +4,7 @@ import { Capability, getIcon } from "@/data/aiCapabilities";
 interface CapabilityBubbleProps {
   capability: Capability;
   index: number;
-  onClick: (title: string) => void;
+  onClick: () => void;
 }
 
 const colorVariants = [
@@ -80,7 +80,7 @@ const CapabilityBubble = ({ capability, index, onClick }: CapabilityBubbleProps)
         transition: { duration: 0.2 },
       }}
       whileTap={{ scale: 0.95 }}
-      onClick={() => onClick(capability.title)}
+      onClick={onClick}
       className={`
         inline-flex items-center gap-2 px-4 py-2.5 rounded-full
         border backdrop-blur-sm cursor-pointer

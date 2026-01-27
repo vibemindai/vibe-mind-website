@@ -1,7 +1,8 @@
 import { useState, useEffect, useCallback } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import { capabilities } from "@/data/aiCapabilities";
+import { getCategoryByKey } from "@/data/serviceCategories";
 import CapabilityBubble from "./CapabilityBubble";
 
 // Fisher-Yates shuffle algorithm
@@ -16,7 +17,6 @@ const shuffleArray = <T,>(array: T[]): T[] => {
 
 const JugglingCapabilities = () => {
   const navigate = useNavigate();
-  const location = useLocation();
 
   // State for shuffled capabilities that updates periodically
   const [shuffledCapabilities, setShuffledCapabilities] = useState(() =>
@@ -33,11 +33,12 @@ const JugglingCapabilities = () => {
     return () => clearInterval(interval);
   }, [reshuffle]);
 
-  const handleCapabilityClick = (title: string) => {
-    // Navigate with chat param to trigger global chat modal
-    const params = new URLSearchParams(location.search);
-    params.set("chat", title);
-    navigate(`${location.pathname}?${params.toString()}`, { replace: true });
+  const handleCapabilityClick = (slug: string, categoryKey: string) => {
+    // Get the category slug from the category key
+    const category = getCategoryByKey(categoryKey);
+    if (category) {
+      navigate(`/services/${category.slug}/${slug}`);
+    }
   };
 
   return (
@@ -49,7 +50,7 @@ const JugglingCapabilities = () => {
               key={capability.title}
               capability={capability}
               index={index}
-              onClick={handleCapabilityClick}
+              onClick={() => handleCapabilityClick(capability.slug, capability.category)}
             />
           ))}
         </AnimatePresence>

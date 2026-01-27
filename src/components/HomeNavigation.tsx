@@ -1,6 +1,6 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Menu, Phone, Mail, Send, CheckCircle, Loader2, Plus, MessageCircle } from "lucide-react";
+import { Menu, Phone, Mail, Send, CheckCircle, Loader2, MessageCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -42,26 +42,7 @@ const contactActions = [
 
 const HomeNavigation = ({ onLogoClick, isMobileChatExpanded }: HomeNavigationProps) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isContactOpen, setIsContactOpen] = useState(false);
-  const contactRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
-
-  // Close contact menu when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (contactRef.current && !contactRef.current.contains(event.target as Node)) {
-        setIsContactOpen(false);
-      }
-    };
-
-    if (isContactOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [isContactOpen]);
 
   // Callback form state
   const [contact, setContact] = useState("");
@@ -208,52 +189,6 @@ const HomeNavigation = ({ onLogoClick, isMobileChatExpanded }: HomeNavigationPro
 
           {/* Mobile Right Side */}
           <div className="flex lg:hidden items-center gap-2">
-            {/* Contact Menu */}
-            <div ref={contactRef} className="relative">
-              <motion.button
-                onClick={() => setIsContactOpen(!isContactOpen)}
-                className="w-8 h-8 rounded-full bg-primary text-primary-foreground shadow-md flex items-center justify-center"
-                whileTap={{ scale: 0.95 }}
-                aria-label={isContactOpen ? "Close contact menu" : "Open contact menu"}
-              >
-                <motion.div
-                  animate={{ rotate: isContactOpen ? 45 : 0 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                >
-                  <Plus className="w-4 h-4" />
-                </motion.div>
-              </motion.button>
-
-              {/* Contact Dropdown */}
-              <AnimatePresence>
-                {isContactOpen && (
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.9, y: -10 }}
-                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.9, y: -10 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                    className="absolute right-0 top-10 bg-card rounded-xl shadow-lg border border-border overflow-hidden z-50"
-                  >
-                    {contactActions.map((action) => (
-                      <a
-                        key={action.label}
-                        href={action.href}
-                        target={action.label === "WhatsApp" ? "_blank" : undefined}
-                        rel={action.label === "WhatsApp" ? "noopener noreferrer" : undefined}
-                        className="flex items-center gap-3 px-4 py-3 hover:bg-muted/50 transition-colors"
-                        onClick={() => setIsContactOpen(false)}
-                      >
-                        <div className={`w-8 h-8 rounded-full ${action.color} flex items-center justify-center`}>
-                          <action.icon className="w-4 h-4 text-white" />
-                        </div>
-                        <span className="text-sm font-medium text-foreground">{action.label}</span>
-                      </a>
-                    ))}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-
             <ThemeToggle />
             <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
               <SheetTrigger asChild>
