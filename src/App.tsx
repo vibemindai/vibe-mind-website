@@ -16,6 +16,7 @@ import AboutPage from "./pages/AboutPage";
 import ServicesPage from "./pages/ServicesPage";
 import CategoryPage from "./pages/CategoryPage";
 import ServiceDetailPage from "./pages/ServiceDetailPage";
+import BlogPage from "./pages/BlogPage";
 import ContactPage from "./pages/ContactPage";
 import NotFound from "./pages/NotFound";
 
@@ -46,6 +47,7 @@ const AnimatedRoutes = () => {
         <Route path="/services" element={<PageTransition><ServicesPage /></PageTransition>} />
         <Route path="/services/:categorySlug" element={<PageTransition><CategoryPage /></PageTransition>} />
         <Route path="/services/:categorySlug/:serviceSlug" element={<PageTransition><ServiceDetailPage /></PageTransition>} />
+        <Route path="/blog" element={<PageTransition><BlogPage /></PageTransition>} />
         <Route path="/contact" element={<PageTransition><ContactPage /></PageTransition>} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />

@@ -4,10 +4,29 @@ import CallbackRequestForm from "@/components/contact/CallbackRequestForm";
 import ContactInfoCards from "@/components/contact/ContactInfoCards";
 import WhatsAppCTABanner from "@/components/contact/WhatsAppCTABanner";
 import FooterWrapper from "@/components/FooterWrapper";
+import { SEOHead } from "@/components/seo";
 
 const ContactPage = () => {
   return (
     <FooterWrapper>
+      <SEOHead
+        title="Contact Us | Vibe Mind AI Solutions - Get in Touch"
+        description="Contact Vibe Mind AI Solutions for AI development, software modernization, and intelligent automation. Call +91-8281442486 or email us for a consultation."
+        keywords={[
+          "contact vibe mind ai",
+          "ai company contact",
+          "ai consultation",
+          "ai development inquiry",
+          "software development contact kerala",
+          "chatbot development quote",
+          "ai bot consultation",
+          "custom chatbot inquiry",
+          "enterprise ai consultation",
+          "chatbot pricing",
+          "ai assistant quote"
+        ]}
+        canonicalUrl="/contact"
+      />
       <div className="min-h-screen bg-background">
         <UnifiedNavigation />
 

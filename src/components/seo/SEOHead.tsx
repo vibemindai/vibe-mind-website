@@ -15,11 +15,11 @@ const SEOHead = ({
   description,
   keywords = [],
   canonicalUrl,
-  ogImage = "https://vibemind.in/og-image.jpg",
+  ogImage = "https://vibemindsolutions.ai/og-image.jpg",
   ogType = "website",
   noIndex = false,
 }: SEOHeadProps) => {
-  const baseUrl = "https://vibemind.in";
+  const baseUrl = "https://vibemindsolutions.ai";
   const fullCanonicalUrl = canonicalUrl ? `${baseUrl}${canonicalUrl}` : undefined;
 
   return (

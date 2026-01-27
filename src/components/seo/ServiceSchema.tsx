@@ -16,8 +16,8 @@ const ServiceSchema = ({ name, description, category, url }: ServiceSchemaProps)
     provider: {
       "@type": "Organization",
       name: "Vibe Mind AI",
-      url: "https://vibemind.in",
-      logo: "https://vibemind.in/logo.png",
+      url: "https://vibemindsolutions.ai",
+      logo: "https://vibemindsolutions.ai/logo.png",
       contactPoint: {
         "@type": "ContactPoint",
         telephone: "+91-8281442486",
@@ -32,7 +32,7 @@ const ServiceSchema = ({ name, description, category, url }: ServiceSchemaProps)
       name: "Worldwide",
     },
     category: category,
-    url: `https://vibemind.in${url}`,
+    url: `https://vibemindsolutions.ai${url}`,
   };
 
   return (

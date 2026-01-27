@@ -71,10 +71,11 @@ const About = () => {
           {/* Right Image */}
           <div className="relative animate-scale-in mt-8 lg:mt-0">
             <div className="relative rounded-2xl overflow-hidden shadow-elegant">
-              <img 
-                src={aiBrain} 
-                alt="AI Technology Visualization - Vibe Mind AI, Top AI Company in Kerala" 
+              <img
+                src={aiBrain}
+                alt="AI Technology Visualization - Vibe Mind AI, Top AI Company in Kerala"
                 className="w-full h-auto"
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/60 to-transparent" />
             </div>

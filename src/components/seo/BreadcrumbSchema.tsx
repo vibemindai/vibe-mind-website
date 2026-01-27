@@ -17,7 +17,7 @@ const BreadcrumbSchema = ({ items }: BreadcrumbSchemaProps) => {
       "@type": "ListItem",
       position: index + 1,
       name: item.name,
-      item: `https://vibemind.in${item.url}`,
+      item: `https://vibemindsolutions.ai${item.url}`,
     })),
   };
 

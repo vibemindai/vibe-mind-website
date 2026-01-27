@@ -14,9 +14,9 @@ const FooterWrapper = ({ children }: FooterWrapperProps) => {
       </div>
 
       {/* Main content wrapper */}
-      <div className="relative z-10">
+      <div className="relative z-10 pointer-events-none">
         {/* Content area */}
-        <div className="bg-background">
+        <div className="bg-background pointer-events-auto">
           {children}
         </div>
 

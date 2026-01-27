@@ -24,6 +24,26 @@ const ServicesPage = () => {
           "conversational AI",
           "computer vision",
           "generative AI",
+          "ai chatbot services",
+          "bot development services",
+          "conversational ai platform",
+          "enterprise bot solutions",
+          "ai assistant development",
+          "chatbot consulting",
+          "voice bot development",
+          "ai agent development",
+          "rag chatbot development",
+          "knowledge base chatbot",
+          "support bot automation",
+          "lead generation chatbot",
+          "ecommerce chatbot",
+          "healthcare chatbot",
+          "banking chatbot solutions",
+          "langchain development",
+          "openai integration",
+          "claude api integration",
+          "vector database chatbot",
+          "semantic search bot"
         ]}
       />
 

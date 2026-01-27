@@ -39,7 +39,7 @@ const Footer = () => {
       itemType="https://schema.org/Organization"
     >
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
           {/* Brand + Social */}
           <div className="space-y-4 sm:col-span-2 lg:col-span-1">
             <Link to="/" className="flex items-center gap-2 group">
@@ -66,45 +66,6 @@ const Footer = () => {
               ))}
             </div>
           </div>
-
-          {/* Services */}
-          <nav aria-label="Our services">
-            <h3 className="font-semibold mb-4 text-white">Services</h3>
-            <ul role="list" className="space-y-2 text-sm text-gray-300">
-              <li>
-                <Link
-                  to="/services"
-                  className="hover:text-primary transition-smooth focus:outline-none focus:text-primary"
-                >
-                  AI Development
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/services"
-                  className="hover:text-primary transition-smooth focus:outline-none focus:text-primary"
-                >
-                  Legacy Modernization
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/services"
-                  className="hover:text-primary transition-smooth focus:outline-none focus:text-primary"
-                >
-                  Custom AI Solutions
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/services"
-                  className="hover:text-primary transition-smooth focus:outline-none focus:text-primary"
-                >
-                  AI SDKs & Tools
-                </Link>
-              </li>
-            </ul>
-          </nav>
 
           {/* Contact Info */}
           <div itemScope itemType="https://schema.org/ContactPoint">
@@ -177,7 +138,6 @@ const Footer = () => {
           <nav aria-label="Quick links" className="flex flex-wrap justify-center md:justify-start gap-x-6 gap-y-2 text-sm text-gray-300 order-1 md:order-2">
             <Link to="/" className="hover:text-primary transition-smooth">Home</Link>
             <Link to="/about" className="hover:text-primary transition-smooth">About Us</Link>
-            <Link to="/services" className="hover:text-primary transition-smooth">Services</Link>
             <Link to="/contact" className="hover:text-primary transition-smooth">Contact</Link>
           </nav>
 

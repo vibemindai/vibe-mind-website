@@ -10,10 +10,12 @@ const Hero = () => {
     >
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
-        <img 
-          src={heroBg} 
-          alt="Vibe Mind AI - Best AI Company in Kerala, India - Neural Network Technology Background" 
+        <img
+          src={heroBg}
+          alt="Vibe Mind AI - Best AI Company in Kerala, India - Neural Network Technology Background"
           className="w-full h-full object-cover opacity-40"
+          loading="eager"
+          fetchPriority="high"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-primary-dark/90 via-primary-dark/70 to-background" />
       </div>

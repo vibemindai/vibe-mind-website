@@ -7,7 +7,7 @@
 import * as fs from "fs";
 import * as path from "path";
 
-const BASE_URL = "https://vibemind.in";
+const BASE_URL = "https://vibemindsolutions.ai";
 const TODAY = new Date().toISOString().split("T")[0];
 
 // Static pages
@@ -15,6 +15,7 @@ const staticPages = [
   { url: "/", priority: "1.0", changefreq: "weekly" },
   { url: "/about", priority: "0.8", changefreq: "monthly" },
   { url: "/services", priority: "0.9", changefreq: "weekly" },
+  { url: "/blog", priority: "0.8", changefreq: "weekly" },
   { url: "/contact", priority: "0.7", changefreq: "monthly" },
 ];
 

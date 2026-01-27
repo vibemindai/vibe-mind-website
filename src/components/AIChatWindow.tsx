@@ -187,6 +187,12 @@ const AIChatWindow = forwardRef<AIChatWindowHandle, AIChatWindowProps>(({ initia
 
       {/* Chat Input - always visible at bottom */}
       <div className="mt-auto pt-3 sm:pt-4">
+        {/* Mobile-only label before chat starts */}
+        {!hasStartedChat && (
+          <p className="lg:hidden text-xs text-muted-foreground text-center mb-2">
+            Go ahead, ask Vibii anything — I'm here to help!
+          </p>
+        )}
         <ChatInput
           onSend={handleSendMessage}
           disabled={isDisabled}
