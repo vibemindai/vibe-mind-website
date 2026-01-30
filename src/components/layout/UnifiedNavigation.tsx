@@ -13,7 +13,7 @@ import {
 import ThemeToggle from "@/components/ThemeToggle";
 import { useToast } from "@/hooks/use-toast";
 import { MagneticElement } from "@/components/MagneticElement";
-import { getClientId } from "@/lib/api";
+import { getClientId, getIpAddress } from "@/lib/api";
 
 const contactActions = [
   {
@@ -102,6 +102,7 @@ const UnifiedNavigation = () => {
         headers: {
           "Content-Type": "application/json",
           "x-client-id": getClientId(),
+          "x-ipaddress": getIpAddress(),
         },
         body: JSON.stringify({ contact: contact.trim(), type: contactType }),
       });

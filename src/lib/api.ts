@@ -1,5 +1,5 @@
 // Shared base URL
-export const API_BASE_URL = "https://vmpc01.vibemind.in";
+export const API_BASE_URL = "https://vmser01.vibemindsolutions.ai/web/api";
 
 // Endpoints
 export const CHAT_API_ENDPOINT = `${API_BASE_URL}/ass/api/generate`;
@@ -8,6 +8,7 @@ export const CONTACT_API_ENDPOINT = `${API_BASE_URL}/api/contact`;
 // Storage keys
 const SESSION_ID_KEY = "chat-session-id";
 const CLIENT_ID_KEY = "vibemind-client-id";
+const IP_ADDRESS_KEY = "vibemind-ip-address";
 
 // Default client ID for new users
 const DEFAULT_CLIENT_ID = "dabdf41d-5b06-4807-b262-f84119dec26e";
@@ -43,6 +44,40 @@ export function getClientId(): string {
 }
 
 /**
+ * Get the user's IP address (stored in sessionStorage)
+ * Fetches from external service and caches for the session
+ */
+export function getIpAddress(): string {
+  if (typeof window === "undefined") return "";
+  return sessionStorage.getItem(IP_ADDRESS_KEY) || "";
+}
+
+/**
+ * Fetch and cache the user's IP address
+ * Call this once on app initialization
+ */
+export async function fetchAndCacheIpAddress(): Promise<string> {
+  if (typeof window === "undefined") return "";
+
+  // Check if already cached
+  const cached = sessionStorage.getItem(IP_ADDRESS_KEY);
+  if (cached) return cached;
+
+  try {
+    const response = await fetch("https://api.ipify.org?format=json");
+    if (response.ok) {
+      const data = await response.json();
+      const ip = data.ip;
+      sessionStorage.setItem(IP_ADDRESS_KEY, ip);
+      return ip;
+    }
+  } catch {
+    // Silently fail - IP address is optional
+  }
+  return "";
+}
+
+/**
  * Submit a contact request (email or phone)
  */
 export async function submitContact(contact: string): Promise<Response> {
@@ -52,6 +87,7 @@ export async function submitContact(contact: string): Promise<Response> {
       "Content-Type": "application/json",
       "x-session-id": getSessionId(),
       "x-client-id": getClientId(),
+      "x-ipaddress": getIpAddress(),
     },
     body: JSON.stringify({ contact }),
   });

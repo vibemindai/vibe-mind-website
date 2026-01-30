@@ -121,7 +121,7 @@ const ServicesList = ({ onChatTrigger, maxItems = 10 }: ServicesListProps) => {
     }, TICKER_INTERVAL);
 
     return () => clearInterval(timer);
-  }, [isPaused, visibleItems.length]);
+  }, [isPaused, visibleItems.length, maxItems]);
 
   // Handle chat trigger
   const handleChatClick = (capability: Capability, e: React.MouseEvent) => {

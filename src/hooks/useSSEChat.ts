@@ -1,5 +1,5 @@
 import { useState, useCallback, useRef, useEffect } from "react";
-import { CHAT_API_ENDPOINT, getSessionId, getClientId } from "@/lib/api";
+import { CHAT_API_ENDPOINT, getSessionId, getClientId, getIpAddress } from "@/lib/api";
 
 export type ChatStatus = "idle" | "sending" | "processing" | "streaming" | "complete" | "error";
 
@@ -144,6 +144,7 @@ export function useSSEChat(): UseSSEChatReturn {
           "Content-Type": "application/json",
           "x-session-id": getSessionId(),
           "x-client-id": getClientId(),
+          "x-ipaddress": getIpAddress(),
         },
         body: JSON.stringify({ message }),
         signal: abortControllerRef.current.signal,

@@ -13,7 +13,7 @@ import {
 import ThemeToggle from "./ThemeToggle";
 import { useToast } from "@/hooks/use-toast";
 import { MagneticElement } from "./MagneticElement";
-import { getClientId } from "@/lib/api";
+import { getClientId, getIpAddress } from "@/lib/api";
 
 interface HomeNavigationProps {
   onLogoClick?: () => void;
@@ -106,6 +106,7 @@ const HomeNavigation = ({ onLogoClick, isMobileChatExpanded }: HomeNavigationPro
         headers: {
           "Content-Type": "application/json",
           "x-client-id": getClientId(),
+          "x-ipaddress": getIpAddress(),
         },
         body: JSON.stringify({ contact: contact.trim(), type: contactType }),
       });
