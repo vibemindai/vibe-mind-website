@@ -13,7 +13,7 @@ import {
 import ThemeToggle from "./ThemeToggle";
 import { useToast } from "@/hooks/use-toast";
 import { MagneticElement } from "./MagneticElement";
-import { getClientId, getIpAddress } from "@/lib/api";
+import { CONTACT_API_ENDPOINT, getClientId, getIpAddress, getSessionId } from "@/lib/api";
 
 interface HomeNavigationProps {
   onLogoClick?: () => void;
@@ -101,10 +101,11 @@ const HomeNavigation = ({ onLogoClick, isMobileChatExpanded }: HomeNavigationPro
     setIsSubmitting(true);
 
     try {
-      const response = await fetch("/api/contact", {
+      const response = await fetch(CONTACT_API_ENDPOINT, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "x-session-id": getSessionId(),
           "x-client-id": getClientId(),
           "x-ipaddress": getIpAddress(),
         },

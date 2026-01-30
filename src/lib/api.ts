@@ -3,7 +3,7 @@ export const API_BASE_URL = "https://vmser01.vibemindsolutions.ai/web/api";
 
 // Endpoints
 export const CHAT_API_ENDPOINT = `${API_BASE_URL}/ass/api/generate`;
-export const CONTACT_API_ENDPOINT = `${API_BASE_URL}/api/contact`;
+export const CONTACT_API_ENDPOINT = `${API_BASE_URL}/ass/api/contact`;
 
 // Storage keys
 const SESSION_ID_KEY = "chat-session-id";
