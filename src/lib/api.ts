@@ -14,6 +14,13 @@ const IP_ADDRESS_KEY = "vibemind-ip-address";
 const DEFAULT_CLIENT_ID = "dabdf41d-5b06-4807-b262-f84119dec26e";
 
 /**
+ * Generate a UUID v4
+ */
+function generateUUID(): string {
+  return crypto.randomUUID();
+}
+
+/**
  * Get or create a session ID (stored in sessionStorage)
  * Session IDs persist for the browser tab session
  */
@@ -22,7 +29,7 @@ export function getSessionId(): string {
 
   let sessionId = sessionStorage.getItem(SESSION_ID_KEY);
   if (!sessionId) {
-    sessionId = `session_${Date.now()}_${Math.random().toString(36).substring(2, 11)}`;
+    sessionId = generateUUID();
     sessionStorage.setItem(SESSION_ID_KEY, sessionId);
   }
   return sessionId;
