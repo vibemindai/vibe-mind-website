@@ -139,6 +139,7 @@ const Footer = () => {
             <Link to="/" className="hover:text-primary transition-smooth">Home</Link>
             <Link to="/about" className="hover:text-primary transition-smooth">About Us</Link>
             <Link to="/contact" className="hover:text-primary transition-smooth">Contact</Link>
+            <Link to="/privacy-policy" className="hover:text-primary transition-smooth">Privacy Policy</Link>
           </nav>
 
           {/* Copyright */}
