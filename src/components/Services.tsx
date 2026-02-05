@@ -33,7 +33,7 @@ const Services = () => {
       features: [
         "Chatbots & recommendation engines",
         "Custom LLM integrations & fine-tuning",
-        "Computer vision & NLP applications",
+        "NLP & language understanding",
         "Predictive analytics dashboards",
         "AI-powered automation",
       ],

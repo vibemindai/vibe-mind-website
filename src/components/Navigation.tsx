@@ -37,7 +37,6 @@ const Navigation = () => {
   const navItems = [
     { label: "About", href: "#about" },
     { label: "Services", href: "#services" },
-    { label: "Products", href: "#products" },
     { label: "Tech Stack", href: "#tech-stack" },
     { label: "Contact", href: "#contact" },
   ];

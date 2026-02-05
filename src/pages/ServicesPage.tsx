@@ -14,15 +14,13 @@ const ServicesPage = () => {
     <FooterWrapper>
       <SEOHead
         title="AI Services & Solutions | Vibe Mind AI"
-        description="Explore our comprehensive AI services including conversational AI, machine learning, computer vision, data analytics, generative AI, automation, and enterprise solutions."
+        description="Explore our comprehensive AI services including conversational AI, data analytics, generative AI, automation, and enterprise solutions."
         canonicalUrl="/services"
         keywords={[
           "AI services",
-          "machine learning services",
           "AI solutions",
           "Vibe Mind AI",
           "conversational AI",
-          "computer vision",
           "generative AI",
           "ai chatbot services",
           "bot development services",
