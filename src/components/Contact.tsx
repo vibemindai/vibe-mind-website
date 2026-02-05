@@ -2,10 +2,9 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Mail, Phone } from "lucide-react";
 
 const Contact = () => {
-
   return (
-    <section 
-      id="contact" 
+    <section
+      id="contact"
       className="py-24 bg-background"
       aria-label="Contact Vibe Mind AI - Get in touch with the best AI company in Kerala"
     >
@@ -32,8 +31,8 @@ const Contact = () => {
             <Card className="border-border shadow-elegant">
               <CardContent className="pt-6 space-y-6">
                 <div className="flex items-start gap-4">
-                  <a 
-                    href="mailto:info@vibemindsolutions.ai" 
+                  <a
+                    href="mailto:info@vibemindsolutions.ai"
                     className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 hover:bg-primary/20 transition-smooth cursor-pointer"
                     aria-label="Email Vibe Mind AI Solutions"
                   >
@@ -41,8 +40,8 @@ const Contact = () => {
                   </a>
                   <div>
                     <h3 className="font-semibold mb-1">Email</h3>
-                    <a 
-                      href="mailto:info@vibemindsolutions.ai" 
+                    <a
+                      href="mailto:info@vibemindsolutions.ai"
                       className="text-muted-foreground hover:text-primary transition-smooth"
                       aria-label="Send email to info@vibemindsolutions.ai"
                     >
@@ -52,8 +51,8 @@ const Contact = () => {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <a 
-                    href="tel:+918921442486" 
+                  <a
+                    href="tel:+918921442486"
                     className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 hover:bg-primary/20 transition-smooth cursor-pointer"
                     aria-label="Call Vibe Mind AI Solutions"
                   >
@@ -62,8 +61,8 @@ const Contact = () => {
                   <div>
                     <h3 className="font-semibold mb-1">Phone</h3>
                     <div className="space-y-1 text-muted-foreground">
-                      <a 
-                        href="tel:+918921442486" 
+                      <a
+                        href="tel:+918921442486"
                         className="hover:text-primary transition-smooth"
                         aria-label="Call our India office at +91 82 81 442 486"
                       >

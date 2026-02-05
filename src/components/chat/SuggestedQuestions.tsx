@@ -10,25 +10,25 @@ const questionVariants = {
   initial: {
     scale: 0.8,
     opacity: 0,
-    y: 20
+    y: 20,
   },
   animate: {
     scale: 1,
     opacity: 1,
     y: 0,
     transition: {
-      type: "spring",
+      type: "spring" as const,
       stiffness: 400,
-      damping: 25
-    }
+      damping: 25,
+    },
   },
   exit: {
     scale: 0.3,
     opacity: 0,
     filter: "blur(10px)",
     transition: {
-      duration: 0.3
-    }
+      duration: 0.3,
+    },
   },
 };
 
@@ -43,11 +43,7 @@ const SuggestedQuestions = ({ onQuestionClick, disabled = false }: SuggestedQues
   };
 
   return (
-    <div
-      className="space-y-1.5 sm:space-y-2"
-      onMouseEnter={pause}
-      onMouseLeave={resume}
-    >
+    <div className="space-y-1.5 sm:space-y-2" onMouseEnter={pause} onMouseLeave={resume}>
       <AnimatePresence mode="popLayout">
         {questions.map((question) => (
           <motion.button
@@ -64,9 +60,7 @@ const SuggestedQuestions = ({ onQuestionClick, disabled = false }: SuggestedQues
             <question.icon
               className={`w-4 h-4 sm:w-5 sm:h-5 ${question.color} flex-shrink-0 transition-transform`}
             />
-            <span className="text-xs sm:text-sm text-foreground truncate">
-              {question.text}
-            </span>
+            <span className="text-xs sm:text-sm text-foreground truncate">{question.text}</span>
           </motion.button>
         ))}
       </AnimatePresence>

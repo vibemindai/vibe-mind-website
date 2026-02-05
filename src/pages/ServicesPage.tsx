@@ -43,7 +43,7 @@ const ServicesPage = () => {
           "openai integration",
           "claude api integration",
           "vector database chatbot",
-          "semantic search bot"
+          "semantic search bot",
         ]}
       />
 
@@ -51,7 +51,7 @@ const ServicesPage = () => {
         <UnifiedNavigation />
 
         {/* Content */}
-        <main className="relative z-10 pt-24 pb-16">
+        <main id="main-content" className="relative z-10 pt-24 pb-16">
           <div className="container mx-auto px-4 lg:px-8">
             {/* Section Header */}
             <div className="text-center max-w-3xl mx-auto mb-12 space-y-4">
@@ -89,10 +89,7 @@ const ServicesPage = () => {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.1 * index }}
                     >
-                      <Link
-                        to={`/services/${category.slug}`}
-                        className="group block h-full"
-                      >
+                      <Link to={`/services/${category.slug}`} className="group block h-full">
                         <div className="h-full p-6 rounded-xl bg-card/50 border border-border/50 hover:border-primary/50 hover:bg-card/80 transition-all duration-300">
                           <div className="flex flex-col h-full">
                             <div className="flex items-center gap-4 mb-4">
@@ -127,9 +124,7 @@ const ServicesPage = () => {
             <AnimatedSection delay={0.4}>
               <div className="text-center mb-8">
                 <h2 className="text-2xl font-semibold mb-2">All AI Capabilities</h2>
-                <p className="text-muted-foreground">
-                  Click any capability to learn more
-                </p>
+                <p className="text-muted-foreground">Click any capability to learn more</p>
               </div>
             </AnimatedSection>
 

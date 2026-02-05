@@ -6,13 +6,14 @@ const Services = () => {
     {
       icon: Code2,
       title: "AI-Enabled Software Development",
-      description: "Build and deploy modern applications using cutting-edge AI models and automation tools.",
+      description:
+        "Build and deploy modern applications using cutting-edge AI models and automation tools.",
       features: [
         "AI-driven code generation",
         "Smart workflow automation",
         "Predictive analytics integration",
-        "Intelligent testing & deployment"
-      ]
+        "Intelligent testing & deployment",
+      ],
     },
     {
       icon: RefreshCw,
@@ -22,8 +23,8 @@ const Services = () => {
         "Rewrite with modern frameworks",
         "Monolith to microservices migration",
         "AI-assisted refactoring",
-        "Fast turnaround delivery"
-      ]
+        "Fast turnaround delivery",
+      ],
     },
     {
       icon: Sparkles,
@@ -34,8 +35,8 @@ const Services = () => {
         "Custom LLM integrations & fine-tuning",
         "Computer vision & NLP applications",
         "Predictive analytics dashboards",
-        "AI-powered automation"
-      ]
+        "AI-powered automation",
+      ],
     },
     {
       icon: Wrench,
@@ -45,14 +46,14 @@ const Services = () => {
         "Vibe SDK - AI integration toolkit",
         "CodeMind Engine - AI development env",
         "Custom AI libraries",
-        "Developer acceleration tools"
-      ]
-    }
+        "Developer acceleration tools",
+      ],
+    },
   ];
 
   return (
-    <section 
-      id="services" 
+    <section
+      id="services"
       className="py-24 bg-background"
       aria-label="AI Development Services by Vibe Mind - Best in Kerala and India"
     >
@@ -69,14 +70,15 @@ const Services = () => {
             </span>
           </h2>
           <p className="text-lg text-muted-foreground">
-            Comprehensive AI-driven services to modernize, automate, and accelerate your digital transformation
+            Comprehensive AI-driven services to modernize, automate, and accelerate your digital
+            transformation
           </p>
         </div>
 
         {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
           {services.map((service, index) => (
-            <Card 
+            <Card
               key={index}
               className="border-border hover:border-primary/50 transition-smooth hover:shadow-glow group animate-scale-in bg-card/50 backdrop-blur-sm"
               style={{ animationDelay: `${index * 0.1}s` }}
@@ -86,9 +88,7 @@ const Services = () => {
                   <service.icon className="w-7 h-7 text-primary" />
                 </div>
                 <CardTitle className="text-2xl">{service.title}</CardTitle>
-                <CardDescription className="text-base">
-                  {service.description}
-                </CardDescription>
+                <CardDescription className="text-base">{service.description}</CardDescription>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-3">

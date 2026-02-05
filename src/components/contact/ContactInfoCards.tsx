@@ -82,9 +82,7 @@ const ContactInfoCards = () => {
             </div>
 
             <div className="flex-1 min-w-0">
-              <h4 className="font-medium text-sm text-muted-foreground mb-1">
-                {card.title}
-              </h4>
+              <h4 className="font-medium text-sm text-muted-foreground mb-1">{card.title}</h4>
 
               {card.isInfo ? (
                 <p className="text-foreground font-semibold">{card.value}</p>
@@ -112,9 +110,7 @@ const ContactInfoCards = () => {
               )}
 
               {card.subtitle && (
-                <p className="text-xs text-muted-foreground mt-0.5">
-                  {card.subtitle}
-                </p>
+                <p className="text-xs text-muted-foreground mt-0.5">{card.subtitle}</p>
               )}
             </div>
           </div>
@@ -137,9 +133,7 @@ const ContactInfoCards = () => {
           <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
           <div>
             <h4 className="font-medium text-sm">Quick Response</h4>
-            <p className="text-xs text-muted-foreground">
-              We typically respond within 24 hours
-            </p>
+            <p className="text-xs text-muted-foreground">We typically respond within 24 hours</p>
           </div>
         </div>
       </motion.div>

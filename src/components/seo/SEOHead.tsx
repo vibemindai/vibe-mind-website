@@ -27,9 +27,7 @@ const SEOHead = ({
       {/* Primary Meta Tags */}
       <title>{title}</title>
       <meta name="description" content={description} />
-      {keywords.length > 0 && (
-        <meta name="keywords" content={keywords.join(", ")} />
-      )}
+      {keywords.length > 0 && <meta name="keywords" content={keywords.join(", ")} />}
       {noIndex && <meta name="robots" content="noindex, nofollow" />}
 
       {/* Canonical URL */}

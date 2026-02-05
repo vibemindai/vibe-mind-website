@@ -4,12 +4,7 @@ import { Menu, Phone, Mail, Send, CheckCircle, Loader2, MessageCircle } from "lu
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import {
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-  SheetTitle,
-} from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
 import ThemeToggle from "./ThemeToggle";
 import { useToast } from "@/hooks/use-toast";
 import { MagneticElement } from "./MagneticElement";
@@ -91,7 +86,7 @@ const HomeNavigation = ({ onLogoClick, isMobileChatExpanded }: HomeNavigationPro
 
     setContactType(null);
     setIsValid(false);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [contact]);
 
   const handleCallbackSubmit = async (e: React.FormEvent) => {
@@ -120,7 +115,11 @@ const HomeNavigation = ({ onLogoClick, isMobileChatExpanded }: HomeNavigationPro
 
       setTimeout(() => setIsSuccess(false), 3000);
     } catch {
-      toast({ title: "Something went wrong", description: "Please try again.", variant: "destructive" });
+      toast({
+        title: "Something went wrong",
+        description: "Please try again.",
+        variant: "destructive",
+      });
     } finally {
       setIsSubmitting(false);
     }
@@ -140,26 +139,15 @@ const HomeNavigation = ({ onLogoClick, isMobileChatExpanded }: HomeNavigationPro
         <div className="flex items-center justify-between h-14 sm:h-16 lg:h-20">
           {/* Logo - on mobile when chat expanded, clicking goes back to services */}
           {isMobileChatExpanded && (
-            <button
-              onClick={onLogoClick}
-              className="flex items-center gap-2 group lg:hidden"
-            >
-              <img
-                src="/logo.png"
-                alt="VibeMind AI Solutions"
-                className="h-8 sm:h-10 w-auto"
-              />
+            <button onClick={onLogoClick} className="flex items-center gap-2 group lg:hidden">
+              <img src="/logo.png" alt="VibeMind AI Solutions" className="h-8 sm:h-10 w-auto" />
             </button>
           )}
           <Link
             to="/"
-            className={`flex items-center gap-2 group ${isMobileChatExpanded ? 'hidden lg:flex' : ''}`}
+            className={`flex items-center gap-2 group ${isMobileChatExpanded ? "hidden lg:flex" : ""}`}
           >
-            <img
-              src="/logo.png"
-              alt="VibeMind AI Solutions"
-              className="h-8 sm:h-10 w-auto"
-            />
+            <img src="/logo.png" alt="VibeMind AI Solutions" className="h-8 sm:h-10 w-auto" />
           </Link>
 
           {/* Desktop Navigation */}
@@ -199,10 +187,7 @@ const HomeNavigation = ({ onLogoClick, isMobileChatExpanded }: HomeNavigationPro
             <ThemeToggle />
             <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
               <SheetTrigger asChild>
-                <button
-                  className="p-2 text-foreground"
-                  aria-label="Toggle menu"
-                >
+                <button className="p-2 text-foreground" aria-label="Toggle menu">
                   <Menu className="w-6 h-6" />
                 </button>
               </SheetTrigger>
@@ -224,7 +209,7 @@ const HomeNavigation = ({ onLogoClick, isMobileChatExpanded }: HomeNavigationPro
                             stiffness: 300,
                             damping: 25,
                             delay: index * 0.05,
-                          }
+                          },
                         }}
                       >
                         <Link
@@ -256,13 +241,11 @@ const HomeNavigation = ({ onLogoClick, isMobileChatExpanded }: HomeNavigationPro
                         stiffness: 300,
                         damping: 25,
                         delay: navItems.length * 0.05,
-                      }
+                      },
                     }}
                     className="mt-6 pt-6 border-t border-border"
                   >
-                    <p className="text-xs text-muted-foreground mb-3">
-                      Quick contact
-                    </p>
+                    <p className="text-xs text-muted-foreground mb-3">Quick contact</p>
                     <div className="flex gap-3">
                       {contactActions.map((action) => (
                         <a
@@ -292,13 +275,11 @@ const HomeNavigation = ({ onLogoClick, isMobileChatExpanded }: HomeNavigationPro
                       stiffness: 300,
                       damping: 25,
                       delay: 0.25,
-                    }
+                    },
                   }}
                   className="border-t border-border pt-6 mt-auto"
                 >
-                  <p className="text-xs text-muted-foreground mb-3">
-                    Request a callback
-                  </p>
+                  <p className="text-xs text-muted-foreground mb-3">Request a callback</p>
                   <form onSubmit={handleCallbackSubmit} className="space-y-3">
                     <div className="relative">
                       <Input
@@ -365,7 +346,7 @@ const HomeNavigation = ({ onLogoClick, isMobileChatExpanded }: HomeNavigationPro
                       stiffness: 300,
                       damping: 25,
                       delay: 0.35,
-                    }
+                    },
                   }}
                   className="border-t border-border pt-4 mt-4 space-y-3"
                 >

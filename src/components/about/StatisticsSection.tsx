@@ -44,12 +44,8 @@ const StatisticsSection = () => {
           transition={{ duration: 0.5 }}
           className="text-center mb-10"
         >
-          <h2 className="text-2xl md:text-3xl font-bold mb-3">
-            Numbers That Speak
-          </h2>
-          <p className="text-muted-foreground">
-            Our track record of excellence in AI solutions
-          </p>
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Numbers That Speak</h2>
+          <p className="text-muted-foreground">Our track record of excellence in AI solutions</p>
         </motion.div>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
@@ -72,17 +68,11 @@ const StatisticsSection = () => {
               </div>
 
               <div className="text-3xl md:text-4xl font-bold text-primary mb-1">
-                <AnimatedCounter
-                  end={stat.value}
-                  suffix={stat.suffix}
-                  duration={1500}
-                />
+                <AnimatedCounter end={stat.value} suffix={stat.suffix} duration={1500} />
               </div>
 
               <div className="font-semibold mb-1">{stat.label}</div>
-              <div className="text-xs text-muted-foreground">
-                {stat.description}
-              </div>
+              <div className="text-xs text-muted-foreground">{stat.description}</div>
             </motion.div>
           ))}
         </div>

@@ -8,11 +8,11 @@ interface AnimatedSectionProps {
   direction?: "up" | "down" | "left" | "right";
 }
 
-const AnimatedSection = ({ 
-  children, 
-  className = "", 
+const AnimatedSection = ({
+  children,
+  className = "",
   delay = 0,
-  direction = "up" 
+  direction = "up",
 }: AnimatedSectionProps) => {
   const directionOffset = {
     up: { y: 40, x: 0 },
@@ -23,20 +23,20 @@ const AnimatedSection = ({
 
   return (
     <motion.div
-      initial={{ 
-        opacity: 0, 
-        ...directionOffset[direction]
+      initial={{
+        opacity: 0,
+        ...directionOffset[direction],
       }}
-      whileInView={{ 
-        opacity: 1, 
-        x: 0, 
-        y: 0 
+      whileInView={{
+        opacity: 1,
+        x: 0,
+        y: 0,
       }}
       viewport={{ once: true, margin: "-100px" }}
-      transition={{ 
-        duration: 0.6, 
+      transition={{
+        duration: 0.6,
         delay,
-        ease: [0.25, 0.4, 0.25, 1]
+        ease: [0.25, 0.4, 0.25, 1],
       }}
       className={className}
     >

@@ -1,6 +1,6 @@
-import { Link } from 'react-router-dom';
-import { Hash } from 'lucide-react';
-import { BlogPost } from '@/data/blogPosts';
+import { Link } from "react-router-dom";
+import { Hash } from "lucide-react";
+import { BlogPost } from "@/data/blogPosts";
 
 interface BlogPostContentProps {
   post: BlogPost;
@@ -18,18 +18,18 @@ const BlogPostContent = ({ post }: BlogPostContentProps) => {
         {/* Placeholder for full content */}
         <div className="space-y-6 text-muted-foreground">
           <p>
-            This article explores the key concepts and practical applications of{' '}
-            <strong className="text-foreground">{post.title.toLowerCase()}</strong>.
-            As organizations continue to embrace digital transformation, understanding
-            these technologies becomes increasingly critical for success.
+            This article explores the key concepts and practical applications of{" "}
+            <strong className="text-foreground">{post.title.toLowerCase()}</strong>. As
+            organizations continue to embrace digital transformation, understanding these
+            technologies becomes increasingly critical for success.
           </p>
 
           <h2 id="key-insights" className="text-2xl font-bold text-foreground mt-8 mb-4">
             Key Insights
           </h2>
           <p>
-            The landscape of AI and automation is evolving rapidly. Here are the main
-            takeaways from our research and industry experience:
+            The landscape of AI and automation is evolving rapidly. Here are the main takeaways from
+            our research and industry experience:
           </p>
           <ul className="list-disc pl-6 space-y-2">
             <li>Modern AI solutions require a thoughtful approach to implementation</li>
@@ -42,28 +42,27 @@ const BlogPostContent = ({ post }: BlogPostContentProps) => {
             Implementation Considerations
           </h2>
           <p>
-            When implementing these solutions, organizations should consider their
-            specific needs, existing infrastructure, and long-term goals. A phased
-            approach often yields the best results.
+            When implementing these solutions, organizations should consider their specific needs,
+            existing infrastructure, and long-term goals. A phased approach often yields the best
+            results.
           </p>
 
           <h2 id="best-practices" className="text-2xl font-bold text-foreground mt-8 mb-4">
             Best Practices
           </h2>
           <p>
-            Following industry best practices ensures a smoother implementation and
-            better return on investment. Key practices include thorough planning,
-            stakeholder alignment, and iterative development.
+            Following industry best practices ensures a smoother implementation and better return on
+            investment. Key practices include thorough planning, stakeholder alignment, and
+            iterative development.
           </p>
 
           <h2 id="conclusion" className="text-2xl font-bold text-foreground mt-8 mb-4">
             Conclusion
           </h2>
           <p>
-            As we continue to see advancements in AI technology, staying informed
-            and adaptable will be key to leveraging these tools effectively. The
-            future holds exciting possibilities for organizations ready to embrace
-            innovation.
+            As we continue to see advancements in AI technology, staying informed and adaptable will
+            be key to leveraging these tools effectively. The future holds exciting possibilities
+            for organizations ready to embrace innovation.
           </p>
         </div>
       </div>
@@ -78,7 +77,7 @@ const BlogPostContent = ({ post }: BlogPostContentProps) => {
               to={`/blog?search=${encodeURIComponent(tag)}`}
               className="px-3 py-1.5 text-sm rounded-full bg-muted/50 text-muted-foreground hover:bg-primary/10 hover:text-primary transition-colors duration-200"
             >
-              #{tag.replace(/\s+/g, '')}
+              #{tag.replace(/\s+/g, "")}
             </Link>
           ))}
         </div>

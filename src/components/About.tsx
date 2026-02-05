@@ -6,23 +6,23 @@ const About = () => {
     {
       icon: Brain,
       title: "AI-Driven Innovation",
-      description: "Leveraging cutting-edge AI to transform ideas into intelligent solutions"
+      description: "Leveraging cutting-edge AI to transform ideas into intelligent solutions",
     },
     {
       icon: Zap,
       title: "Rapid Delivery",
-      description: "Fast turnaround without compromising quality or performance"
+      description: "Fast turnaround without compromising quality or performance",
     },
     {
       icon: Target,
       title: "Future-Ready",
-      description: "Building scalable systems designed for tomorrow's challenges"
-    }
+      description: "Building scalable systems designed for tomorrow's challenges",
+    },
   ];
 
   return (
-    <section 
-      id="about" 
+    <section
+      id="about"
       className="py-24 bg-muted/30"
       aria-label="About Vibe Mind AI - The Best AI Company in Kerala and India for Intelligent Solutions"
     >
@@ -33,30 +33,35 @@ const About = () => {
             <div className="inline-block px-4 py-2 rounded-full bg-primary/10 border border-primary/20">
               <span className="text-sm font-semibold text-primary">About Us</span>
             </div>
-            
+
             <h2 className="text-4xl md:text-5xl font-bold">
               Welcome to the Era of
               <span className="block bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
                 Vibe Coding
               </span>
             </h2>
-            
+
             <p className="text-lg text-muted-foreground leading-relaxed">
-              At <span className="text-foreground font-semibold">Vibe Mind AI Solutions</span>, we don't just build software—we orchestrate 
-              a symphony of AI and human creativity. Our philosophy, <span className="text-primary font-semibold">"Vibe Coding,"</span> represents 
-              a revolutionary approach where intelligent automation and innovative thinking converge.
+              At <span className="text-foreground font-semibold">Vibe Mind AI Solutions</span>, we
+              don't just build software—we orchestrate a symphony of AI and human creativity. Our
+              philosophy, <span className="text-primary font-semibold">"Vibe Coding,"</span>{" "}
+              represents a revolutionary approach where intelligent automation and innovative
+              thinking converge.
             </p>
-            
+
             <p className="text-lg text-muted-foreground leading-relaxed">
-              From legacy system modernization to cutting-edge AI solutions, we serve clients across 
-              <span className="text-foreground font-semibold"> India, Qatar, and the United States</span>, delivering 
-              transformative digital experiences that drive real business value.
+              From legacy system modernization to cutting-edge AI solutions, we serve clients across
+              <span className="text-foreground font-semibold">
+                {" "}
+                India, Qatar, and the United States
+              </span>
+              , delivering transformative digital experiences that drive real business value.
             </p>
 
             {/* Values Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6">
               {values.map((value, index) => (
-                <div 
+                <div
                   key={index}
                   className="flex flex-col items-center text-center p-4 rounded-lg bg-card border border-border hover:border-primary/50 transition-smooth hover:shadow-glow group"
                 >
@@ -79,7 +84,7 @@ const About = () => {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/60 to-transparent" />
             </div>
-            
+
             {/* Floating Card */}
             <div className="absolute -bottom-4 -right-4 sm:-bottom-6 sm:-right-6 bg-card border border-border rounded-xl p-4 sm:p-6 shadow-elegant backdrop-blur-sm">
               <div className="flex items-center gap-2 sm:gap-3">
@@ -88,7 +93,9 @@ const About = () => {
                 </div>
                 <div>
                   <div className="text-xl sm:text-2xl font-bold text-primary">4+</div>
-                  <div className="text-xs sm:text-sm text-muted-foreground whitespace-nowrap">AI Models</div>
+                  <div className="text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
+                    AI Models
+                  </div>
                 </div>
               </div>
             </div>

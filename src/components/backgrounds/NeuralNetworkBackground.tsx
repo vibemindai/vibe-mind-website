@@ -1,6 +1,6 @@
-import { useRef } from 'react';
-import { useNeuralNetwork } from './useNeuralNetwork';
-import { cn } from '@/lib/utils';
+import { useRef } from "react";
+import { useNeuralNetwork } from "./useNeuralNetwork";
+import { cn } from "@/lib/utils";
 
 interface NeuralNetworkBackgroundProps {
   className?: string;
@@ -23,17 +23,14 @@ export function NeuralNetworkBackground({
     nodeCount,
     connectionDistance,
     speed,
-    nodeColor: 'hsla(205, 90%, 58%, 0.4)',
-    lineColor: 'hsla(205, 90%, 58%, 0.15)',
+    nodeColor: "hsla(205, 90%, 58%, 0.4)",
+    lineColor: "hsla(205, 90%, 58%, 0.15)",
   });
 
   return (
     <canvas
       ref={canvasRef}
-      className={cn(
-        'pointer-events-none will-change-transform',
-        className
-      )}
+      className={cn("pointer-events-none will-change-transform", className)}
       style={{
         opacity,
       }}

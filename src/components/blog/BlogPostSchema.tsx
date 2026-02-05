@@ -1,43 +1,43 @@
-import { Helmet } from 'react-helmet-async';
-import { BlogPost } from '@/data/blogPosts';
+import { Helmet } from "react-helmet-async";
+import { BlogPost } from "@/data/blogPosts";
 
 interface BlogPostSchemaProps {
   post: BlogPost;
 }
 
 const BlogPostSchema = ({ post }: BlogPostSchemaProps) => {
-  const baseUrl = 'https://vibemindsolutions.ai';
+  const baseUrl = "https://vibemindsolutions.ai";
   const postUrl = `${baseUrl}/blog/${post.slug}`;
 
   const schema = {
-    '@context': 'https://schema.org',
-    '@type': 'BlogPosting',
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
     headline: post.seo.title,
     description: post.seo.description,
     image: post.image,
     datePublished: post.publishedAt,
     dateModified: post.updatedAt || post.publishedAt,
     author: {
-      '@type': 'Organization',
+      "@type": "Organization",
       name: post.author.name,
       logo: {
-        '@type': 'ImageObject',
+        "@type": "ImageObject",
         url: `${baseUrl}/logo.png`,
       },
     },
     publisher: {
-      '@type': 'Organization',
-      name: 'Vibe Mind AI Solutions',
+      "@type": "Organization",
+      name: "Vibe Mind AI Solutions",
       logo: {
-        '@type': 'ImageObject',
+        "@type": "ImageObject",
         url: `${baseUrl}/logo.png`,
       },
     },
     mainEntityOfPage: {
-      '@type': 'WebPage',
-      '@id': postUrl,
+      "@type": "WebPage",
+      "@id": postUrl,
     },
-    keywords: post.seo.keywords.join(', '),
+    keywords: post.seo.keywords.join(", "),
     wordCount: post.readingTime * 200, // Approximate based on reading time
     articleSection: post.category,
   };

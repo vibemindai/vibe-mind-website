@@ -27,7 +27,7 @@ const itemVariants = {
     filter: "blur(0px)",
     transition: {
       duration: 0.4,
-      ease: "easeOut",
+      ease: "easeOut" as const,
     },
   },
   // Exit at bottom: fade out + slide down further

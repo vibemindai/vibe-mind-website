@@ -1,19 +1,19 @@
-import { useEffect } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
-import { ChevronRight, Home, Newspaper, ArrowLeft } from 'lucide-react';
-import UnifiedNavigation from '@/components/layout/UnifiedNavigation';
-import FooterWrapper from '@/components/FooterWrapper';
-import SEOHead from '@/components/seo/SEOHead';
-import AnimatedSection from '@/components/AnimatedSection';
-import BlogPostSchema from '@/components/blog/BlogPostSchema';
-import BlogPostHeader from '@/components/blog/BlogPostHeader';
-import BlogPostContent from '@/components/blog/BlogPostContent';
-import BlogPostNavigation from '@/components/blog/BlogPostNavigation';
-import RelatedPosts from '@/components/blog/RelatedPosts';
-import ReadingProgressBar from '@/components/blog/ReadingProgressBar';
-import TableOfContents from '@/components/blog/TableOfContents';
-import SocialShareButtons from '@/components/blog/SocialShareButtons';
-import { getPostBySlug, getAdjacentPosts, getRelatedPosts } from '@/data/blogPosts';
+import { useEffect } from "react";
+import { useParams, useNavigate, Link } from "react-router-dom";
+import { ChevronRight, Home, Newspaper, ArrowLeft } from "lucide-react";
+import UnifiedNavigation from "@/components/layout/UnifiedNavigation";
+import FooterWrapper from "@/components/FooterWrapper";
+import SEOHead from "@/components/seo/SEOHead";
+import AnimatedSection from "@/components/AnimatedSection";
+import BlogPostSchema from "@/components/blog/BlogPostSchema";
+import BlogPostHeader from "@/components/blog/BlogPostHeader";
+import BlogPostContent from "@/components/blog/BlogPostContent";
+import BlogPostNavigation from "@/components/blog/BlogPostNavigation";
+import RelatedPosts from "@/components/blog/RelatedPosts";
+import ReadingProgressBar from "@/components/blog/ReadingProgressBar";
+import TableOfContents from "@/components/blog/TableOfContents";
+import SocialShareButtons from "@/components/blog/SocialShareButtons";
+import { getPostBySlug, getAdjacentPosts, getRelatedPosts } from "@/data/blogPosts";
 
 const BlogPostPage = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -26,7 +26,7 @@ const BlogPostPage = () => {
   // Redirect to blog list if post not found
   useEffect(() => {
     if (slug && !post) {
-      navigate('/blog', { replace: true });
+      navigate("/blog", { replace: true });
     }
   }, [slug, post, navigate]);
 
@@ -119,10 +119,7 @@ const BlogPostPage = () => {
                     <span className="text-sm text-muted-foreground">
                       Found this article helpful? Share it with others!
                     </span>
-                    <SocialShareButtons
-                      title={post.title}
-                      url={`/blog/${post.slug}`}
-                    />
+                    <SocialShareButtons title={post.title} url={`/blog/${post.slug}`} />
                   </div>
                 </AnimatedSection>
 
@@ -145,8 +142,8 @@ const BlogPostPage = () => {
                       </span>
                     </h2>
                     <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
-                      Let our experts help you implement cutting-edge AI solutions
-                      tailored to your specific needs.
+                      Let our experts help you implement cutting-edge AI solutions tailored to your
+                      specific needs.
                     </p>
                     <Link
                       to="/contact"

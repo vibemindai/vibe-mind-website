@@ -124,26 +124,10 @@ const OrbitRobotIllustration = () => {
           style={{ transform: "rotate(-15deg)" }}
         >
           <div className="orbit-path-container w-full h-full">
-            <OrbitIcon
-              Icon={MessageCircle}
-              color="text-primary"
-              bgColor="bg-primary/20"
-            />
-            <OrbitIcon
-              Icon={Lightbulb}
-              color="text-yellow-500"
-              bgColor="bg-yellow-500/20"
-            />
-            <OrbitIcon
-              Icon={FileText}
-              color="text-emerald-500"
-              bgColor="bg-emerald-500/20"
-            />
-            <OrbitIcon
-              Icon={Users}
-              color="text-purple-500"
-              bgColor="bg-purple-500/20"
-            />
+            <OrbitIcon Icon={MessageCircle} color="text-primary" bgColor="bg-primary/20" />
+            <OrbitIcon Icon={Lightbulb} color="text-yellow-500" bgColor="bg-yellow-500/20" />
+            <OrbitIcon Icon={FileText} color="text-emerald-500" bgColor="bg-emerald-500/20" />
+            <OrbitIcon Icon={Users} color="text-purple-500" bgColor="bg-purple-500/20" />
           </div>
         </div>
 

@@ -1,6 +1,6 @@
-import { motion } from 'framer-motion';
-import { BlogPost } from '@/data/blogPosts';
-import BlogCard from './BlogCard';
+import { motion } from "framer-motion";
+import { BlogPost } from "@/data/blogPosts";
+import BlogCard from "./BlogCard";
 
 interface BlogGridProps {
   posts: BlogPost[];
@@ -20,9 +20,7 @@ const BlogGrid = ({ posts }: BlogGridProps) => {
   if (posts.length === 0) {
     return (
       <div className="text-center py-16">
-        <p className="text-muted-foreground text-lg">
-          No articles found matching your criteria.
-        </p>
+        <p className="text-muted-foreground text-lg">No articles found matching your criteria.</p>
       </div>
     );
   }

@@ -15,23 +15,23 @@ const Navigation = () => {
 
   useEffect(() => {
     if (isMobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     }
     return () => {
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     };
   }, [isMobileMenuOpen]);
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && isMobileMenuOpen) {
+      if (e.key === "Escape" && isMobileMenuOpen) {
         setIsMobileMenuOpen(false);
       }
     };
-    window.addEventListener('keydown', handleEscape);
-    return () => window.removeEventListener('keydown', handleEscape);
+    window.addEventListener("keydown", handleEscape);
+    return () => window.removeEventListener("keydown", handleEscape);
   }, [isMobileMenuOpen]);
 
   const navItems = [
@@ -39,14 +39,14 @@ const Navigation = () => {
     { label: "Services", href: "#services" },
     { label: "Products", href: "#products" },
     { label: "Tech Stack", href: "#tech-stack" },
-    { label: "Contact", href: "#contact" }
+    { label: "Contact", href: "#contact" },
   ];
 
   return (
-    <nav 
+    <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled 
-          ? "bg-background/95 backdrop-blur-md shadow-elegant border-b border-border" 
+        isScrolled
+          ? "bg-background/95 backdrop-blur-md shadow-elegant border-b border-border"
           : "bg-transparent"
       }`}
     >
@@ -70,10 +70,10 @@ const Navigation = () => {
                 href={item.href}
                 className="text-sm font-medium text-muted-foreground hover:text-primary transition-smooth relative group"
                 onClick={(e) => {
-                  e.preventDefault()
-                  const element = document.querySelector(item.href)
+                  e.preventDefault();
+                  const element = document.querySelector(item.href);
                   if (element) {
-                    element.scrollIntoView({ behavior: 'smooth' })
+                    element.scrollIntoView({ behavior: "smooth" });
                   }
                 }}
               >
@@ -95,14 +95,18 @@ const Navigation = () => {
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
-            {isMobileMenuOpen ? <X className="w-6 h-6 text-primary" /> : <Menu className="w-6 h-6 text-primary" />}
+            {isMobileMenuOpen ? (
+              <X className="w-6 h-6 text-primary" />
+            ) : (
+              <Menu className="w-6 h-6 text-primary" />
+            )}
           </button>
         </div>
 
         {/* Backdrop Overlay */}
         <div
           className={`fixed inset-0 bg-background/80 backdrop-blur-sm z-40 md:hidden transition-opacity duration-300 ${
-            isMobileMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
+            isMobileMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
           }`}
           onClick={() => setIsMobileMenuOpen(false)}
           aria-hidden="true"
@@ -112,8 +116,8 @@ const Navigation = () => {
         <div
           className={`md:hidden absolute left-0 right-0 top-full bg-background/95 backdrop-blur-md border-t border-border z-50 max-h-[calc(100vh-4rem)] overflow-y-auto transition-all duration-300 ${
             isMobileMenuOpen
-              ? 'opacity-100 translate-y-0'
-              : 'opacity-0 -translate-y-4 pointer-events-none'
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 -translate-y-4 pointer-events-none"
           }`}
         >
           <div className="py-4 flex flex-col gap-4">
@@ -123,11 +127,11 @@ const Navigation = () => {
                 href={item.href}
                 className="text-sm font-medium text-muted-foreground hover:text-primary transition-smooth px-4 py-2"
                 onClick={(e) => {
-                  e.preventDefault()
-                  setIsMobileMenuOpen(false)
-                  const element = document.querySelector(item.href)
+                  e.preventDefault();
+                  setIsMobileMenuOpen(false);
+                  const element = document.querySelector(item.href);
                   if (element) {
-                    element.scrollIntoView({ behavior: 'smooth' })
+                    element.scrollIntoView({ behavior: "smooth" });
                   }
                 }}
               >

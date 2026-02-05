@@ -23,7 +23,7 @@ const ContactPage = () => {
           "custom chatbot inquiry",
           "enterprise ai consultation",
           "chatbot pricing",
-          "ai assistant quote"
+          "ai assistant quote",
         ]}
         canonicalUrl="/contact"
       />
@@ -31,7 +31,7 @@ const ContactPage = () => {
         <UnifiedNavigation />
 
         {/* Content */}
-        <main className="pt-24 pb-16">
+        <main id="main-content" className="pt-24 pb-16">
           <div className="container mx-auto px-4 lg:px-8">
             {/* Hero Section */}
             <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16 space-y-4">

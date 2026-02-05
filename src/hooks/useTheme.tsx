@@ -22,7 +22,7 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   const [theme, setThemeState] = useState<Theme>(() => {
     const stored = localStorage.getItem("theme");
     const isAuto = localStorage.getItem("theme-auto") !== "false";
-    
+
     if (isAuto) {
       return getSystemTheme();
     }
@@ -51,7 +51,7 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
 
     // Check every minute
     const interval = setInterval(checkAndUpdateTheme, 60000);
-    
+
     // Initial check
     checkAndUpdateTheme();
 

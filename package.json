@@ -8,6 +8,8 @@
     "build": "npm run generate-sitemap && vite build",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
+    "format": "prettier --write \"src/**/*.{ts,tsx,css}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx,css}\"",
     "preview": "vite preview",
     "prepare": "husky",
     "generate-sitemap": "npx tsx scripts/generate-sitemap.ts",
@@ -72,6 +74,7 @@
     "tailwindcss-animate": "^1.0.7",
     "three": "^0.160.0",
     "vaul": "^0.9.9",
+    "web-vitals": "^5.1.0",
     "zod": "^3.25.76"
   },
   "devDependencies": {
@@ -90,6 +93,7 @@
     "globals": "^15.15.0",
     "husky": "^9.1.7",
     "postcss": "^8.5.6",
+    "prettier": "^3.8.1",
     "standard-version": "^9.5.0",
     "tailwindcss": "^3.4.17",
     "tsx": "^4.21.0",

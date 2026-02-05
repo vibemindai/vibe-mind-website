@@ -58,7 +58,7 @@ const CallbackRequestForm = () => {
 
     setContactType(null);
     setIsValid(false);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [contact]);
 
   const handleSubmit = async (e: React.FormEvent) => {

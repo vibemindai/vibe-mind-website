@@ -1,37 +1,29 @@
-import { useState, useEffect, useCallback } from 'react';
-import { useSearchParams } from 'react-router-dom';
-import { Search, SlidersHorizontal } from 'lucide-react';
-import { Input } from '@/components/ui/input';
+import { useState, useEffect, useCallback } from "react";
+import { useSearchParams } from "react-router-dom";
+import { Search, SlidersHorizontal } from "lucide-react";
+import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
-import { BlogCategory, categoryConfig, getAllCategories } from '@/data/blogPosts';
+} from "@/components/ui/select";
+import { BlogCategory, categoryConfig, getAllCategories } from "@/data/blogPosts";
 
 interface BlogFiltersProps {
-  onCategoryChange: (category: BlogCategory | 'all') => void;
+  onCategoryChange: (category: BlogCategory | "all") => void;
   onSearchChange: (query: string) => void;
-  onSortChange: (sort: 'latest' | 'oldest') => void;
+  onSortChange: (sort: "latest" | "oldest") => void;
 }
 
-const BlogFilters = ({
-  onCategoryChange,
-  onSearchChange,
-  onSortChange,
-}: BlogFiltersProps) => {
+const BlogFilters = ({ onCategoryChange, onSearchChange, onSortChange }: BlogFiltersProps) => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [searchValue, setSearchValue] = useState(
-    searchParams.get('search') || ''
-  );
+  const [searchValue, setSearchValue] = useState(searchParams.get("search") || "");
 
   const categories = getAllCategories();
-  const currentCategory =
-    (searchParams.get('category') as BlogCategory) || 'all';
-  const currentSort =
-    (searchParams.get('sort') as 'latest' | 'oldest') || 'latest';
+  const currentCategory = (searchParams.get("category") as BlogCategory) || "all";
+  const currentSort = (searchParams.get("sort") as "latest" | "oldest") || "latest";
 
   // Debounced search
   useEffect(() => {
@@ -40,10 +32,10 @@ const BlogFilters = ({
       // Update URL params
       const params = new URLSearchParams(searchParams);
       if (searchValue) {
-        params.set('search', searchValue);
-        params.delete('page'); // Reset to page 1 on search
+        params.set("search", searchValue);
+        params.delete("page"); // Reset to page 1 on search
       } else {
-        params.delete('search');
+        params.delete("search");
       }
       setSearchParams(params, { replace: true });
     }, 300);
@@ -53,33 +45,33 @@ const BlogFilters = ({
 
   const handleCategoryChange = useCallback(
     (value: string) => {
-      const category = value as BlogCategory | 'all';
+      const category = value as BlogCategory | "all";
       onCategoryChange(category);
       const params = new URLSearchParams(searchParams);
-      if (category === 'all') {
-        params.delete('category');
+      if (category === "all") {
+        params.delete("category");
       } else {
-        params.set('category', category);
+        params.set("category", category);
       }
-      params.delete('page'); // Reset to page 1 on filter
+      params.delete("page"); // Reset to page 1 on filter
       setSearchParams(params, { replace: true });
     },
-    [searchParams, setSearchParams, onCategoryChange]
+    [searchParams, setSearchParams, onCategoryChange],
   );
 
   const handleSortChange = useCallback(
     (value: string) => {
-      const sort = value as 'latest' | 'oldest';
+      const sort = value as "latest" | "oldest";
       onSortChange(sort);
       const params = new URLSearchParams(searchParams);
-      if (sort === 'latest') {
-        params.delete('sort');
+      if (sort === "latest") {
+        params.delete("sort");
       } else {
-        params.set('sort', sort);
+        params.set("sort", sort);
       }
       setSearchParams(params, { replace: true });
     },
-    [searchParams, setSearchParams, onSortChange]
+    [searchParams, setSearchParams, onSortChange],
   );
 
   return (

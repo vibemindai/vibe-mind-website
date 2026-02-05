@@ -1,7 +1,7 @@
-import { Link } from 'react-router-dom';
-import { Clock, User, Calendar } from 'lucide-react';
-import { BlogPost, categoryConfig, formatDate } from '@/data/blogPosts';
-import { cn } from '@/lib/utils';
+import { Link } from "react-router-dom";
+import { Clock, User, Calendar } from "lucide-react";
+import { BlogPost, categoryConfig, formatDate } from "@/data/blogPosts";
+import { cn } from "@/lib/utils";
 
 interface BlogPostHeaderProps {
   post: BlogPost;
@@ -17,8 +17,8 @@ const BlogPostHeader = ({ post }: BlogPostHeaderProps) => {
         <Link
           to={`/blog?category=${post.category}`}
           className={cn(
-            'inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-full border transition-all duration-200 hover:scale-105',
-            category.color
+            "inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-full border transition-all duration-200 hover:scale-105",
+            category.color,
           )}
         >
           <span>{category.icon}</span>
@@ -55,11 +55,7 @@ const BlogPostHeader = ({ post }: BlogPostHeaderProps) => {
 
       {/* Featured Image */}
       <div className="relative rounded-2xl overflow-hidden aspect-[21/9] bg-card/50">
-        <img
-          src={post.image}
-          alt={post.imageAlt}
-          className="w-full h-full object-cover"
-        />
+        <img src={post.image} alt={post.imageAlt} className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-background/30 via-transparent to-transparent" />
       </div>
     </header>

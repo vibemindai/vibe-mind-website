@@ -3,11 +3,44 @@ import { Badge } from "@/components/ui/badge";
 const TechStack = () => {
   const technologies = [
     { category: "AI & ML", items: ["OpenAI", "Google Gemini", "LangChain", "Hugging Face"] },
-    { category: "Backend", items: ["Python", "Node.js", "FastAPI", "Django", "Express.js", "GraphQL", "Java", "Spring Boot", "Struct"] },
-    { category: "Frontend", items: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Vue.js", "Angular"] },
-    { category: "Cloud & DevOps", items: ["AWS", "Azure", "Google Cloud", "Docker", "Kubernetes", "CI/CD"] },
-    { category: "Databases", items: ["PostgreSQL", "MongoDB", "Redis", "Supabase", "Pinecone", "ChromaDB"] },
-    { category: "AI Tools", items: ["LangChain", "LlamaIndex", "Anthropic", "Replicate", "Stability AI", "Cursor", 'Claude AI'] }
+    {
+      category: "Backend",
+      items: [
+        "Python",
+        "Node.js",
+        "FastAPI",
+        "Django",
+        "Express.js",
+        "GraphQL",
+        "Java",
+        "Spring Boot",
+        "Struct",
+      ],
+    },
+    {
+      category: "Frontend",
+      items: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Vue.js", "Angular"],
+    },
+    {
+      category: "Cloud & DevOps",
+      items: ["AWS", "Azure", "Google Cloud", "Docker", "Kubernetes", "CI/CD"],
+    },
+    {
+      category: "Databases",
+      items: ["PostgreSQL", "MongoDB", "Redis", "Supabase", "Pinecone", "ChromaDB"],
+    },
+    {
+      category: "AI Tools",
+      items: [
+        "LangChain",
+        "LlamaIndex",
+        "Anthropic",
+        "Replicate",
+        "Stability AI",
+        "Cursor",
+        "Claude AI",
+      ],
+    },
   ];
 
   return (
@@ -32,7 +65,7 @@ const TechStack = () => {
         {/* Tech Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {technologies.map((tech, index) => (
-            <div 
+            <div
               key={index}
               className="space-y-4 animate-scale-in"
               style={{ animationDelay: `${index * 0.1}s` }}
@@ -43,7 +76,7 @@ const TechStack = () => {
               </h3>
               <div className="flex flex-wrap gap-2">
                 {tech.items.map((item, idx) => (
-                  <Badge 
+                  <Badge
                     key={idx}
                     variant="outline"
                     className="border-border hover:border-primary/50 hover:bg-primary/10 transition-smooth cursor-default text-sm py-1.5"
@@ -61,8 +94,8 @@ const TechStack = () => {
           <p className="text-muted-foreground mb-6">
             Looking for a specific technology or integration?
           </p>
-          <a 
-            href="#contact" 
+          <a
+            href="#contact"
             className="inline-flex items-center text-primary font-semibold hover:underline"
           >
             Let's discuss your requirements →

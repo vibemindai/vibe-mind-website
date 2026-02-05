@@ -4,7 +4,7 @@ import heroBg from "@/assets/hero-bg.jpg";
 
 const Hero = () => {
   return (
-    <section 
+    <section
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
       aria-label="Vibe Mind AI - Best AI Company in Kerala, India and World for Artificial Intelligence Solutions"
     >
@@ -22,11 +22,14 @@ const Hero = () => {
 
       {/* Animated Grid Pattern */}
       <div className="absolute inset-0 z-0 opacity-20">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `linear-gradient(hsl(var(--primary)) 1px, transparent 1px),
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `linear-gradient(hsl(var(--primary)) 1px, transparent 1px),
                            linear-gradient(90deg, hsl(var(--primary)) 1px, transparent 1px)`,
-          backgroundSize: '50px 50px'
-        }} />
+            backgroundSize: "50px 50px",
+          }}
+        />
       </div>
 
       {/* Content */}
@@ -35,7 +38,9 @@ const Hero = () => {
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 backdrop-blur-sm">
             <Sparkles className="w-4 h-4 text-primary animate-glow" />
-            <span className="text-sm font-medium text-primary">Welcome to the Future of Development</span>
+            <span className="text-sm font-medium text-primary">
+              Welcome to the Future of Development
+            </span>
           </div>
 
           {/* Main Heading */}
@@ -44,56 +49,54 @@ const Hero = () => {
               Vibe Mind AI
             </span>
             <br />
-            <span className="text-foreground">
-              Solutions
-            </span>
+            <span className="text-foreground">Solutions</span>
           </h1>
 
           {/* Subheading */}
           <p className="text-lg sm:text-xl md:text-2xl text-white max-w-2xl mx-auto px-4">
-            Where AI meets human creativity. Building intelligent, scalable software through 
+            Where AI meets human creativity. Building intelligent, scalable software through
             <span className="text-primary font-semibold"> Vibe Coding</span>
           </p>
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4 px-4">
-            <Button 
-              size="lg" 
+            <Button
+              size="lg"
               className="bg-primary hover:bg-primary-glow shadow-glow text-base sm:text-lg px-6 sm:px-8 py-5 sm:py-6 transition-smooth group w-full sm:w-auto"
               aria-label="Start your AI project with the best AI company in Kerala"
               onClick={() => {
-                const element = document.querySelector('#contact')
+                const element = document.querySelector("#contact");
                 if (element) {
-                  element.scrollIntoView({ behavior: 'smooth' })
+                  element.scrollIntoView({ behavior: "smooth" });
                 }
               }}
             >
               Let's Build Together
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Button>
-            <Button 
-              size="lg" 
+            <Button
+              size="lg"
               variant="outline"
               className="border-primary/30 hover:bg-primary/10 text-base sm:text-lg px-6 sm:px-8 py-5 sm:py-6 transition-smooth w-full sm:w-auto"
               aria-label="Explore AI services by Vibe Mind India"
               onClick={() => {
-                const element = document.querySelector('#services')
+                const element = document.querySelector("#services");
                 if (element) {
-                  element.scrollIntoView({ behavior: 'smooth' })
+                  element.scrollIntoView({ behavior: "smooth" });
                 }
               }}
             >
               Explore Services
             </Button>
-            <Button 
-              size="lg" 
+            <Button
+              size="lg"
               variant="outline"
               className="border-primary/30 hover:bg-primary/10 text-base sm:text-lg px-6 sm:px-8 py-5 sm:py-6 transition-smooth w-full sm:w-auto"
               aria-label="View our AI technology stack"
               onClick={() => {
-                const element = document.querySelector('#tech-stack')
+                const element = document.querySelector("#tech-stack");
                 if (element) {
-                  element.scrollIntoView({ behavior: 'smooth' })
+                  element.scrollIntoView({ behavior: "smooth" });
                 }
               }}
             >

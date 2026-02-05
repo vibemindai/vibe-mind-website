@@ -14,7 +14,7 @@ const MissionVisionSection = () => {
       icon: Eye,
       title: "Our Vision",
       description:
-        "To be the leading force in the \"Vibe Coding\" revolution—where human creativity and AI capabilities merge seamlessly. We envision a world where software development is faster, smarter, and more intuitive than ever before.",
+        'To be the leading force in the "Vibe Coding" revolution—where human creativity and AI capabilities merge seamlessly. We envision a world where software development is faster, smarter, and more intuitive than ever before.',
       gradient: "from-accent/20 to-primary/20",
     },
   ];
@@ -43,9 +43,7 @@ const MissionVisionSection = () => {
                 </div>
                 <h3 className="text-xl md:text-2xl font-bold">{card.title}</h3>
               </div>
-              <p className="text-muted-foreground leading-relaxed">
-                {card.description}
-              </p>
+              <p className="text-muted-foreground leading-relaxed">{card.description}</p>
             </motion.div>
           ))}
         </div>

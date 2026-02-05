@@ -37,7 +37,7 @@ const Index = () => {
           "ai consultants india",
           "software company kochi",
           "ai development qatar",
-          "ai services usa"
+          "ai services usa",
         ]}
         canonicalUrl="/"
       />

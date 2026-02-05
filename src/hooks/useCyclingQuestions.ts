@@ -1,5 +1,19 @@
 import { useState, useEffect, useCallback, useRef } from "react";
-import { MessageCircle, Briefcase, MapPin, Sparkles, Users, Clock, Zap, Shield, DollarSign, Code, Target, Award, LucideIcon } from "lucide-react";
+import {
+  MessageCircle,
+  Briefcase,
+  MapPin,
+  Sparkles,
+  Users,
+  Clock,
+  Zap,
+  Shield,
+  DollarSign,
+  Code,
+  Target,
+  Award,
+  LucideIcon,
+} from "lucide-react";
 
 export interface Question {
   id: number;
@@ -38,9 +52,10 @@ export function useCyclingQuestions(options: UseCyclingQuestionsOptions = {}) {
   const visibleQuestions = allQuestions.slice(startIndex, startIndex + visibleCount);
 
   // Handle wrap-around when we reach the end
-  const wrappedQuestions = visibleQuestions.length < visibleCount
-    ? [...visibleQuestions, ...allQuestions.slice(0, visibleCount - visibleQuestions.length)]
-    : visibleQuestions;
+  const wrappedQuestions =
+    visibleQuestions.length < visibleCount
+      ? [...visibleQuestions, ...allQuestions.slice(0, visibleCount - visibleQuestions.length)]
+      : visibleQuestions;
 
   const cycle = useCallback(() => {
     setStartIndex((prev) => (prev + 1) % allQuestions.length);

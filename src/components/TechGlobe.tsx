@@ -1,62 +1,74 @@
-import { useRef, useMemo } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { OrbitControls, Text } from '@react-three/drei';
-import * as THREE from 'three';
+import { useRef, useMemo, useState, useEffect } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { OrbitControls, Text } from "@react-three/drei";
+import * as THREE from "three";
+
+function usePrefersReducedMotion() {
+  const [prefersReduced, setPrefersReduced] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setPrefersReduced(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setPrefersReduced(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+  return prefersReduced;
+}
 
 // Technology data with colors
 const techStack = [
-  { name: 'OpenAI', color: '#10a37f' },
-  { name: 'Google', color: '#4285f4' },
-  { name: 'LangChain', color: '#1c3c3c' },
-  { name: 'TensorFlow', color: '#ff6f00' },
-  { name: 'PyTorch', color: '#ee4c2c' },
-  { name: 'Hugging Face', color: '#ffcc00' },
-  { name: 'Python', color: '#3776ab' },
-  { name: 'Node.js', color: '#339933' },
-  { name: 'FastAPI', color: '#009688' },
-  { name: 'Django', color: '#092e20' },
-  { name: 'Express', color: '#ffffff' },
-  { name: 'GraphQL', color: '#e10098' },
-  { name: 'React', color: '#61dafb' },
-  { name: 'Next.js', color: '#ffffff' },
-  { name: 'TypeScript', color: '#3178c6' },
-  { name: 'Tailwind', color: '#06b6d4' },
-  { name: 'Vue.js', color: '#4fc08d' },
-  { name: 'Svelte', color: '#ff3e00' },
-  { name: 'AWS', color: '#ff9900' },
-  { name: 'Azure', color: '#0078d4' },
-  { name: 'Google Cloud', color: '#4285f4' },
-  { name: 'Angular', color: '#4285f4' },
-  { name: 'GCP', color: '#4285f4' },
-  { name: 'Docker', color: '#2496ed' },
-  { name: 'Kubernetes', color: '#326ce5' },
-  { name: 'PostgreSQL', color: '#336791' },
-  { name: 'MongoDB', color: '#47a248' },
-  { name: 'Redis', color: '#dc382d' },
-  { name: 'Supabase', color: '#3ecf8e' },
-  { name: 'Pinecone', color: '#00d4ff' },
-  { name: 'Chroma', color: '#ff6b6b' },
-  { name: 'Spring Boot', color: '#6db33f' },
-  { name: 'Struct', color: '#6db33f' },
-  { name: 'Java', color: '#6db33f' },
-  { name: 'Vibe', color: '#6db33f' },
-  { name: 'Rollup', color: '#6db33f' },
-  { name: 'Webpack', color: '#6db33f' },
-  { name: 'Parcel', color: '#6db33f' },
-  { name: 'Snowpack', color: '#6db33f' },
-  { name: 'Netlify', color: '#6db33f' },
-  { name: 'Firebase', color: '#6db33f' },
+  { name: "OpenAI", color: "#10a37f" },
+  { name: "Google", color: "#4285f4" },
+  { name: "LangChain", color: "#1c3c3c" },
+  { name: "TensorFlow", color: "#ff6f00" },
+  { name: "PyTorch", color: "#ee4c2c" },
+  { name: "Hugging Face", color: "#ffcc00" },
+  { name: "Python", color: "#3776ab" },
+  { name: "Node.js", color: "#339933" },
+  { name: "FastAPI", color: "#009688" },
+  { name: "Django", color: "#092e20" },
+  { name: "Express", color: "#ffffff" },
+  { name: "GraphQL", color: "#e10098" },
+  { name: "React", color: "#61dafb" },
+  { name: "Next.js", color: "#ffffff" },
+  { name: "TypeScript", color: "#3178c6" },
+  { name: "Tailwind", color: "#06b6d4" },
+  { name: "Vue.js", color: "#4fc08d" },
+  { name: "Svelte", color: "#ff3e00" },
+  { name: "AWS", color: "#ff9900" },
+  { name: "Azure", color: "#0078d4" },
+  { name: "Google Cloud", color: "#4285f4" },
+  { name: "Angular", color: "#4285f4" },
+  { name: "GCP", color: "#4285f4" },
+  { name: "Docker", color: "#2496ed" },
+  { name: "Kubernetes", color: "#326ce5" },
+  { name: "PostgreSQL", color: "#336791" },
+  { name: "MongoDB", color: "#47a248" },
+  { name: "Redis", color: "#dc382d" },
+  { name: "Supabase", color: "#3ecf8e" },
+  { name: "Pinecone", color: "#00d4ff" },
+  { name: "Chroma", color: "#ff6b6b" },
+  { name: "Spring Boot", color: "#6db33f" },
+  { name: "Struct", color: "#6db33f" },
+  { name: "Java", color: "#6db33f" },
+  { name: "Vibe", color: "#6db33f" },
+  { name: "Rollup", color: "#6db33f" },
+  { name: "Webpack", color: "#6db33f" },
+  { name: "Parcel", color: "#6db33f" },
+  { name: "Snowpack", color: "#6db33f" },
+  { name: "Netlify", color: "#6db33f" },
+  { name: "Firebase", color: "#6db33f" },
 ];
 
 const aiSatellites = [
-  { name: 'Anthropic', color: '#d4a574' },
-  { name: 'LlamaIndex', color: '#8b5cf6' },
-  { name: 'Vibe Coding', color: '#8b5cf6' },
-  { name: 'Replicate', color: '#00ff88' },
-  { name: 'Cursor', color: '#00ff88' },
-  { name: 'Claude AI', color: '#10a37f' },
-  { name: 'Windsurf AI', color: '#10a37f' },
-  { name: 'Vercel', color: '#ffffff' },
+  { name: "Anthropic", color: "#d4a574" },
+  { name: "LlamaIndex", color: "#8b5cf6" },
+  { name: "Vibe Coding", color: "#8b5cf6" },
+  { name: "Replicate", color: "#00ff88" },
+  { name: "Cursor", color: "#00ff88" },
+  { name: "Claude AI", color: "#10a37f" },
+  { name: "Windsurf AI", color: "#10a37f" },
+  { name: "Vercel", color: "#ffffff" },
 ];
 
 // Wireframe Globe Component
@@ -79,33 +91,19 @@ function WireframeGlobe() {
       {/* Outer wireframe globe */}
       <mesh ref={globeRef}>
         <sphereGeometry args={[4.5, 32, 32]} />
-        <meshBasicMaterial
-          color="#3b82f6"
-          wireframe
-          transparent
-          opacity={0.4}
-        />
+        <meshBasicMaterial color="#3b82f6" wireframe transparent opacity={0.4} />
       </mesh>
 
       {/* Inner glowing globe */}
       <mesh ref={innerGlobeRef}>
         <sphereGeometry args={[4.1, 24, 24]} />
-        <meshBasicMaterial
-          color="#06b6d4"
-          wireframe
-          transparent
-          opacity={0.2}
-        />
+        <meshBasicMaterial color="#06b6d4" wireframe transparent opacity={0.2} />
       </mesh>
 
       {/* Core glow */}
       <mesh>
         <sphereGeometry args={[3.5, 16, 16]} />
-        <meshBasicMaterial
-          color="#1e40af"
-          transparent
-          opacity={0.1}
-        />
+        <meshBasicMaterial color="#1e40af" transparent opacity={0.1} />
       </mesh>
     </>
   );
@@ -207,7 +205,7 @@ function Starfield() {
 }
 
 // Main 3D Scene
-function Scene() {
+function Scene({ reducedMotion }: { reducedMotion: boolean }) {
   return (
     <>
       {/* Lighting */}
@@ -224,7 +222,7 @@ function Scene() {
       {/* Tech Stack Items - Chaotic orbits around globe */}
       {techStack.map((tech, index) => {
         const orbitRadius = 6 + Math.random() * 3; // Random orbit distance
-        const speed = 0.1 + Math.random() * 0.3; // Random speed
+        const speed = reducedMotion ? 0 : 0.1 + Math.random() * 0.3;
         const angleOffset = (Math.PI * 2 * index) / techStack.length;
         const tiltX = Math.random() * Math.PI; // Random tilt
         const tiltY = Math.random() * Math.PI;
@@ -246,7 +244,7 @@ function Scene() {
       {/* AI Satellites - Outer orbits with different speeds */}
       {aiSatellites.map((satellite, index) => {
         const orbitRadius = 11 + Math.random() * 4; // Larger orbits
-        const speed = 0.05 + Math.random() * 0.2; // Different speeds
+        const speed = reducedMotion ? 0 : 0.05 + Math.random() * 0.2;
         const angleOffset = (Math.PI * 2 * index) / aiSatellites.length;
         const tiltX = Math.random() * Math.PI * 0.5;
         const tiltY = Math.random() * Math.PI * 0.5;
@@ -273,7 +271,7 @@ function Scene() {
         minDistance={5}
         maxDistance={50}
         zoomSpeed={1.5}
-        autoRotate
+        autoRotate={!reducedMotion}
         autoRotateSpeed={0.5}
         enableDamping
         dampingFactor={0.05}
@@ -284,6 +282,8 @@ function Scene() {
 
 // Main Component
 export default function TechGlobe() {
+  const reducedMotion = usePrefersReducedMotion();
+
   return (
     <section className="relative w-full min-h-screen bg-gradient-to-b from-slate-900 via-slate-950 to-black overflow-hidden">
       {/* Animated gradient overlay */}
@@ -291,10 +291,14 @@ export default function TechGlobe() {
 
       {/* Grid pattern background */}
       <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0" style={{
-          backgroundImage: 'linear-gradient(#3b82f6 1px, transparent 1px), linear-gradient(90deg, #3b82f6 1px, transparent 1px)',
-          backgroundSize: '50px 50px'
-        }} />
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage:
+              "linear-gradient(#3b82f6 1px, transparent 1px), linear-gradient(90deg, #3b82f6 1px, transparent 1px)",
+            backgroundSize: "50px 50px",
+          }}
+        />
       </div>
 
       {/* Section Header */}
@@ -316,16 +320,13 @@ export default function TechGlobe() {
       </div>
 
       {/* 3D Canvas */}
-      <div
-        className="relative w-full h-[400px] md:h-[500px]"
-        onWheel={(e) => e.stopPropagation()}
-      >
+      <div className="relative w-full h-[400px] md:h-[500px]" onWheel={(e) => e.stopPropagation()}>
         <Canvas
           camera={{ position: [0, 0, 18], fov: 60 }}
           className="cursor-grab active:cursor-grabbing"
           onWheel={(e) => e.stopPropagation()}
         >
-          <Scene />
+          <Scene reducedMotion={reducedMotion} />
         </Canvas>
       </div>
 

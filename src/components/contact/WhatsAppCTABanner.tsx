@@ -30,12 +30,8 @@ const WhatsAppCTABanner = () => {
             <MessageCircle className="w-6 h-6" />
           </div>
           <div>
-            <h3 className="text-lg md:text-xl font-semibold">
-              Chat with us on WhatsApp
-            </h3>
-            <p className="text-sm text-white/80">
-              Quick responses, no waiting
-            </p>
+            <h3 className="text-lg md:text-xl font-semibold">Chat with us on WhatsApp</h3>
+            <p className="text-sm text-white/80">Quick responses, no waiting</p>
           </div>
         </div>
 

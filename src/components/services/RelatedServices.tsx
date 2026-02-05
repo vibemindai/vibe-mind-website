@@ -27,9 +27,7 @@ const RelatedServices = ({
 
   return (
     <div className="mb-16">
-      <h2 className="text-2xl font-semibold mb-6 text-center">
-        Related Services
-      </h2>
+      <h2 className="text-2xl font-semibold mb-6 text-center">Related Services</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {relatedServices.map((service, index) => {
           const ServiceIcon = getIcon(service.icon);
@@ -40,10 +38,7 @@ const RelatedServices = ({
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 * index }}
             >
-              <Link
-                to={`/services/${categorySlug}/${service.slug}`}
-                className="group block h-full"
-              >
+              <Link to={`/services/${categorySlug}/${service.slug}`} className="group block h-full">
                 <div className="h-full p-6 rounded-xl bg-card/50 border border-border/50 hover:border-primary/50 hover:bg-card/80 transition-all duration-300">
                   <div className="flex items-start gap-4">
                     <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">

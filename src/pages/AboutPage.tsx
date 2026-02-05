@@ -11,18 +11,18 @@ const AboutPage = () => {
     {
       icon: Brain,
       title: "AI-Driven Innovation",
-      description: "Leveraging cutting-edge AI to transform ideas into intelligent solutions"
+      description: "Leveraging cutting-edge AI to transform ideas into intelligent solutions",
     },
     {
       icon: Zap,
       title: "Rapid Delivery",
-      description: "Fast turnaround without compromising quality or performance"
+      description: "Fast turnaround without compromising quality or performance",
     },
     {
       icon: Target,
       title: "Future-Ready",
-      description: "Building scalable systems designed for tomorrow's challenges"
-    }
+      description: "Building scalable systems designed for tomorrow's challenges",
+    },
   ];
 
   return (
@@ -36,14 +36,14 @@ const AboutPage = () => {
           "ai innovation company",
           "vibe coding",
           "ai software company india",
-          "tech startup kerala"
+          "tech startup kerala",
         ]}
         canonicalUrl="/about"
       />
       <div className="min-h-screen bg-background">
         <UnifiedNavigation />
 
-        <main className="pt-24 pb-16">
+        <main id="main-content" className="pt-24 pb-16">
           {/* Mission & Vision Section - TOP */}
           <MissionVisionSection />
 
@@ -70,17 +70,23 @@ const AboutPage = () => {
               {/* Description paragraphs */}
               <AnimatedSection delay={0.2}>
                 <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
-                  At <span className="text-foreground font-semibold">Vibe Mind AI Solutions</span>, we don't just build software—we orchestrate
-                  a symphony of AI and human creativity. Our philosophy, <span className="text-primary font-semibold">"Vibe Coding,"</span> represents
-                  a revolutionary approach where intelligent automation and innovative thinking converge.
+                  At <span className="text-foreground font-semibold">Vibe Mind AI Solutions</span>,
+                  we don't just build software—we orchestrate a symphony of AI and human creativity.
+                  Our philosophy, <span className="text-primary font-semibold">"Vibe Coding,"</span>{" "}
+                  represents a revolutionary approach where intelligent automation and innovative
+                  thinking converge.
                 </p>
               </AnimatedSection>
 
               <AnimatedSection delay={0.3}>
                 <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
-                  From legacy system modernization to cutting-edge AI solutions, we serve clients across
-                  <span className="text-foreground font-semibold"> India, Qatar, and the United States</span>, delivering
-                  transformative digital experiences that drive real business value.
+                  From legacy system modernization to cutting-edge AI solutions, we serve clients
+                  across
+                  <span className="text-foreground font-semibold">
+                    {" "}
+                    India, Qatar, and the United States
+                  </span>
+                  , delivering transformative digital experiences that drive real business value.
                 </p>
               </AnimatedSection>
             </div>
@@ -93,7 +99,9 @@ const AboutPage = () => {
                     <div className="flex flex-col items-center text-center p-4 md:p-6 rounded-xl bg-background border border-border hover:border-primary/50 transition-all hover:shadow-lg group h-full">
                       <value.icon className="w-8 h-8 md:w-10 md:h-10 text-primary mb-3 group-hover:scale-110 transition-transform" />
                       <h3 className="font-semibold text-sm md:text-base mb-2">{value.title}</h3>
-                      <p className="text-xs md:text-sm text-muted-foreground">{value.description}</p>
+                      <p className="text-xs md:text-sm text-muted-foreground">
+                        {value.description}
+                      </p>
                     </div>
                   </AnimatedSection>
                 ))}

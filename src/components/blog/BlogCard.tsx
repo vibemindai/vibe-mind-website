@@ -1,8 +1,8 @@
-import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { Clock, User } from 'lucide-react';
-import { BlogPost, categoryConfig, formatDate } from '@/data/blogPosts';
-import { cn } from '@/lib/utils';
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { Clock, User } from "lucide-react";
+import { BlogPost, categoryConfig, formatDate } from "@/data/blogPosts";
+import { cn } from "@/lib/utils";
 
 interface BlogCardProps {
   post: BlogPost;
@@ -43,8 +43,8 @@ const BlogCard = ({ post, index = 0 }: BlogCardProps) => {
             <div className="mb-3">
               <span
                 className={cn(
-                  'inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium rounded-full border',
-                  category.color
+                  "inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium rounded-full border",
+                  category.color,
                 )}
               >
                 <span>{category.icon}</span>
@@ -58,9 +58,7 @@ const BlogCard = ({ post, index = 0 }: BlogCardProps) => {
             </h3>
 
             {/* Excerpt */}
-            <p className="text-sm text-muted-foreground line-clamp-2 mb-4">
-              {post.excerpt}
-            </p>
+            <p className="text-sm text-muted-foreground line-clamp-2 mb-4">{post.excerpt}</p>
 
             {/* Meta Info */}
             <div className="flex items-center gap-4 text-xs text-muted-foreground">

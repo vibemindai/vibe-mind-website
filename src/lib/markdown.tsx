@@ -36,8 +36,7 @@ export function parseMarkdown(text: string): React.ReactNode {
       // Ordered list: 1. 2. etc.
       else if (trimmed.match(/^\d+\.\s+/)) {
         orderedItems.push(trimmed.replace(/^\d+\.\s+/, ""));
-      }
-      else if (trimmed) {
+      } else if (trimmed) {
         nonListLines.push(line);
       }
     });
@@ -46,11 +45,7 @@ export function parseMarkdown(text: string): React.ReactNode {
 
     // Render non-list content
     if (nonListLines.length > 0) {
-      elements.push(
-        <span key={`text-${pIndex}`}>
-          {parseBoldText(nonListLines.join("\n"))}
-        </span>
-      );
+      elements.push(<span key={`text-${pIndex}`}>{parseBoldText(nonListLines.join("\n"))}</span>);
     }
 
     // Render unordered list
@@ -60,7 +55,7 @@ export function parseMarkdown(text: string): React.ReactNode {
           {unorderedItems.map((item, i) => (
             <li key={i}>{parseBoldText(item)}</li>
           ))}
-        </ul>
+        </ul>,
       );
     }
 
@@ -71,7 +66,7 @@ export function parseMarkdown(text: string): React.ReactNode {
           {orderedItems.map((item, i) => (
             <li key={i}>{parseBoldText(item)}</li>
           ))}
-        </ol>
+        </ol>,
       );
     }
 

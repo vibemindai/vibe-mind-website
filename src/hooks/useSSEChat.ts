@@ -24,6 +24,8 @@ interface UseSSEChatReturn {
 
 const STORAGE_KEY = "chat-messages";
 const SESSION_ID_KEY = "chat-session-id";
+const MAX_MESSAGE_LENGTH = 2000;
+const MIN_SEND_INTERVAL_MS = 1000;
 
 function getErrorMessage(error: unknown): string {
   if (error instanceof TypeError && error.message === "Failed to fetch") {
@@ -78,6 +80,7 @@ export function useSSEChat(): UseSSEChatReturn {
   const [lastUserMessage, setLastUserMessage] = useState<string>("");
 
   const abortControllerRef = useRef<AbortController | null>(null);
+  const lastSendTimeRef = useRef<number>(0);
 
   // Save messages to sessionStorage whenever they change
   useEffect(() => {
@@ -111,127 +114,140 @@ export function useSSEChat(): UseSSEChatReturn {
     sessionStorage.removeItem(SESSION_ID_KEY);
   }, []);
 
-  const sendMessage = useCallback(async (message: string) => {
-    if (!message.trim() || chatStatus === "streaming" || chatStatus === "processing") {
-      return;
-    }
-
-    // Abort any existing request
-    abort();
-
-    setError(null);
-    setLastUserMessage(message);
-    setChatStatus("sending");
-
-    // Add user message
-    const userMessage: ChatMessage = {
-      id: generateId(),
-      role: "user",
-      content: message,
-      status: "complete",
-    };
-
-    setMessages((prev) => [...prev, userMessage]);
-    setChatStatus("processing");
-
-    // Create abort controller
-    abortControllerRef.current = new AbortController();
-
-    try {
-      const response = await fetch(CHAT_API_ENDPOINT, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "x-session-id": getSessionId(),
-          "x-client-id": getClientId(),
-          "x-ipaddress": getIpAddress(),
-        },
-        body: JSON.stringify({ message }),
-        signal: abortControllerRef.current.signal,
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      if (!response.body) {
-        throw new Error("No response body");
-      }
-
-      setChatStatus("streaming");
-      setCurrentStreamingText("");
-
-      const reader = response.body.getReader();
-      const decoder = new TextDecoder();
-      let accumulatedText = "";
-
-      while (true) {
-        const { done, value } = await reader.read();
-
-        if (done) {
-          break;
-        }
-
-        const chunk = decoder.decode(value, { stream: true });
-        const lines = chunk.split("\n");
-
-        for (const line of lines) {
-          if (line.startsWith("data: ")) {
-            // Handle the double "data: data: " format
-            let content = line.slice(6); // Remove first "data: "
-
-            if (content.startsWith("data: ")) {
-              content = content.slice(6); // Remove second "data: "
-            }
-
-            if (content === "[DONE]") {
-              // Stream complete
-              const assistantMessage: ChatMessage = {
-                id: generateId(),
-                role: "assistant",
-                content: accumulatedText,
-                status: "complete",
-              };
-              setMessages((prev) => [...prev, assistantMessage]);
-              setCurrentStreamingText("");
-              setChatStatus("complete");
-
-              // Reset to idle after a brief moment
-              setTimeout(() => setChatStatus("idle"), 100);
-              return;
-            }
-
-            // Clean up carriage returns that may accumulate from streaming
-            const cleanedContent = content.replace(/\r+/g, "");
-            accumulatedText += cleanedContent;
-            setCurrentStreamingText(accumulatedText);
-          }
-        }
-      }
-
-      // If we reach here without [DONE], still save the message
-      if (accumulatedText) {
-        const assistantMessage: ChatMessage = {
-          id: generateId(),
-          role: "assistant",
-          content: accumulatedText,
-          status: "complete",
-        };
-        setMessages((prev) => [...prev, assistantMessage]);
-        setCurrentStreamingText("");
-      }
-
-      setChatStatus("idle");
-    } catch (err) {
-      if (err instanceof Error && err.name === "AbortError") {
-        // Request was aborted, don't treat as error
+  const sendMessage = useCallback(
+    async (message: string) => {
+      if (!message.trim() || chatStatus === "streaming" || chatStatus === "processing") {
         return;
       }
 
-      setError(getErrorMessage(err));
-      setChatStatus("error");
-    }
-  }, [chatStatus, abort]);
+      // Rate limiting
+      const now = Date.now();
+      if (now - lastSendTimeRef.current < MIN_SEND_INTERVAL_MS) {
+        return;
+      }
+      lastSendTimeRef.current = now;
+
+      // Enforce max message length
+      const trimmedMessage = message.trim().slice(0, MAX_MESSAGE_LENGTH);
+
+      // Abort any existing request
+      abort();
+
+      setError(null);
+      setLastUserMessage(trimmedMessage);
+      setChatStatus("sending");
+
+      // Add user message
+      const userMessage: ChatMessage = {
+        id: generateId(),
+        role: "user",
+        content: trimmedMessage,
+        status: "complete",
+      };
+
+      setMessages((prev) => [...prev, userMessage]);
+      setChatStatus("processing");
+
+      // Create abort controller
+      abortControllerRef.current = new AbortController();
+
+      try {
+        const response = await fetch(CHAT_API_ENDPOINT, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "x-session-id": getSessionId(),
+            "x-client-id": getClientId(),
+            "x-ipaddress": getIpAddress(),
+          },
+          body: JSON.stringify({ message: trimmedMessage }),
+          signal: abortControllerRef.current.signal,
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        if (!response.body) {
+          throw new Error("No response body");
+        }
+
+        setChatStatus("streaming");
+        setCurrentStreamingText("");
+
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder();
+        let accumulatedText = "";
+
+        while (true) {
+          const { done, value } = await reader.read();
+
+          if (done) {
+            break;
+          }
+
+          const chunk = decoder.decode(value, { stream: true });
+          const lines = chunk.split("\n");
+
+          for (const line of lines) {
+            if (line.startsWith("data: ")) {
+              // Handle the double "data: data: " format
+              let content = line.slice(6); // Remove first "data: "
+
+              if (content.startsWith("data: ")) {
+                content = content.slice(6); // Remove second "data: "
+              }
+
+              if (content === "[DONE]") {
+                // Stream complete
+                const assistantMessage: ChatMessage = {
+                  id: generateId(),
+                  role: "assistant",
+                  content: accumulatedText,
+                  status: "complete",
+                };
+                setMessages((prev) => [...prev, assistantMessage]);
+                setCurrentStreamingText("");
+                setChatStatus("complete");
+
+                // Reset to idle after a brief moment
+                setTimeout(() => setChatStatus("idle"), 100);
+                return;
+              }
+
+              // Clean up carriage returns that may accumulate from streaming
+              const cleanedContent = content.replace(/\r+/g, "");
+              accumulatedText += cleanedContent;
+              setCurrentStreamingText(accumulatedText);
+            }
+          }
+        }
+
+        // If we reach here without [DONE], still save the message
+        if (accumulatedText) {
+          const assistantMessage: ChatMessage = {
+            id: generateId(),
+            role: "assistant",
+            content: accumulatedText,
+            status: "complete",
+          };
+          setMessages((prev) => [...prev, assistantMessage]);
+          setCurrentStreamingText("");
+        }
+
+        setChatStatus("idle");
+      } catch (err) {
+        if (err instanceof Error && err.name === "AbortError") {
+          // Request was aborted, don't treat as error
+          return;
+        }
+
+        setError(getErrorMessage(err));
+        setChatStatus("error");
+      }
+    },
+    [chatStatus, abort],
+  );
 
   const retry = useCallback(() => {
     if (lastUserMessage) {

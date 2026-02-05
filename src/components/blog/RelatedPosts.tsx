@@ -1,5 +1,5 @@
-import { BlogPost } from '@/data/blogPosts';
-import BlogCard from './BlogCard';
+import { BlogPost } from "@/data/blogPosts";
+import BlogCard from "./BlogCard";
 
 interface RelatedPostsProps {
   posts: BlogPost[];

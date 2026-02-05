@@ -33,8 +33,8 @@ const MobileLanding = ({ isExpanded, setIsExpanded }: MobileLandingProps) => {
     };
 
     calculate();
-    window.addEventListener('resize', calculate);
-    return () => window.removeEventListener('resize', calculate);
+    window.addEventListener("resize", calculate);
+    return () => window.removeEventListener("resize", calculate);
   }, []);
 
   const handleChatTrigger = (prompt: string) => {
@@ -47,7 +47,13 @@ const MobileLanding = ({ isExpanded, setIsExpanded }: MobileLandingProps) => {
   };
 
   return (
-    <div className={isExpanded ? "h-[calc(100dvh-3.5rem)] overflow-hidden flex flex-col" : "flex flex-col min-h-[calc(100dvh-3.5rem)]"}>
+    <div
+      className={
+        isExpanded
+          ? "h-[calc(100dvh-3.5rem)] overflow-hidden flex flex-col"
+          : "flex flex-col min-h-[calc(100dvh-3.5rem)]"
+      }
+    >
       <AnimatePresence mode="wait">
         {!isExpanded ? (
           // Landing State: Header + Hero + Chat Input (scrollable for footer reveal)

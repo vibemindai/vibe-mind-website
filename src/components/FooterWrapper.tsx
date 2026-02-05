@@ -16,9 +16,7 @@ const FooterWrapper = ({ children }: FooterWrapperProps) => {
       {/* Main content wrapper */}
       <div className="relative z-10 pointer-events-none">
         {/* Content area */}
-        <div className="bg-background pointer-events-auto">
-          {children}
-        </div>
+        <div className="bg-background pointer-events-auto">{children}</div>
 
         {/* Spacer for parallax reveal - DESKTOP ONLY */}
         <div className="hidden lg:block h-[350px] pointer-events-none" aria-hidden="true" />

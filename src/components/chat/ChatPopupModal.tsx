@@ -66,9 +66,7 @@ const ChatPopupModal = ({
               >
                 {/* Header - minimal with icons only */}
                 <div className="flex items-center justify-end gap-2 p-4 border-b border-border">
-                  <DialogPrimitive.Title className="sr-only">
-                    Vibii Chat
-                  </DialogPrimitive.Title>
+                  <DialogPrimitive.Title className="sr-only">Vibii Chat</DialogPrimitive.Title>
                   <DialogPrimitive.Description className="sr-only">
                     Chat with Vibii, VibeMind's AI assistant
                   </DialogPrimitive.Description>

@@ -2,7 +2,39 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+/* Skip-to-content link */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  z-index: 9999;
+}
+
+.skip-link:focus {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  width: auto;
+  height: auto;
+  padding: 0.75rem 1.5rem;
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  border-radius: 0.5rem;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 4px 12px hsl(0 0% 0% / 0.3);
+}
+
+/* Focus-visible outline for interactive elements */
+:focus-visible {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 2px;
+}
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here.
 All colors MUST be HSL.
 */
 
@@ -19,7 +51,7 @@ All colors MUST be HSL.
 
     --primary: 205 90% 58%;
     --primary-foreground: 0 0% 100%;
-    
+
     --primary-dark: 240 70% 20%;
     --primary-glow: 200 95% 65%;
 
@@ -40,14 +72,24 @@ All colors MUST be HSL.
     --ring: 205 90% 58%;
 
     --radius: 0.75rem;
-    
-    --gradient-primary: linear-gradient(135deg, hsl(240 70% 20%), hsl(255 75% 55%), hsl(205 90% 58%));
-    --gradient-hero: linear-gradient(180deg, hsl(240 70% 20%) 0%, hsl(255 70% 50%) 50%, hsl(205 90% 58%) 100%);
+
+    --gradient-primary: linear-gradient(
+      135deg,
+      hsl(240 70% 20%),
+      hsl(255 75% 55%),
+      hsl(205 90% 58%)
+    );
+    --gradient-hero: linear-gradient(
+      180deg,
+      hsl(240 70% 20%) 0%,
+      hsl(255 70% 50%) 50%,
+      hsl(205 90% 58%) 100%
+    );
     --gradient-accent: linear-gradient(135deg, hsl(205 90% 58%), hsl(185 95% 58%));
-    
+
     --shadow-glow: 0 0 50px hsl(200 95% 65% / 0.4), 0 0 100px hsl(200 95% 65% / 0.2);
     --shadow-elegant: 0 20px 40px -15px hsl(240 70% 20% / 0.3);
-    
+
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     --sidebar-background: 0 0% 98%;
@@ -79,7 +121,7 @@ All colors MUST be HSL.
 
     --primary: 205 85% 60%;
     --primary-foreground: 0 0% 100%;
-    
+
     --primary-dark: 240 50% 12%;
     --primary-glow: 200 90% 70%;
 
@@ -98,11 +140,21 @@ All colors MUST be HSL.
     --border: 240 40% 18%;
     --input: 240 40% 18%;
     --ring: 205 85% 60%;
-    
-    --gradient-primary: linear-gradient(135deg, hsl(240 50% 12%), hsl(255 70% 50%), hsl(205 85% 60%));
-    --gradient-hero: linear-gradient(180deg, hsl(240 50% 6%) 0%, hsl(240 50% 12%) 50%, hsl(240 50% 18%) 100%);
+
+    --gradient-primary: linear-gradient(
+      135deg,
+      hsl(240 50% 12%),
+      hsl(255 70% 50%),
+      hsl(205 85% 60%)
+    );
+    --gradient-hero: linear-gradient(
+      180deg,
+      hsl(240 50% 6%) 0%,
+      hsl(240 50% 12%) 50%,
+      hsl(240 50% 18%) 100%
+    );
     --gradient-accent: linear-gradient(135deg, hsl(205 85% 60%), hsl(185 90% 60%));
-    
+
     --shadow-glow: 0 0 60px hsl(200 90% 70% / 0.5), 0 0 120px hsl(200 90% 70% / 0.3);
     --shadow-elegant: 0 25px 50px -12px hsl(0 0% 0% / 0.6);
     --sidebar-background: 240 50% 8%;
@@ -123,7 +175,11 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-family:
+      "Inter",
+      system-ui,
+      -apple-system,
+      sans-serif;
   }
 
   html {
@@ -193,13 +249,15 @@ All colors MUST be HSL.
 
   /* Glow effects */
   .glow-primary {
-    box-shadow: 0 0 20px hsl(var(--primary) / 0.4),
-                0 0 40px hsl(var(--primary) / 0.2);
+    box-shadow:
+      0 0 20px hsl(var(--primary) / 0.4),
+      0 0 40px hsl(var(--primary) / 0.2);
   }
 
   .glow-accent {
-    box-shadow: 0 0 20px hsl(var(--accent) / 0.4),
-                0 0 40px hsl(var(--accent) / 0.2);
+    box-shadow:
+      0 0 20px hsl(var(--accent) / 0.4),
+      0 0 40px hsl(var(--accent) / 0.2);
   }
 
   /* Animated gradient background */
@@ -252,15 +310,27 @@ All colors MUST be HSL.
 }
 
 @keyframes orbit-path-motion {
-  from { offset-distance: 0%; }
-  to { offset-distance: 100%; }
+  from {
+    offset-distance: 0%;
+  }
+  to {
+    offset-distance: 100%;
+  }
 }
 
 /* Stagger icons evenly around the orbit */
-.orbit-icon:nth-child(1) { animation-delay: 0s; }
-.orbit-icon:nth-child(2) { animation-delay: -5s; }
-.orbit-icon:nth-child(3) { animation-delay: -10s; }
-.orbit-icon:nth-child(4) { animation-delay: -15s; }
+.orbit-icon:nth-child(1) {
+  animation-delay: 0s;
+}
+.orbit-icon:nth-child(2) {
+  animation-delay: -5s;
+}
+.orbit-icon:nth-child(3) {
+  animation-delay: -10s;
+}
+.orbit-icon:nth-child(4) {
+  animation-delay: -15s;
+}
 
 /* AI Robot Enhancements */
 
@@ -276,7 +346,8 @@ All colors MUST be HSL.
 }
 
 @keyframes scan {
-  0%, 100% {
+  0%,
+  100% {
     top: 20%;
     opacity: 0;
   }
@@ -296,7 +367,8 @@ All colors MUST be HSL.
 }
 
 @keyframes neural-pulse {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.5;
     transform: scale(1);
   }
@@ -317,7 +389,8 @@ All colors MUST be HSL.
 }
 
 @keyframes particle-float {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.3;
     transform: translateY(0) scale(0.8);
   }
@@ -333,11 +406,16 @@ All colors MUST be HSL.
 }
 
 @keyframes eye-glow {
-  0%, 100% {
-    box-shadow: 0 0 4px hsl(var(--primary)), 0 0 8px hsl(var(--primary) / 0.5);
+  0%,
+  100% {
+    box-shadow:
+      0 0 4px hsl(var(--primary)),
+      0 0 8px hsl(var(--primary) / 0.5);
   }
   50% {
-    box-shadow: 0 0 8px hsl(var(--primary)), 0 0 16px hsl(var(--primary) / 0.8);
+    box-shadow:
+      0 0 8px hsl(var(--primary)),
+      0 0 16px hsl(var(--primary) / 0.8);
   }
 }
 
@@ -375,8 +453,13 @@ All colors MUST be HSL.
 }
 
 @keyframes holographic-shift {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
 }
 
 /* Circuit lines connecting to orbit */
@@ -386,6 +469,22 @@ All colors MUST be HSL.
 }
 
 @keyframes circuit-flow {
-  from { stroke-dashoffset: 0; }
-  to { stroke-dashoffset: -12; }
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -12;
+  }
+}
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

@@ -1,4 +1,4 @@
-import { useRef, useEffect, useCallback } from 'react';
+import { useRef, useEffect, useCallback } from "react";
 
 interface Node {
   x: number;
@@ -21,13 +21,13 @@ interface UseNeuralNetworkOptions {
 
 export function useNeuralNetwork(
   canvasRef: React.RefObject<HTMLCanvasElement>,
-  options: UseNeuralNetworkOptions = {}
+  options: UseNeuralNetworkOptions = {},
 ) {
   const {
     nodeCount = 60,
     connectionDistance = 150,
-    nodeColor = 'hsla(205, 90%, 58%, 0.4)',
-    lineColor = 'hsla(205, 90%, 58%, 0.1)',
+    nodeColor = "hsla(205, 90%, 58%, 0.4)",
+    lineColor = "hsla(205, 90%, 58%, 0.1)",
     speed = 0.3,
     enabled = true,
   } = options;
@@ -36,22 +36,25 @@ export function useNeuralNetwork(
   const animationFrameRef = useRef<number>();
   const frameCountRef = useRef(0);
 
-  const initializeNodes = useCallback((width: number, height: number) => {
-    const nodes: Node[] = [];
-    for (let i = 0; i < nodeCount; i++) {
-      const baseRadius = 2 + Math.random() * 2;
-      nodes.push({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        vx: (Math.random() - 0.5) * speed,
-        vy: (Math.random() - 0.5) * speed,
-        radius: baseRadius,
-        baseRadius,
-        pulseOffset: Math.random() * Math.PI * 2,
-      });
-    }
-    nodesRef.current = nodes;
-  }, [nodeCount, speed]);
+  const initializeNodes = useCallback(
+    (width: number, height: number) => {
+      const nodes: Node[] = [];
+      for (let i = 0; i < nodeCount; i++) {
+        const baseRadius = 2 + Math.random() * 2;
+        nodes.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - 0.5) * speed,
+          vy: (Math.random() - 0.5) * speed,
+          radius: baseRadius,
+          baseRadius,
+          pulseOffset: Math.random() * Math.PI * 2,
+        });
+      }
+      nodesRef.current = nodes;
+    },
+    [nodeCount, speed],
+  );
 
   const updateNodes = useCallback((width: number, height: number, time: number) => {
     const nodes = nodesRef.current;
@@ -84,63 +87,61 @@ export function useNeuralNetwork(
     }
   }, []);
 
-  const drawNetwork = useCallback((
-    ctx: CanvasRenderingContext2D,
-    width: number,
-    height: number,
-    time: number
-  ) => {
-    const nodes = nodesRef.current;
+  const drawNetwork = useCallback(
+    (ctx: CanvasRenderingContext2D, width: number, height: number, time: number) => {
+      const nodes = nodesRef.current;
 
-    // Clear canvas
-    ctx.clearRect(0, 0, width, height);
+      // Clear canvas
+      ctx.clearRect(0, 0, width, height);
 
-    // Draw connections (throttled calculation - every 2 frames)
-    if (frameCountRef.current % 2 === 0) {
-      ctx.strokeStyle = lineColor;
-      ctx.lineWidth = 1;
+      // Draw connections (throttled calculation - every 2 frames)
+      if (frameCountRef.current % 2 === 0) {
+        ctx.strokeStyle = lineColor;
+        ctx.lineWidth = 1;
 
-      for (let i = 0; i < nodes.length; i++) {
-        for (let j = i + 1; j < nodes.length; j++) {
-          const dx = nodes[i].x - nodes[j].x;
-          const dy = nodes[i].y - nodes[j].y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
+        for (let i = 0; i < nodes.length; i++) {
+          for (let j = i + 1; j < nodes.length; j++) {
+            const dx = nodes[i].x - nodes[j].x;
+            const dy = nodes[i].y - nodes[j].y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
 
-          if (distance < connectionDistance) {
-            // Fade line based on distance
-            const opacity = 1 - distance / connectionDistance;
-            ctx.globalAlpha = opacity * 0.15;
+            if (distance < connectionDistance) {
+              // Fade line based on distance
+              const opacity = 1 - distance / connectionDistance;
+              ctx.globalAlpha = opacity * 0.15;
 
-            ctx.beginPath();
-            ctx.moveTo(nodes[i].x, nodes[i].y);
-            ctx.lineTo(nodes[j].x, nodes[j].y);
-            ctx.stroke();
+              ctx.beginPath();
+              ctx.moveTo(nodes[i].x, nodes[i].y);
+              ctx.lineTo(nodes[j].x, nodes[j].y);
+              ctx.stroke();
+            }
           }
         }
       }
-    }
 
-    // Draw nodes
-    ctx.globalAlpha = 1;
-    for (const node of nodes) {
-      ctx.beginPath();
-      ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
-      ctx.fillStyle = nodeColor;
-      ctx.fill();
-    }
+      // Draw nodes
+      ctx.globalAlpha = 1;
+      for (const node of nodes) {
+        ctx.beginPath();
+        ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+        ctx.fillStyle = nodeColor;
+        ctx.fill();
+      }
 
-    frameCountRef.current++;
-  }, [connectionDistance, lineColor, nodeColor]);
+      frameCountRef.current++;
+    },
+    [connectionDistance, lineColor, nodeColor],
+  );
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas || !enabled) return;
 
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
     // Check for reduced motion preference
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     const resizeCanvas = () => {
       const dpr = window.devicePixelRatio || 1;
@@ -174,7 +175,12 @@ export function useNeuralNetwork(
     // Start animation or draw static frame
     if (prefersReducedMotion) {
       // Draw single static frame
-      drawNetwork(ctx, canvas.getBoundingClientRect().width, canvas.getBoundingClientRect().height, 0);
+      drawNetwork(
+        ctx,
+        canvas.getBoundingClientRect().width,
+        canvas.getBoundingClientRect().height,
+        0,
+      );
     } else {
       animationFrameRef.current = requestAnimationFrame(animate);
     }

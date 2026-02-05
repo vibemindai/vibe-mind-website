@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
-import { List, ChevronDown, ChevronUp } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { useState, useEffect } from "react";
+import { List, ChevronDown, ChevronUp } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface TOCItem {
   id: string;
@@ -10,20 +10,20 @@ interface TOCItem {
 
 const TableOfContents = () => {
   const [headings, setHeadings] = useState<TOCItem[]>([]);
-  const [activeId, setActiveId] = useState<string>('');
+  const [activeId, setActiveId] = useState<string>("");
   const [isExpanded, setIsExpanded] = useState(false);
 
   useEffect(() => {
     // Extract headings from article content
-    const articleHeadings = document.querySelectorAll('article h2, article h3');
+    const articleHeadings = document.querySelectorAll("article h2, article h3");
     const items: TOCItem[] = [];
 
     articleHeadings.forEach((heading) => {
       if (heading.id) {
         items.push({
           id: heading.id,
-          text: heading.textContent || '',
-          level: heading.tagName === 'H2' ? 2 : 3,
+          text: heading.textContent || "",
+          level: heading.tagName === "H2" ? 2 : 3,
         });
       }
     });
@@ -41,9 +41,9 @@ const TableOfContents = () => {
         });
       },
       {
-        rootMargin: '-80px 0px -80% 0px',
+        rootMargin: "-80px 0px -80% 0px",
         threshold: 0,
-      }
+      },
     );
 
     headings.forEach((heading) => {
@@ -65,7 +65,7 @@ const TableOfContents = () => {
 
       window.scrollTo({
         top: offsetPosition,
-        behavior: 'smooth',
+        behavior: "smooth",
       });
     }
   };
@@ -92,11 +92,11 @@ const TableOfContents = () => {
                 <button
                   onClick={() => scrollToHeading(heading.id)}
                   className={cn(
-                    'text-left w-full text-sm py-1 px-2 rounded transition-colors duration-200',
-                    heading.level === 3 && 'pl-4',
+                    "text-left w-full text-sm py-1 px-2 rounded transition-colors duration-200",
+                    heading.level === 3 && "pl-4",
                     activeId === heading.id
-                      ? 'text-primary bg-primary/10'
-                      : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
+                      ? "text-primary bg-primary/10"
+                      : "text-muted-foreground hover:text-foreground hover:bg-muted/50",
                   )}
                 >
                   {heading.text}
@@ -118,11 +118,7 @@ const TableOfContents = () => {
               <List className="h-4 w-4 text-primary" />
               <span>Table of Contents</span>
             </div>
-            {isExpanded ? (
-              <ChevronUp className="h-4 w-4" />
-            ) : (
-              <ChevronDown className="h-4 w-4" />
-            )}
+            {isExpanded ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
           </button>
           {isExpanded && (
             <ul className="px-4 pb-4 space-y-2">
@@ -134,11 +130,11 @@ const TableOfContents = () => {
                       setIsExpanded(false);
                     }}
                     className={cn(
-                      'text-left w-full text-sm py-1 px-2 rounded transition-colors duration-200',
-                      heading.level === 3 && 'pl-4',
+                      "text-left w-full text-sm py-1 px-2 rounded transition-colors duration-200",
+                      heading.level === 3 && "pl-4",
                       activeId === heading.id
-                        ? 'text-primary bg-primary/10'
-                        : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
+                        ? "text-primary bg-primary/10"
+                        : "text-muted-foreground hover:text-foreground hover:bg-muted/50",
                     )}
                   >
                     {heading.text}

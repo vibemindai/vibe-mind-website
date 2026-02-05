@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 const ReadingProgressBar = () => {
   const [progress, setProgress] = useState(0);
@@ -11,10 +11,10 @@ const ReadingProgressBar = () => {
       setProgress(Math.min(scrollProgress, 100));
     };
 
-    window.addEventListener('scroll', updateProgress, { passive: true });
+    window.addEventListener("scroll", updateProgress, { passive: true });
     updateProgress();
 
-    return () => window.removeEventListener('scroll', updateProgress);
+    return () => window.removeEventListener("scroll", updateProgress);
   }, []);
 
   return (

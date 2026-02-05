@@ -1,6 +1,6 @@
-import { Link } from 'react-router-dom';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { BlogPost } from '@/data/blogPosts';
+import { Link } from "react-router-dom";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { BlogPost } from "@/data/blogPosts";
 
 interface BlogPostNavigationProps {
   prevPost: BlogPost | null;
@@ -47,9 +47,7 @@ const BlogPostNavigation = ({ prevPost, nextPost }: BlogPostNavigationProps) => 
               <ChevronRight className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
             </div>
             <div className="flex-1 min-w-0">
-              <span className="text-xs text-muted-foreground uppercase tracking-wide">
-                Next
-              </span>
+              <span className="text-xs text-muted-foreground uppercase tracking-wide">Next</span>
               <h4 className="text-sm font-medium text-foreground line-clamp-2 group-hover:text-primary transition-colors mt-1">
                 {nextPost.title}
               </h4>

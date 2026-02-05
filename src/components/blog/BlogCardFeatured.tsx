@@ -1,9 +1,9 @@
-import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { ArrowRight, Clock, User } from 'lucide-react';
-import { BlogPost, categoryConfig, formatDate } from '@/data/blogPosts';
-import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { ArrowRight, Clock, User } from "lucide-react";
+import { BlogPost, categoryConfig, formatDate } from "@/data/blogPosts";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 interface BlogCardFeaturedProps {
   post: BlogPost;
@@ -51,8 +51,8 @@ const BlogCardFeatured = ({ post }: BlogCardFeaturedProps) => {
               <div className="mb-4">
                 <span
                   className={cn(
-                    'inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-full border',
-                    category.color
+                    "inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-full border",
+                    category.color,
                   )}
                 >
                   <span>{category.icon}</span>
@@ -87,11 +87,7 @@ const BlogCardFeatured = ({ post }: BlogCardFeaturedProps) => {
 
               {/* CTA Button */}
               <div>
-                <Button
-                  variant="default"
-                  className="group/btn gap-2"
-                  tabIndex={-1}
-                >
+                <Button variant="default" className="group/btn gap-2" tabIndex={-1}>
                   Read Article
                   <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
                 </Button>

@@ -1,6 +1,6 @@
-import { useRef } from 'react';
-import { useBubbles } from './useBubbles';
-import { cn } from '@/lib/utils';
+import { useRef } from "react";
+import { useBubbles } from "./useBubbles";
+import { cn } from "@/lib/utils";
 
 interface BubblesBackgroundProps {
   className?: string;
@@ -26,16 +26,13 @@ export function BubblesBackground({
     minSize,
     maxSize,
     speed,
-    color: 'hsla(205, 90%, 58%',
+    color: "hsla(205, 90%, 58%",
   });
 
   return (
     <canvas
       ref={canvasRef}
-      className={cn(
-        'pointer-events-none will-change-transform w-full h-full',
-        className
-      )}
+      className={cn("pointer-events-none will-change-transform w-full h-full", className)}
       style={{
         opacity,
       }}

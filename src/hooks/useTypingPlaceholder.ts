@@ -59,7 +59,17 @@ export function useTypingPlaceholder(options: UseTypingPlaceholderOptions = {}) 
       }, typeSpeed);
       return () => clearTimeout(typeTimer);
     }
-  }, [placeholder, phraseIndex, isTyping, isDeleting, isPaused, currentPhrase, typeSpeed, deleteSpeed, pauseDuration]);
+  }, [
+    placeholder,
+    phraseIndex,
+    isTyping,
+    isDeleting,
+    isPaused,
+    currentPhrase,
+    typeSpeed,
+    deleteSpeed,
+    pauseDuration,
+  ]);
 
   const reset = useCallback(() => {
     setPlaceholder("");

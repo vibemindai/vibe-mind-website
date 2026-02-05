@@ -20,7 +20,7 @@ const JugglingCapabilities = () => {
 
   // State for shuffled capabilities that updates periodically
   const [shuffledCapabilities, setShuffledCapabilities] = useState(() =>
-    shuffleArray(capabilities)
+    shuffleArray(capabilities),
   );
 
   // Reshuffle capabilities periodically

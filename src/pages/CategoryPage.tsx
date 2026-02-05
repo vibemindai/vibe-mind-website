@@ -20,10 +20,7 @@ const CategoryPage = () => {
   const services = getCapabilitiesByCategory(category.categoryKey);
   const CategoryIcon = getIcon(category.icon);
 
-  const breadcrumbItems = [
-    { label: "Services", href: "/services" },
-    { label: category.name },
-  ];
+  const breadcrumbItems = [{ label: "Services", href: "/services" }, { label: category.name }];
 
   const schemaBreadcrumbs = [
     { name: "Home", url: "/" },
@@ -32,9 +29,7 @@ const CategoryPage = () => {
   ];
 
   // Get other categories for navigation
-  const otherCategories = serviceCategories.filter(
-    (cat) => cat.slug !== category.slug
-  );
+  const otherCategories = serviceCategories.filter((cat) => cat.slug !== category.slug);
 
   return (
     <FooterWrapper>
@@ -129,13 +124,11 @@ const CategoryPage = () => {
                   {[
                     {
                       title: "Expert Team",
-                      description:
-                        "Skilled AI engineers with deep domain expertise",
+                      description: "Skilled AI engineers with deep domain expertise",
                     },
                     {
                       title: "Proven Results",
-                      description:
-                        "Track record of successful implementations",
+                      description: "Track record of successful implementations",
                     },
                     {
                       title: "Custom Solutions",
@@ -143,15 +136,12 @@ const CategoryPage = () => {
                     },
                     {
                       title: "Ongoing Support",
-                      description:
-                        "Continuous optimization and maintenance",
+                      description: "Continuous optimization and maintenance",
                     },
                   ].map((item, index) => (
                     <div key={index} className="text-center">
                       <h3 className="font-semibold mb-2">{item.title}</h3>
-                      <p className="text-sm text-muted-foreground">
-                        {item.description}
-                      </p>
+                      <p className="text-sm text-muted-foreground">{item.description}</p>
                     </div>
                   ))}
                 </div>
@@ -189,8 +179,8 @@ const CategoryPage = () => {
                   Ready to Transform Your Business with {category.name}?
                 </h2>
                 <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-                  Let's discuss how our AI solutions can help you achieve your
-                  goals. Get in touch with our experts today.
+                  Let's discuss how our AI solutions can help you achieve your goals. Get in touch
+                  with our experts today.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Link

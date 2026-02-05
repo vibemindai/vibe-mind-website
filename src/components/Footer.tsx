@@ -43,8 +43,13 @@ const Footer = () => {
           {/* Brand + Social */}
           <div className="space-y-4 sm:col-span-2 lg:col-span-1">
             <Link to="/" className="flex items-center gap-2 group">
-              <Brain className="w-8 h-8 text-primary group-hover:scale-110 transition-transform" aria-hidden="true" />
-              <span className="text-xl font-bold text-white" itemProp="name">Vibe Mind AI</span>
+              <Brain
+                className="w-8 h-8 text-primary group-hover:scale-110 transition-transform"
+                aria-hidden="true"
+              />
+              <span className="text-xl font-bold text-white" itemProp="name">
+                Vibe Mind AI
+              </span>
             </Link>
             <p className="text-sm text-gray-300" itemProp="description">
               Building intelligent software through Vibe Coding philosophy
@@ -129,17 +134,27 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-
         </div>
 
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-border/50 flex flex-col md:flex-row justify-between items-center gap-4">
           {/* Quick Links - inline */}
-          <nav aria-label="Quick links" className="flex flex-wrap justify-center md:justify-start gap-x-6 gap-y-2 text-sm text-gray-300 order-1 md:order-2">
-            <Link to="/" className="hover:text-primary transition-smooth">Home</Link>
-            <Link to="/about" className="hover:text-primary transition-smooth">About Us</Link>
-            <Link to="/contact" className="hover:text-primary transition-smooth">Contact</Link>
-            <Link to="/privacy-policy" className="hover:text-primary transition-smooth">Privacy Policy</Link>
+          <nav
+            aria-label="Quick links"
+            className="flex flex-wrap justify-center md:justify-start gap-x-6 gap-y-2 text-sm text-gray-300 order-1 md:order-2"
+          >
+            <Link to="/" className="hover:text-primary transition-smooth">
+              Home
+            </Link>
+            <Link to="/about" className="hover:text-primary transition-smooth">
+              About Us
+            </Link>
+            <Link to="/contact" className="hover:text-primary transition-smooth">
+              Contact
+            </Link>
+            <Link to="/privacy-policy" className="hover:text-primary transition-smooth">
+              Privacy Policy
+            </Link>
           </nav>
 
           {/* Copyright */}

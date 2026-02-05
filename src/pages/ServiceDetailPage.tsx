@@ -8,10 +8,7 @@ import ServiceBreadcrumb from "@/components/services/ServiceBreadcrumb";
 import RelatedServices from "@/components/services/RelatedServices";
 import { SEOHead, ServiceSchema, BreadcrumbSchema } from "@/components/seo";
 import { getCategoryBySlug } from "@/data/serviceCategories";
-import {
-  getCapabilityBySlug,
-  getIcon,
-} from "@/data/aiCapabilities";
+import { getCapabilityBySlug, getIcon } from "@/data/aiCapabilities";
 
 const ServiceDetailPage = () => {
   const { categorySlug, serviceSlug } = useParams<{
@@ -122,9 +119,7 @@ const ServiceDetailPage = () => {
               <AnimatedSection delay={0.2} className="lg:col-span-2">
                 <div className="p-6 md:p-8 rounded-2xl bg-card/50 border border-border/50">
                   <h2 className="text-xl font-semibold mb-4">Overview</h2>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {service.description}
-                  </p>
+                  <p className="text-muted-foreground leading-relaxed">{service.description}</p>
                 </div>
               </AnimatedSection>
 
@@ -144,9 +139,7 @@ const ServiceDetailPage = () => {
                         <div className="flex-shrink-0 w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center mt-0.5">
                           <Check className="w-3 h-3 text-primary" />
                         </div>
-                        <span className="text-sm text-muted-foreground">
-                          {benefit}
-                        </span>
+                        <span className="text-sm text-muted-foreground">{benefit}</span>
                       </motion.li>
                     ))}
                   </ul>
@@ -157,9 +150,7 @@ const ServiceDetailPage = () => {
             {/* Use Cases Section */}
             <AnimatedSection delay={0.4}>
               <div className="mb-16">
-                <h2 className="text-2xl font-semibold mb-6 text-center">
-                  Use Cases
-                </h2>
+                <h2 className="text-2xl font-semibold mb-6 text-center">Use Cases</h2>
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
                   {service.useCases.map((useCase, index) => (
                     <motion.div
@@ -179,9 +170,7 @@ const ServiceDetailPage = () => {
             {/* How It Works Section */}
             <AnimatedSection delay={0.5}>
               <div className="mb-16 py-12 px-8 rounded-2xl bg-card/30 border border-border/30">
-                <h2 className="text-2xl font-semibold mb-8 text-center">
-                  How We Work
-                </h2>
+                <h2 className="text-2xl font-semibold mb-8 text-center">How We Work</h2>
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                   {[
                     {
@@ -216,9 +205,7 @@ const ServiceDetailPage = () => {
                         {item.step}
                       </div>
                       <h3 className="font-semibold mb-2">{item.title}</h3>
-                      <p className="text-sm text-muted-foreground">
-                        {item.description}
-                      </p>
+                      <p className="text-sm text-muted-foreground">{item.description}</p>
                       {index < 3 && (
                         <div className="hidden md:block absolute top-6 left-[60%] w-[80%] h-px bg-gradient-to-r from-primary/30 to-transparent" />
                       )}

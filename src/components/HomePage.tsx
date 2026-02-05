@@ -28,7 +28,7 @@ const HomePage = () => {
       <HomeNavigation onLogoClick={handleLogoClick} isMobileChatExpanded={isMobileChatExpanded} />
 
       {/* Main Content */}
-      <div className="pt-14 sm:pt-16 lg:pt-20">
+      <div id="main-content" className="pt-14 sm:pt-16 lg:pt-20">
         {/* Mobile/Tablet Layout: Two-screen experience with footer */}
         <div className="lg:hidden">
           {isMobileChatExpanded ? (
@@ -63,7 +63,8 @@ const HomePage = () => {
                   </h1>
 
                   <p className="text-base text-muted-foreground max-w-lg">
-                    Welcome to VibeMind Solutions — Your partner for cutting-edge AI-powered digital experiences.
+                    Welcome to VibeMind Solutions — Your partner for cutting-edge AI-powered digital
+                    experiences.
                   </p>
                 </div>
 

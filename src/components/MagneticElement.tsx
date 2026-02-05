@@ -4,7 +4,7 @@ import { motion, useMotionValue, useSpring } from "framer-motion";
 interface MagneticElementProps {
   children: ReactNode;
   strength?: number; // 0.1 to 0.5, default 0.3
-  radius?: number;   // detection radius, default 50px
+  radius?: number; // detection radius, default 50px
   className?: string;
   disabled?: boolean;
 }
@@ -12,10 +12,7 @@ interface MagneticElementProps {
 // Check if device is touch-only
 const isTouchDevice = () => {
   if (typeof window === "undefined") return false;
-  return (
-    "ontouchstart" in window ||
-    navigator.maxTouchPoints > 0
-  );
+  return "ontouchstart" in window || navigator.maxTouchPoints > 0;
 };
 
 export const MagneticElement = ({

@@ -31,10 +31,7 @@ const GlobalChatButton = () => {
     if (params.has("chat")) {
       params.delete("chat");
       const newSearch = params.toString();
-      navigate(
-        `${location.pathname}${newSearch ? `?${newSearch}` : ""}`,
-        { replace: true }
-      );
+      navigate(`${location.pathname}${newSearch ? `?${newSearch}` : ""}`, { replace: true });
     }
     setInitialPrompt(undefined);
   }, [location.pathname, location.search, navigate]);

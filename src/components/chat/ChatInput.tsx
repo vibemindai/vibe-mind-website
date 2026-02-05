@@ -3,6 +3,8 @@ import { Send, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTypingPlaceholder } from "@/hooks/useTypingPlaceholder";
 
+const MAX_MESSAGE_LENGTH = 2000;
+
 interface ChatInputProps {
   onSend: (message: string) => void;
   disabled?: boolean;
@@ -10,7 +12,12 @@ interface ChatInputProps {
   hasStartedChat?: boolean;
 }
 
-const ChatInput = ({ onSend, disabled = false, isStreaming = false, hasStartedChat = false }: ChatInputProps) => {
+const ChatInput = ({
+  onSend,
+  disabled = false,
+  isStreaming = false,
+  hasStartedChat = false,
+}: ChatInputProps) => {
   const [message, setMessage] = useState("");
   const [isSending, setIsSending] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -48,31 +55,34 @@ const ChatInput = ({ onSend, disabled = false, isStreaming = false, hasStartedCh
           onChange={(e) => setMessage(e.target.value)}
           onKeyDown={handleKeyDown}
           disabled={disabled || isStreaming}
-          className={`w-full bg-transparent border-0 outline-none focus:ring-0 text-xs sm:text-sm text-foreground px-3 sm:px-4 py-2 disabled:opacity-50 ${hasStartedChat ? 'caret-transparent' : ''}`}
+          maxLength={MAX_MESSAGE_LENGTH}
+          className={`w-full bg-transparent border-0 outline-none focus:ring-0 text-xs sm:text-sm text-foreground px-3 sm:px-4 py-2 disabled:opacity-50 ${hasStartedChat ? "caret-transparent" : ""}`}
           placeholder=""
         />
         {/* Placeholder - static after chat started, animated before */}
-        {!message && (
-          hasStartedChat ? (
+        {!message &&
+          (hasStartedChat ? (
             <div className="absolute inset-0 flex items-center px-3 sm:px-4 pointer-events-none">
-              <span className="text-xs sm:text-sm text-muted-foreground">
-                Type a message...
-              </span>
+              <span className="text-xs sm:text-sm text-muted-foreground">Type a message...</span>
             </div>
           ) : (
             <div className="absolute inset-0 flex items-center px-3 sm:px-4 pointer-events-none">
-              <span className="text-xs sm:text-sm text-muted-foreground">
-                {placeholder}
-              </span>
+              <span className="text-xs sm:text-sm text-muted-foreground">{placeholder}</span>
               <span
                 className={`w-0.5 h-4 bg-muted-foreground ml-0.5 ${
                   isTyping ? "animate-typewriter-cursor" : "opacity-0"
                 }`}
               />
             </div>
-          )
-        )}
+          ))}
       </div>
+
+      {/* Character count */}
+      {message.length > MAX_MESSAGE_LENGTH * 0.8 && (
+        <span className="text-[10px] text-muted-foreground tabular-nums">
+          {message.length}/{MAX_MESSAGE_LENGTH}
+        </span>
+      )}
 
       {/* Clear text button */}
       {message.length > 0 && (

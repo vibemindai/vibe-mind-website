@@ -4,26 +4,29 @@ import { Quote } from "lucide-react";
 const Testimonials = () => {
   const testimonials = [
     {
-      quote: "Vibe Mind AI transformed our legacy system into a modern, AI-powered platform in record time. Their expertise in AI integration is unmatched.",
+      quote:
+        "Vibe Mind AI transformed our legacy system into a modern, AI-powered platform in record time. Their expertise in AI integration is unmatched.",
       author: "Rajesh Kumar",
       position: "CTO",
       company: "TechCorp India",
-      location: "Mumbai, India"
+      location: "Mumbai, India",
     },
     {
-      quote: "The team's Vibe Coding approach delivered a custom AI solution that exceeded our expectations. Fast, efficient, and incredibly innovative.",
+      quote:
+        "The team's Vibe Coding approach delivered a custom AI solution that exceeded our expectations. Fast, efficient, and incredibly innovative.",
       author: "Sarah Al-Mansoori",
       position: "Innovation Director",
       company: "Digital Solutions Qatar",
-      location: "Doha, Qatar"
+      location: "Doha, Qatar",
     },
     {
-      quote: "Working with Vibe Mind AI was a game-changer. They built an intelligent automation system that reduced our processing time by 70%.",
+      quote:
+        "Working with Vibe Mind AI was a game-changer. They built an intelligent automation system that reduced our processing time by 70%.",
       author: "Michael Chen",
       position: "VP of Engineering",
       company: "CloudTech Solutions",
-      location: "San Francisco, USA"
-    }
+      location: "San Francisco, USA",
+    },
   ];
 
   return (
@@ -45,7 +48,7 @@ const Testimonials = () => {
         {/* Testimonials Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {testimonials.map((testimonial, index) => (
-            <Card 
+            <Card
               key={index}
               className="border-border hover:border-primary/50 transition-smooth hover:shadow-elegant animate-scale-in bg-card/50 backdrop-blur-sm"
               style={{ animationDelay: `${index * 0.1}s` }}

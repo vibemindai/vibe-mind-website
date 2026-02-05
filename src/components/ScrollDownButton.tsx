@@ -7,7 +7,11 @@ interface ScrollDownButtonProps {
   className?: string;
 }
 
-const ScrollDownButton = ({ targetId = "hero-section", onReveal, className = "" }: ScrollDownButtonProps) => {
+const ScrollDownButton = ({
+  targetId = "hero-section",
+  onReveal,
+  className = "",
+}: ScrollDownButtonProps) => {
   const handleClick = () => {
     if (onReveal) {
       onReveal();

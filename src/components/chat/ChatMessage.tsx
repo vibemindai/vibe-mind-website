@@ -9,11 +9,11 @@ interface ChatMessageProps {
 const messageVariants = {
   user: {
     initial: { opacity: 0, x: 20 },
-    animate: { opacity: 1, x: 0, transition: { duration: 0.3, ease: "easeOut" } },
+    animate: { opacity: 1, x: 0, transition: { duration: 0.3, ease: "easeOut" as const } },
   },
   assistant: {
     initial: { opacity: 0, x: -20 },
-    animate: { opacity: 1, x: 0, transition: { duration: 0.3, ease: "easeOut" } },
+    animate: { opacity: 1, x: 0, transition: { duration: 0.3, ease: "easeOut" as const } },
   },
 };
 
@@ -30,9 +30,7 @@ const ChatMessage = ({ message }: ChatMessageProps) => {
     >
       <div
         className={`max-w-[85%] sm:max-w-[80%] rounded-xl sm:rounded-2xl p-3 sm:p-4 ${
-          isUser
-            ? "bg-primary text-primary-foreground ml-4"
-            : "bg-card border border-border mr-4"
+          isUser ? "bg-primary text-primary-foreground ml-4" : "bg-card border border-border mr-4"
         }`}
       >
         <div className="text-xs sm:text-sm break-words">
