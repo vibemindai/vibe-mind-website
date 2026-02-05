@@ -8,6 +8,7 @@ import { AnimatePresence, MotionConfig } from "framer-motion";
 import { HelmetProvider } from "react-helmet-async";
 import { ThemeProvider } from "@/hooks/useTheme";
 import ErrorBoundary from "@/components/ErrorBoundary";
+import { usePageTracking } from "@/hooks/usePageTracking";
 import PageTransition from "@/components/PageTransition";
 import FloatingActionButtons from "@/components/FloatingActionButtons";
 import GlobalChatButton from "@/components/GlobalChatButton";
@@ -41,6 +42,7 @@ const RedirectHandler = () => {
 
 const AnimatedRoutes = () => {
   const location = useLocation();
+  usePageTracking();
 
   return (
     <AnimatePresence mode="wait">
