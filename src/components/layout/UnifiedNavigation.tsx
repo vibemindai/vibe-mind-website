@@ -125,6 +125,7 @@ const UnifiedNavigation = () => {
     { label: "Home", href: "/" },
     { label: "About Us", href: "/about" },
     { label: "Services", href: "/services" },
+    { label: "Tools", href: "/tools/ucp-store-check" },
     { label: "Blog", href: "/blog" },
     { label: "Contact", href: "/contact" },
   ];
