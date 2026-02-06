@@ -6,8 +6,6 @@
 
 import * as fs from "fs";
 import * as path from "path";
-import { blogPosts } from "../src/data/blogPosts";
-
 const BASE_URL = "https://vibemindsolutions.ai";
 const TODAY = new Date().toISOString().split("T")[0];
 
@@ -16,8 +14,10 @@ const staticPages = [
   { url: "/", priority: "1.0", changefreq: "weekly" },
   { url: "/about", priority: "0.8", changefreq: "monthly" },
   { url: "/services", priority: "0.9", changefreq: "weekly" },
-  { url: "/blog", priority: "0.8", changefreq: "weekly" },
   { url: "/contact", priority: "0.7", changefreq: "monthly" },
+  { url: "/privacy-policy", priority: "0.3", changefreq: "yearly" },
+  { url: "/terms-and-conditions", priority: "0.3", changefreq: "yearly" },
+  { url: "/tools/ucp-store-check", priority: "0.6", changefreq: "monthly" },
 ];
 
 // Category configurations
@@ -141,17 +141,6 @@ function generateSitemap(): string {
     <priority>0.7</priority>
   </url>`);
     }
-  }
-
-  // Add blog post pages
-  for (const post of blogPosts) {
-    const lastmod = post.updatedAt || post.publishedAt;
-    urls.push(`  <url>
-    <loc>${BASE_URL}/blog/${post.slug}</loc>
-    <lastmod>${lastmod}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>`);
   }
 
   return `<?xml version="1.0" encoding="UTF-8"?>

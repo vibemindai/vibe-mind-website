@@ -18,10 +18,9 @@ import AboutPage from "./pages/AboutPage";
 import ServicesPage from "./pages/ServicesPage";
 import CategoryPage from "./pages/CategoryPage";
 import ServiceDetailPage from "./pages/ServiceDetailPage";
-import BlogPage from "./pages/BlogPage";
-import BlogPostPage from "./pages/BlogPostPage";
 import ContactPage from "./pages/ContactPage";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
+import TermsAndConditionsPage from "./pages/TermsAndConditionsPage";
 import UCPStoreCheckPage from "./pages/UCPStoreCheckPage";
 import NotFound from "./pages/NotFound";
 
@@ -89,22 +88,6 @@ const AnimatedRoutes = () => {
           }
         />
         <Route
-          path="/blog"
-          element={
-            <PageTransition>
-              <BlogPage />
-            </PageTransition>
-          }
-        />
-        <Route
-          path="/blog/:slug"
-          element={
-            <PageTransition>
-              <BlogPostPage />
-            </PageTransition>
-          }
-        />
-        <Route
           path="/contact"
           element={
             <PageTransition>
@@ -117,6 +100,14 @@ const AnimatedRoutes = () => {
           element={
             <PageTransition>
               <PrivacyPolicyPage />
+            </PageTransition>
+          }
+        />
+        <Route
+          path="/terms-and-conditions"
+          element={
+            <PageTransition>
+              <TermsAndConditionsPage />
             </PageTransition>
           }
         />

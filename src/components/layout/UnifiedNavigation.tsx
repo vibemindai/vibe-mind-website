@@ -1,10 +1,26 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, Phone, Mail, Send, CheckCircle, Loader2, MessageCircle } from "lucide-react";
+import {
+  Menu,
+  Phone,
+  Mail,
+  Send,
+  CheckCircle,
+  Loader2,
+  MessageCircle,
+  ChevronDown,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+} from "@/components/ui/dropdown-menu";
+import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/components/ui/collapsible";
 import ThemeToggle from "@/components/ThemeToggle";
 import { useToast } from "@/hooks/use-toast";
 import { MagneticElement } from "@/components/MagneticElement";
@@ -123,10 +139,14 @@ const UnifiedNavigation = () => {
 
   const navItems = [
     { label: "Home", href: "/" },
-    { label: "About Us", href: "/about" },
     { label: "Services", href: "/services" },
-    { label: "Tools", href: "/tools/ucp-store-check" },
-    { label: "Blog", href: "/blog" },
+    {
+      label: "Tools",
+      href: "/tools",
+      children: [{ label: "UCP Store Check", href: "/tools/ucp-store-check" }],
+    },
+    { label: "Blog", href: "https://blog.vibemindsolutions.ai", external: true },
+    { label: "About Us", href: "/about" },
     { label: "Contact", href: "/contact" },
   ];
 
@@ -151,17 +171,52 @@ const UnifiedNavigation = () => {
             {navItems.map((item) => (
               <MagneticElement key={item.label} strength={0.25} radius={40}>
                 <div className="relative">
-                  <Link
-                    to={item.href}
-                    className={`text-sm font-medium transition-colors py-2 ${
-                      isActive(item.href)
-                        ? "text-primary"
-                        : "text-muted-foreground hover:text-foreground"
-                    }`}
-                  >
-                    {item.label}
-                  </Link>
-                  {isActive(item.href) && (
+                  {item.children ? (
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <button
+                          className={`flex items-center gap-1 text-sm font-medium transition-colors py-2 ${
+                            isActive(item.href)
+                              ? "text-primary"
+                              : "text-muted-foreground hover:text-foreground"
+                          }`}
+                        >
+                          {item.label}
+                          <ChevronDown className="w-3.5 h-3.5" />
+                        </button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent align="start">
+                        {item.children.map((child) => (
+                          <DropdownMenuItem key={child.href} asChild>
+                            <Link to={child.href} className="cursor-pointer">
+                              {child.label}
+                            </Link>
+                          </DropdownMenuItem>
+                        ))}
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  ) : item.external ? (
+                    <a
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm font-medium transition-colors py-2 text-muted-foreground hover:text-foreground"
+                    >
+                      {item.label}
+                    </a>
+                  ) : (
+                    <Link
+                      to={item.href}
+                      className={`text-sm font-medium transition-colors py-2 ${
+                        isActive(item.href)
+                          ? "text-primary"
+                          : "text-muted-foreground hover:text-foreground"
+                      }`}
+                    >
+                      {item.label}
+                    </Link>
+                  )}
+                  {!item.external && isActive(item.href) && (
                     <motion.div
                       layoutId="activeIndicator"
                       className="absolute -bottom-[1px] left-0 right-0 h-0.5 bg-primary"
@@ -215,20 +270,68 @@ const UnifiedNavigation = () => {
                           },
                         }}
                       >
-                        <Link
-                          to={item.href}
-                          onClick={() => setIsMobileMenuOpen(false)}
-                          className={`flex items-center gap-3 px-4 py-3 rounded-lg text-base font-medium transition-colors ${
-                            isActive(item.href)
-                              ? "bg-primary/10 text-primary"
-                              : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
-                          }`}
-                        >
-                          {item.label}
-                          {isActive(item.href) && (
-                            <span className="ml-auto w-1.5 h-1.5 rounded-full bg-primary" />
-                          )}
-                        </Link>
+                        {item.children ? (
+                          <Collapsible>
+                            <CollapsibleTrigger
+                              className={`flex items-center justify-between w-full px-4 py-3 rounded-lg text-base font-medium transition-colors ${
+                                isActive(item.href)
+                                  ? "bg-primary/10 text-primary"
+                                  : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                              }`}
+                            >
+                              <span className="flex items-center gap-3">
+                                {item.label}
+                                {isActive(item.href) && (
+                                  <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                                )}
+                              </span>
+                              <ChevronDown className="w-4 h-4 transition-transform duration-200 [[data-state=open]>&]:rotate-180" />
+                            </CollapsibleTrigger>
+                            <CollapsibleContent>
+                              <div className="ml-4 border-l border-border pl-3 mt-1 space-y-1">
+                                {item.children.map((child) => (
+                                  <Link
+                                    key={child.href}
+                                    to={child.href}
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                    className={`flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+                                      isActive(child.href)
+                                        ? "bg-primary/10 text-primary"
+                                        : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                                    }`}
+                                  >
+                                    {child.label}
+                                  </Link>
+                                ))}
+                              </div>
+                            </CollapsibleContent>
+                          </Collapsible>
+                        ) : item.external ? (
+                          <a
+                            href={item.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                            className="flex items-center gap-3 px-4 py-3 rounded-lg text-base font-medium transition-colors text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                          >
+                            {item.label}
+                          </a>
+                        ) : (
+                          <Link
+                            to={item.href}
+                            onClick={() => setIsMobileMenuOpen(false)}
+                            className={`flex items-center gap-3 px-4 py-3 rounded-lg text-base font-medium transition-colors ${
+                              isActive(item.href)
+                                ? "bg-primary/10 text-primary"
+                                : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                            }`}
+                          >
+                            {item.label}
+                            {isActive(item.href) && (
+                              <span className="ml-auto w-1.5 h-1.5 rounded-full bg-primary" />
+                            )}
+                          </Link>
+                        )}
                       </motion.div>
                     ))}
                   </div>
