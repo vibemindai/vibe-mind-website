@@ -130,7 +130,7 @@ const UCPStoreCheckForm = ({ onCheckUrl, onCheckJson, loading }: UCPStoreCheckFo
                 UCP Profile JSON
               </label>
               <Textarea
-                placeholder='{"ucp": {"version": "2025-01-01", ...}}'
+                placeholder='{"ucp": {"version": "2026-02-16", ...}}'
                 value={jsonText}
                 onChange={(e) => setJsonText(e.target.value)}
                 disabled={loading}

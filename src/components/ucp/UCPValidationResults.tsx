@@ -1,4 +1,4 @@
-import { CheckCircle2, XCircle, AlertTriangle } from "lucide-react";
+import { CheckCircle2, XCircle, AlertTriangle, Info } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import {
   Accordion,
@@ -9,6 +9,7 @@ import {
 import UCPCheckItem from "./UCPCheckItem";
 import UCPProfileViewer from "./UCPProfileViewer";
 import type { ValidationResult } from "@/lib/ucp/ucpTypes";
+import { UCP_SPEC_DATE } from "@/lib/ucp/ucpSchema";
 
 const statusBanner = {
   detected: {
@@ -57,7 +58,17 @@ const UCPValidationResults = ({ result }: UCPValidationResultsProps) => {
     "Services",
     "Capabilities",
     "Payment Handlers",
+    "Capability Registry",
+    "Checkout",
+    "Identity Linking",
+    "Order",
+    "Fulfillment",
+    "Discount",
+    "AP2 Mandates",
+    "Buyer Consent",
+    "Cross-Section",
     "Signing Keys",
+    "Security & Governance",
   ];
 
   return (
@@ -76,6 +87,22 @@ const UCPValidationResults = ({ result }: UCPValidationResultsProps) => {
           </div>
         </div>
         <Progress value={pct} className="h-2" />
+
+        {/* Format badge */}
+        {result.detectedFormat && (
+          <div className="flex items-center gap-2 mt-3">
+            {result.detectedFormat === "legacy" ? (
+              <div className="flex items-center gap-1.5 text-xs text-amber-500">
+                <Info className="w-3.5 h-3.5" />
+                <span>Legacy format detected — consider updating to the {UCP_SPEC_DATE} spec</span>
+              </div>
+            ) : (
+              <span className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full">
+                Spec: {UCP_SPEC_DATE}
+              </span>
+            )}
+          </div>
+        )}
       </div>
 
       {/* Grouped Checks */}

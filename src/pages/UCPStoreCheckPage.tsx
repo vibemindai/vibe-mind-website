@@ -8,6 +8,7 @@ import UCPInfoSection from "@/components/ucp/UCPInfoSection";
 import { useUCPCheck } from "@/hooks/useUCPCheck";
 import { useToast } from "@/hooks/use-toast";
 import { AlertCircle } from "lucide-react";
+import { UCP_SPEC_DATE } from "@/lib/ucp/ucpSchema";
 
 const UCPStoreCheckPage = () => {
   const { loading, result, error, checkJson, checkUrl } = useUCPCheck();
@@ -68,6 +69,9 @@ const UCPStoreCheckPage = () => {
                 <p className="text-lg text-muted-foreground">
                   Validate your store's UCP profile for AI-driven commerce compatibility. Check a
                   live URL or paste your JSON to verify compliance.
+                </p>
+                <p className="text-xs text-muted-foreground mt-2">
+                  Based on UCP Draft Spec — {UCP_SPEC_DATE}
                 </p>
               </AnimatedSection>
             </div>
