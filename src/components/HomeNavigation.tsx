@@ -25,6 +25,7 @@ import ThemeToggle from "./ThemeToggle";
 import { useToast } from "@/hooks/use-toast";
 import { MagneticElement } from "./MagneticElement";
 import { CONTACT_API_ENDPOINT, getClientId, getIpAddress, getSessionId } from "@/lib/api";
+import BrandLogo from "./BrandLogo";
 
 interface HomeNavigationProps {
   onLogoClick?: () => void;
@@ -161,14 +162,14 @@ const HomeNavigation = ({ onLogoClick, isMobileChatExpanded }: HomeNavigationPro
           {/* Logo - on mobile when chat expanded, clicking goes back to services */}
           {isMobileChatExpanded && (
             <button onClick={onLogoClick} className="flex items-center gap-2 group lg:hidden">
-              <img src="/logo.png" alt="VibeMind AI Solutions" className="h-8 sm:h-10 w-auto" />
+              <BrandLogo className="h-32 md:h-[10rem] w-auto" />
             </button>
           )}
           <Link
             to="/"
             className={`flex items-center gap-2 group ${isMobileChatExpanded ? "hidden lg:flex" : ""}`}
           >
-            <img src="/logo.png" alt="VibeMind AI Solutions" className="h-8 sm:h-10 w-auto" />
+            <BrandLogo className="h-32 md:h-[10rem] w-auto" />
           </Link>
 
           {/* Desktop Navigation */}

@@ -35,8 +35,9 @@ const RelatedServices = ({
             <motion.div
               key={service.slug}
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 * index }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.05 * index }}
             >
               <Link to={`/services/${categorySlug}/${service.slug}`} className="group block h-full">
                 <div className="h-full p-6 rounded-xl bg-card/50 border border-border/50 hover:border-primary/50 hover:bg-card/80 transition-all duration-300">

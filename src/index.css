@@ -182,6 +182,21 @@ All colors MUST be HSL.
       sans-serif;
   }
 
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family:
+      "Plus Jakarta Sans",
+      "Inter",
+      system-ui,
+      -apple-system,
+      sans-serif;
+    letter-spacing: -0.02em;
+  }
+
   html {
     scroll-behavior: smooth;
     overflow-y: scroll;

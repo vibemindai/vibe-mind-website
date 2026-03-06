@@ -81,8 +81,9 @@ const CategoryPage = () => {
                       <motion.div
                         key={service.slug}
                         initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.1 * index }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.05 * index }}
                       >
                         <Link
                           to={`/services/${category.slug}/${service.slug}`}
@@ -115,7 +116,7 @@ const CategoryPage = () => {
             </AnimatedSection>
 
             {/* Why Choose Us Section */}
-            <AnimatedSection delay={0.3}>
+            <AnimatedSection delay={0.1}>
               <div className="mb-16 py-12 px-8 rounded-2xl bg-gradient-to-br from-primary/5 to-accent/5 border border-primary/10">
                 <h2 className="text-2xl font-semibold mb-8 text-center">
                   Why Choose Vibe Mind AI for {category.name}
@@ -149,7 +150,7 @@ const CategoryPage = () => {
             </AnimatedSection>
 
             {/* Other Categories */}
-            <AnimatedSection delay={0.4}>
+            <AnimatedSection delay={0.1}>
               <div className="mb-16">
                 <h2 className="text-2xl font-semibold mb-8 text-center">
                   Explore Other AI Solutions
@@ -173,7 +174,7 @@ const CategoryPage = () => {
             </AnimatedSection>
 
             {/* CTA Section */}
-            <AnimatedSection delay={0.5}>
+            <AnimatedSection delay={0.1}>
               <div className="text-center py-12 px-8 rounded-2xl bg-gradient-to-r from-primary/10 to-accent/10 border border-primary/20">
                 <h2 className="text-2xl md:text-3xl font-bold mb-4">
                   Ready to Transform Your Business with {category.name}?

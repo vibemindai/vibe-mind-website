@@ -1,13 +1,15 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Send, CheckCircle, Loader2 } from "lucide-react";
+import { Send, CheckCircle, Loader2, User, MessageSquareText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { submitContact } from "@/lib/api";
 
 const CallbackRequestForm = () => {
+  const [name, setName] = useState("");
   const [contact, setContact] = useState("");
+  const [message, setMessage] = useState("");
   const [contactType, setContactType] = useState<"email" | "phone" | null>(null);
   const [isValid, setIsValid] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -68,7 +70,16 @@ const CallbackRequestForm = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await submitContact(contact.trim());
+      // Send contact with name and message appended
+      const fullContact = [
+        contact.trim(),
+        name.trim() ? `| Name: ${name.trim()}` : "",
+        message.trim() ? `| Message: ${message.trim()}` : "",
+      ]
+        .filter(Boolean)
+        .join(" ");
+
+      const response = await submitContact(fullContact);
 
       if (!response.ok) {
         throw new Error("Failed to submit request");
@@ -76,10 +87,12 @@ const CallbackRequestForm = () => {
 
       setIsSuccess(true);
       setContact("");
+      setName("");
+      setMessage("");
 
       toast({
         title: "Request submitted!",
-        description: "We'll get back to you soon.",
+        description: "We'll get back to you within 24 hours.",
       });
 
       // Reset success state after 3 seconds
@@ -102,19 +115,34 @@ const CallbackRequestForm = () => {
       <div className="mb-6">
         <h3 className="text-xl font-semibold mb-2">Request a Callback</h3>
         <p className="text-sm text-muted-foreground">
-          Enter your phone number or email, and we'll reach out to you.
+          Tell us about your project and we'll get back to you within 24 hours.
         </p>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-4">
+        {/* Name field */}
+        <div className="relative">
+          <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+          <Input
+            type="text"
+            placeholder="Your name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="h-12 pl-10 text-base"
+            disabled={isSubmitting || isSuccess}
+          />
+        </div>
+
+        {/* Contact field */}
         <div className="relative">
           <Input
             type="text"
             placeholder="Phone number or email address"
             value={contact}
             onChange={(e) => setContact(e.target.value)}
-            className="h-12 pr-12 text-base"
+            className="h-12 pr-20 text-base"
             disabled={isSubmitting || isSuccess}
+            required
           />
 
           {/* Type indicator */}
@@ -124,7 +152,7 @@ const CallbackRequestForm = () => {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.8 }}
-                className="absolute right-12 top-1/2 -translate-y-1/2 text-xs text-muted-foreground bg-muted px-2 py-0.5 rounded"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-muted-foreground bg-muted px-2 py-0.5 rounded"
               >
                 {contactType === "email" ? "Email" : "Phone"}
               </motion.span>
@@ -132,7 +160,20 @@ const CallbackRequestForm = () => {
           </AnimatePresence>
         </div>
 
-        {/* Submit button - only shows when valid */}
+        {/* Message field */}
+        <div className="relative">
+          <MessageSquareText className="absolute left-3 top-3 w-4 h-4 text-muted-foreground" />
+          <textarea
+            placeholder="Tell us about your project (optional)"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            className="flex w-full rounded-lg border border-input bg-background px-3 pl-10 py-3 text-base ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 min-h-[80px] resize-none"
+            disabled={isSubmitting || isSuccess}
+            rows={3}
+          />
+        </div>
+
+        {/* Submit button */}
         <AnimatePresence mode="wait">
           {isSuccess ? (
             <motion.div
@@ -143,7 +184,7 @@ const CallbackRequestForm = () => {
               className="flex items-center justify-center gap-2 h-12 rounded-lg bg-green-500/10 text-green-600 dark:text-green-400"
             >
               <CheckCircle className="w-5 h-5" />
-              <span className="font-medium">Request sent!</span>
+              <span className="font-medium">Request sent! We'll be in touch.</span>
             </motion.div>
           ) : (
             <motion.div

@@ -84,7 +84,7 @@ const AboutPage = () => {
                   across
                   <span className="text-foreground font-semibold">
                     {" "}
-                    India, Qatar, and the United States
+                    India, Middle East, North America and Germany
                   </span>
                   , delivering transformative digital experiences that drive real business value.
                 </p>
