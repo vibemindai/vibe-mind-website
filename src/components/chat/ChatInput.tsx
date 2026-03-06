@@ -56,7 +56,7 @@ const ChatInput = ({
           onKeyDown={handleKeyDown}
           disabled={disabled || isStreaming}
           maxLength={MAX_MESSAGE_LENGTH}
-          className={`w-full bg-transparent border-0 outline-none focus:ring-0 text-xs sm:text-sm text-foreground px-3 sm:px-4 py-2 disabled:opacity-50 ${hasStartedChat ? "caret-transparent" : ""}`}
+          className={`w-full bg-transparent border-0 outline-none focus:ring-0 focus-visible:outline-none text-xs sm:text-sm text-foreground px-3 sm:px-4 py-2 disabled:opacity-50 ${hasStartedChat ? "caret-transparent" : ""}`}
           placeholder=""
         />
         {/* Placeholder - static after chat started, animated before */}

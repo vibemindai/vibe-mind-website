@@ -67,12 +67,13 @@ const ContactInfoCards = () => {
         <motion.div
           key={card.title}
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{
             type: "spring",
             stiffness: 300,
             damping: 25,
-            delay: index * 0.1,
+            delay: index * 0.05,
           }}
           className="glass-strong rounded-xl p-4 group"
         >
@@ -120,12 +121,13 @@ const ContactInfoCards = () => {
       {/* Quick Response Indicator */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
         transition={{
           type: "spring",
           stiffness: 300,
           damping: 25,
-          delay: cards.length * 0.1,
+          delay: 0.15,
         }}
         className="glass-strong rounded-xl p-4 bg-primary/5"
       >

@@ -75,7 +75,7 @@ const ServicesPage = () => {
 
             {/* Category Cards */}
             <AnimatedSection delay={0.3}>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
                 {serviceCategories.map((category, index) => {
                   const CategoryIcon = getIcon(category.icon);
                   const serviceCount = getCapabilitiesByCategory(category.categoryKey).length;
@@ -84,8 +84,9 @@ const ServicesPage = () => {
                     <motion.div
                       key={category.slug}
                       initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.1 * index }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.05 * index }}
                     >
                       <Link to={`/services/${category.slug}`} className="group block h-full">
                         <div className="h-full p-6 rounded-xl bg-card/50 border border-border/50 hover:border-primary/50 hover:bg-card/80 transition-all duration-300">
@@ -119,7 +120,7 @@ const ServicesPage = () => {
             </AnimatedSection>
 
             {/* All Services Section */}
-            <AnimatedSection delay={0.4}>
+            <AnimatedSection delay={0.1}>
               <div className="text-center mb-8">
                 <h2 className="text-2xl font-semibold mb-2">All AI Capabilities</h2>
                 <p className="text-muted-foreground">Click any capability to learn more</p>
@@ -127,7 +128,7 @@ const ServicesPage = () => {
             </AnimatedSection>
 
             {/* Juggling Capabilities */}
-            <AnimatedSection delay={0.5}>
+            <AnimatedSection delay={0.1}>
               <JugglingCapabilities />
             </AnimatedSection>
           </div>

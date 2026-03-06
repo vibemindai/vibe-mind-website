@@ -6,10 +6,10 @@ const StatisticsSection = () => {
   const stats = [
     {
       icon: Bot,
-      value: 4,
+      value: 15,
       suffix: "+",
-      label: "AI Models",
-      description: "Integrated in our solutions",
+      label: "AI Technologies",
+      description: "Models & frameworks integrated",
     },
     {
       icon: FolderGit2,
@@ -23,7 +23,7 @@ const StatisticsSection = () => {
       value: 3,
       suffix: "",
       label: "Countries",
-      description: "Global presence",
+      description: "India, Qatar & USA",
     },
     {
       icon: ThumbsUp,

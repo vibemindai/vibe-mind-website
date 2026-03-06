@@ -1,6 +1,6 @@
 import { useParams, Link, Navigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Check, ArrowRight } from "lucide-react";
+import { Check, ArrowRight, MessageCircle } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 import UnifiedNavigation from "@/components/layout/UnifiedNavigation";
 import FooterWrapper from "@/components/FooterWrapper";
@@ -103,12 +103,15 @@ const ServiceDetailPage = () => {
                     Get Started
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </Link>
-                  <Link
-                    to="/contact"
-                    className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-secondary text-secondary-foreground font-medium hover:bg-secondary/80 transition-colors"
+                  <a
+                    href={`https://wa.me/918921442486?text=${encodeURIComponent(`Hi! I'm interested in your ${service.title} services. Can we schedule a call to discuss?`)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-secondary text-secondary-foreground font-medium hover:bg-secondary/80 transition-colors gap-2"
                   >
-                    Schedule a Call
-                  </Link>
+                    <MessageCircle className="w-4 h-4" />
+                    Chat on WhatsApp
+                  </a>
                 </div>
               </div>
             </AnimatedSection>
@@ -132,8 +135,9 @@ const ServiceDetailPage = () => {
                       <motion.li
                         key={index}
                         initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.4 + index * 0.1 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: index * 0.05 }}
                         className="flex items-start gap-3"
                       >
                         <div className="flex-shrink-0 w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center mt-0.5">
@@ -148,7 +152,7 @@ const ServiceDetailPage = () => {
             </div>
 
             {/* Use Cases Section */}
-            <AnimatedSection delay={0.4}>
+            <AnimatedSection delay={0.1}>
               <div className="mb-16">
                 <h2 className="text-2xl font-semibold mb-6 text-center">Use Cases</h2>
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
@@ -156,8 +160,9 @@ const ServiceDetailPage = () => {
                     <motion.div
                       key={index}
                       initial={{ opacity: 0, scale: 0.95 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: 0.5 + index * 0.05 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.03 }}
                       className="p-4 rounded-xl bg-card/30 border border-border/30 text-center hover:border-primary/30 hover:bg-card/50 transition-all"
                     >
                       <span className="text-sm font-medium">{useCase}</span>
@@ -168,7 +173,7 @@ const ServiceDetailPage = () => {
             </AnimatedSection>
 
             {/* How It Works Section */}
-            <AnimatedSection delay={0.5}>
+            <AnimatedSection delay={0.1}>
               <div className="mb-16 py-12 px-8 rounded-2xl bg-card/30 border border-border/30">
                 <h2 className="text-2xl font-semibold mb-8 text-center">How We Work</h2>
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
@@ -197,8 +202,9 @@ const ServiceDetailPage = () => {
                     <motion.div
                       key={index}
                       initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.6 + index * 0.1 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.1 }}
                       className="relative text-center"
                     >
                       <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 border border-primary/20 text-primary font-bold text-lg mb-4">
@@ -216,7 +222,7 @@ const ServiceDetailPage = () => {
             </AnimatedSection>
 
             {/* Related Services */}
-            <AnimatedSection delay={0.6}>
+            <AnimatedSection delay={0.1}>
               <RelatedServices
                 currentServiceSlug={service.slug}
                 categoryKey={category.categoryKey}
@@ -225,7 +231,7 @@ const ServiceDetailPage = () => {
             </AnimatedSection>
 
             {/* CTA Section */}
-            <AnimatedSection delay={0.7}>
+            <AnimatedSection delay={0.1}>
               <div className="text-center py-12 px-8 rounded-2xl bg-gradient-to-r from-primary/10 to-accent/10 border border-primary/20">
                 <h2 className="text-2xl md:text-3xl font-bold mb-4">
                   Ready to Get Started with {service.title}?
