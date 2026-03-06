@@ -20,7 +20,7 @@ const StatisticsSection = () => {
     },
     {
       icon: Globe,
-      value: 3,
+      value: 5,
       suffix: "",
       label: "Countries",
       description: "India, Qatar & USA",

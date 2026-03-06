@@ -98,7 +98,7 @@ const HomePage = () => {
   return (
     <>
       {/* ========== MOBILE/TABLET LAYOUT — Preserved exactly as-is ========== */}
-      <div className="lg:hidden min-h-screen bg-background">
+      <div className="lg:hidden min-h-dvh bg-background">
         <HomeNavigation onLogoClick={handleLogoClick} isMobileChatExpanded={isMobileChatExpanded} />
         <div id="main-content" className="pt-14 sm:pt-16">
           {isMobileChatExpanded ? (

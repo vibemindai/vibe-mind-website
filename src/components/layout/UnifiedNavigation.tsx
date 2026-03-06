@@ -25,6 +25,7 @@ import ThemeToggle from "@/components/ThemeToggle";
 import { useToast } from "@/hooks/use-toast";
 import { MagneticElement } from "@/components/MagneticElement";
 import { CONTACT_API_ENDPOINT, getClientId, getIpAddress, getSessionId } from "@/lib/api";
+import BrandLogo from "../BrandLogo";
 
 const contactActions = [
   {
@@ -163,7 +164,7 @@ const UnifiedNavigation = () => {
         <div className="flex items-center justify-between h-14 sm:h-16 lg:h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 group">
-            <img src="/logo.png" alt="VibeMind AI Solutions" className="h-8 sm:h-10 w-auto" />
+            <BrandLogo className="h-32 md:h-[9.5rem] w-auto" />
           </Link>
 
           {/* Desktop Navigation */}

@@ -1,0 +1,140 @@
+# Vibe Mind AI Solutions — llms.txt
+
+> AI-first software company specializing in intelligent, scalable software development. Based in Kerala, India with clients across India, Middle East, North America, and Germany.
+
+## Organization
+
+- Name: Vibe Mind AI Solutions
+- Website: https://vibemindsolutions.ai
+- Blog: https://blog.vibemindsolutions.ai
+- Industry: AI Software Development & Consulting
+- Headquarters: Kerala (Kochi), India
+- Global Presence: India, Qatar (Middle East), USA (North America), Germany
+- Mission: Democratize AI-powered software development by creating intelligent solutions that empower businesses of all sizes
+- Vision: Leading force in the Vibe Coding revolution — where human creativity and AI capabilities merge seamlessly
+
+## Services
+
+### Conversational AI
+- Chatbot Development
+- Voice Assistants
+- Natural Language Processing
+- Sentiment Analysis
+- Intent Recognition
+- Multi-language Support
+- Conversational Analytics
+
+### Data & Analytics
+- Predictive Analytics
+- Real-time Processing
+- Data Pipeline Automation
+- Anomaly Detection
+- Trend Forecasting
+- Business Intelligence AI
+- Customer Analytics
+
+### LLM & Generative AI
+- LLM Integration (GPT-4, Claude, Llama)
+- Custom GPT Solutions
+- RAG Systems (Retrieval-Augmented Generation)
+- Prompt Engineering
+- Content Generation
+- Code Generation
+- AI Writing Assistants
+
+### Automation
+- Workflow Automation
+- RPA Solutions
+- Process Optimization
+- Smart Scheduling
+- Automated Testing
+- CI/CD AI Integration
+- DevOps Automation
+
+### Enterprise Solutions
+- Enterprise AI Integration
+- API Development
+- Cloud AI Services (AWS, Azure, GCP)
+- Edge AI Deployment
+- AI Security Solutions
+- Compliance Automation (GDPR, HIPAA, SOC2)
+- Knowledge Management
+
+### Specialized Solutions
+- Healthcare AI
+- FinTech AI
+- Legal AI
+- E-commerce AI
+- Supply Chain AI
+- HR & Recruitment AI
+
+## Industries Served
+
+- Healthcare & Medical
+- Financial Services / FinTech
+- Legal
+- E-commerce & Retail
+- Supply Chain & Logistics
+- HR & Recruitment
+- Manufacturing
+- Government & Compliance
+- Technology / SaaS / Enterprise
+
+## Key Pages
+
+- /: Homepage — company overview, service highlights, tech stack, testimonials
+- /about: About — mission, vision, core values, company statistics
+- /services: Services — all 6 service categories with 41 capabilities
+- /services/conversational-ai: Conversational AI services
+- /services/data-analytics: Data & Analytics services
+- /services/generative-ai: LLM & Generative AI services
+- /services/automation: Automation services
+- /services/enterprise-solutions: Enterprise Solutions
+- /services/specialized-solutions: Specialized industry solutions
+- /contact: Contact — callback request form, WhatsApp integration
+- /privacy-policy: Privacy Policy
+- /terms-and-conditions: Terms & Conditions
+- /tools/ucp-store-check: UCP Store Check — free Universal Commerce Protocol profile validator
+
+## Content Categories
+
+- AI Software Development
+- Vibe Coding Philosophy
+- Legacy System Modernization
+- Conversational AI & Chatbots
+- LLM Integration & RAG Systems
+- Data Analytics & Predictive Modeling
+- Workflow & DevOps Automation
+- Enterprise AI & Cloud Services
+- Industry-Specific AI Solutions
+- UCP (Universal Commerce Protocol) Tooling
+
+## Contact Information
+
+- Email: info@vibemindsolutions.ai
+- Phone: +91 89 21 442 486
+- WhatsApp: https://wa.me/918921442486
+- Response Time: Typically within 24 hours
+
+## Social
+
+- Twitter/X: https://twitter.com/vibemindai
+- LinkedIn: https://linkedin.com/company/vibemindai
+- Facebook: https://facebook.com/vibemindai
+- Instagram: https://instagram.com/vibemindai
+
+## Technical References
+
+- Technology Stack: React, TypeScript, Tailwind CSS, Vite, Framer Motion
+- AI/ML Stack: OpenAI, Google Gemini, Anthropic Claude, LangChain, Hugging Face, LlamaIndex
+- Backend: Python, Node.js, FastAPI, Django, Express.js, GraphQL, Java, Spring Boot
+- Cloud & DevOps: AWS, Azure, Google Cloud, Docker, Kubernetes, CI/CD
+- Databases: PostgreSQL, MongoDB, Redis, Supabase, Pinecone, ChromaDB
+- Tools: UCP Store Check (77 validation checks across 16 groups, spec 2026-02-16)
+
+## Company Statistics
+
+- 4+ AI Models Integrated
+- 50+ Projects Delivered
+- 5 Countries Served
+- 98% Client Satisfaction Rate

@@ -56,7 +56,7 @@ const ContactInfoCards = () => {
     {
       icon: Globe,
       title: "Global Presence",
-      value: "India, Qatar, USA",
+      value: "India, Middle East, North America, Germany",
       isInfo: true,
     },
   ];
