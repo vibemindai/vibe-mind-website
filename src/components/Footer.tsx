@@ -60,7 +60,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
           {/* Brand + Social */}
           <div className="space-y-4 sm:col-span-2 lg:col-span-1">
-          <img src="/vibemind-logo.svg" alt="" className="h-12 w-28" />   
+            <img src="/vibemind-logo.svg" alt="" className="h-12 w-28" />
             <p className="text-sm text-gray-300" itemProp="description">
               Building intelligent software through Vibe Coding philosophy
             </p>
@@ -118,35 +118,19 @@ const Footer = () => {
           <div>
             <h3 className="font-semibold mb-4 text-white">Clients Across</h3>
             <ul role="list" className="space-y-3 text-sm text-gray-300">
-              <li
-                className="flex items-start gap-2"
-                itemScope
-                itemType="https://schema.org/Place"
-              >
+              <li className="flex items-start gap-2" itemScope itemType="https://schema.org/Place">
                 <MapPin className="w-4 h-4 flex-shrink-0 mt-0.5" aria-hidden="true" />
                 <span itemProp="name">India</span>
               </li>
-              <li
-                className="flex items-start gap-2"
-                itemScope
-                itemType="https://schema.org/Place"
-              >
+              <li className="flex items-start gap-2" itemScope itemType="https://schema.org/Place">
                 <MapPin className="w-4 h-4 flex-shrink-0 mt-0.5" aria-hidden="true" />
                 <span itemProp="name">Middle East</span>
               </li>
-              <li
-                className="flex items-start gap-2"
-                itemScope
-                itemType="https://schema.org/Place"
-              >
+              <li className="flex items-start gap-2" itemScope itemType="https://schema.org/Place">
                 <MapPin className="w-4 h-4 flex-shrink-0 mt-0.5" aria-hidden="true" />
                 <span itemProp="name">North America</span>
               </li>
-              <li
-                className="flex items-start gap-2"
-                itemScope
-                itemType="https://schema.org/Place"
-              >
+              <li className="flex items-start gap-2" itemScope itemType="https://schema.org/Place">
                 <MapPin className="w-4 h-4 flex-shrink-0 mt-0.5" aria-hidden="true" />
                 <span itemProp="name">Germany</span>
               </li>
